@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { HomePageData } from "@/lib/types";
 
 const heroStats = [
   { value: "15+", label: "Years of Experience" },
@@ -10,7 +11,13 @@ const heroStats = [
   { value: "500+", label: "Corporate Clients" },
 ];
 
-export default function HeroSection() {
+export default function HeroSection({
+  homePageData,
+  heroImageUrl,
+}: {
+  homePageData: HomePageData;
+  heroImageUrl: string;
+}) {
   const reduceMotion = useReducedMotion();
 
   const container = {
@@ -51,16 +58,14 @@ export default function HeroSection() {
             variants={item}
             className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
-            Trusted Legal Excellence for{" "}
-            <span className="italic text-accent">Every Challenge.</span>
+            {homePageData.heroTitle}
+            <span className="italic text-accent">{homePageData.heroHighlightText}</span>
           </motion.h1>
           <motion.p
             variants={item}
             className="mt-6 max-w-xl text-lg leading-relaxed text-white/80"
           >
-            Dedicated advocates delivering strategic counsel across corporate,
-            litigation, and personal legal matters — with integrity you can
-            count on.
+            {homePageData.heroSubtitle}
           </motion.p>
 
           <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
@@ -101,7 +106,7 @@ export default function HeroSection() {
         >
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10">
             <Image
-              src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80"
+              src={heroImageUrl}
               alt="Scales of justice in a law office"
               fill
               priority
