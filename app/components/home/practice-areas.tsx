@@ -1,4 +1,5 @@
 import SectionHeading from "../ui/section-heading";
+import Reveal from "../ui/reveal";
 
 const practiceAreas = [
   {
@@ -58,25 +59,37 @@ const practiceAreas = [
       </>
     ),
   },
+  {
+    title: "Family Law",
+    description:
+      "Compassionate counsel on divorce, maintenance, child custody, succession, and other sensitive family matters.",
+    icon: (
+      <>
+        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+      </>
+    ),
+  },
 ];
 
 export default function PracticeAreas() {
   return (
     <section id="practice-areas" className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center">
+        <Reveal className="flex flex-col items-center">
           <SectionHeading
             eyebrow="What We Do"
             title="Our Practice Areas"
             description="Comprehensive legal services tailored to protect your interests and achieve the best possible outcomes."
           />
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {practiceAreas.map((area) => (
-            <article
+          {practiceAreas.map((area, index) => (
+            <Reveal
               key={area.title}
-              className="group rounded-2xl border border-border bg-surface p-8 transition-all hover:border-accent/40 hover:shadow-lg"
+              as="article"
+              delay={(index % 3) * 0.1}
+              className="group rounded-2xl border border-border bg-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl"
             >
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-accent/20 group-hover:text-accent">
                 <svg
@@ -96,7 +109,23 @@ export default function PracticeAreas() {
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 {area.description}
               </p>
-            </article>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                Learn more
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </span>
+            </Reveal>
           ))}
         </div>
       </div>

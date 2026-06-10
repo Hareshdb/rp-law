@@ -1,5 +1,6 @@
 import AnimatedCounter from "../ui/animated-counter";
 import SectionHeading from "../ui/section-heading";
+import Reveal from "../ui/reveal";
 
 const stats = [
   { value: 15, suffix: "+", label: "Years in Practice" },
@@ -10,22 +11,27 @@ const stats = [
 
 export default function SuccessStatistics() {
   return (
-    <section className="bg-primary py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center">
+    <section className="relative overflow-hidden bg-primary py-20 lg:py-28">
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal className="flex flex-col items-center">
           <SectionHeading
             eyebrow="Our Track Record"
             title="Success Statistics"
             description="Numbers that reflect our dedication, expertise, and the trust our clients place in us."
             light
           />
-        </div>
+        </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-8 lg:grid-cols-4">
-          {stats.map((stat) => (
-            <div
+        <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <Reveal
               key={stat.label}
-              className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm"
+              delay={index * 0.1}
+              className="bg-primary/40 p-8 text-center backdrop-blur-sm"
             >
               <p className="text-5xl font-bold text-accent sm:text-6xl">
                 <AnimatedCounter end={stat.value} suffix={stat.suffix} />
@@ -33,7 +39,7 @@ export default function SuccessStatistics() {
               <p className="mt-3 text-sm font-medium text-white/70 sm:text-base">
                 {stat.label}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
