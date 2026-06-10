@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Reveal from "../ui/reveal";
+import { Mail, PhoneCall } from "lucide-react";
 
 const contactDetails = [
   {
@@ -9,7 +10,11 @@ const contactDetails = [
     value: "+91 22 1234 5678",
     href: "tel:+912212345678",
     icon: (
-      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+      <PhoneCall
+        className="h-5 w-5"
+        strokeWidth={1.5}
+        aria-hidden="true"
+      />
     ),
   },
   {
@@ -17,10 +22,11 @@ const contactDetails = [
     value: "info@rplaw.com",
     href: "mailto:info@rplaw.com",
     icon: (
-      <>
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-        <polyline points="22,6 12,13 2,6" />
-      </>
+      <Mail
+        className="h-5 w-5"
+        strokeWidth={1.5}
+        aria-hidden="true"
+      />
     ),
   },
 ];
@@ -67,18 +73,7 @@ export default function ContactCta() {
                   className="group flex items-center gap-4"
                 >
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/5 text-accent ring-1 ring-white/10 transition-colors group-hover:bg-accent group-hover:text-primary">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                      aria-hidden="true"
-                    >
-                      {detail.icon}
-                    </svg>
+                    {detail.icon}
                   </span>
                   <span>
                     <span className="block text-xs uppercase tracking-wide text-white/50">

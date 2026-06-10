@@ -1,9 +1,9 @@
+import { Scale } from "lucide-react";
 import Link from "next/link";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/#practice-areas", label: "Practice Areas" },
   { href: "/contact-us", label: "Contact Us" },
 ];
 
@@ -19,40 +19,27 @@ function Logo({
   return (
     <Link href="/" className={`flex items-center gap-3 ${className}`}>
       <div
-        className={`flex h-10 w-10 items-center justify-center rounded-lg ${
-          isLight ? "bg-white/10" : "bg-primary"
-        }`}
+        className={`flex h-10 w-10 items-center justify-center rounded-lg ${isLight ? "bg-white/10" : "bg-primary"
+          }`}
       >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
+        <Scale
           className="h-6 w-6 text-accent"
+          strokeWidth={1.75}
           aria-hidden="true"
-        >
-          <path
-            d="M12 3L4 9v12h16V9L12 3z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M9 21V12h6v9"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-        </svg>
+        />
       </div>
+
       <div className="flex flex-col leading-tight">
         <span
-          className={`text-lg font-bold ${isLight ? "text-white" : "text-primary"}`}
+          className={`text-lg font-bold ${isLight ? "text-white" : "text-primary"
+            }`}
         >
           RP Law
         </span>
+
         <span
-          className={`text-xs font-medium tracking-wide uppercase ${
-            isLight ? "text-white/60" : "text-muted"
-          }`}
+          className={`text-xs font-medium uppercase tracking-wide ${isLight ? "text-white/60" : "text-muted"
+            }`}
         >
           Associates
         </span>
@@ -60,6 +47,7 @@ function Logo({
     </Link>
   );
 }
+
 
 export default function Header() {
   return (

@@ -1,8 +1,8 @@
-import React from 'react'
+import ContactCta from '@components/home/contact-cta'
 
 const ContactUs = () => {
     return (
-        <div>page</div>
+        <ContactCta />
     )
 }
 
