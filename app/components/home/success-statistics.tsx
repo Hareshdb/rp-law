@@ -6,7 +6,7 @@ const stats = [
   { value: 15, suffix: "+", label: "Years in Practice" },
   { value: 2000, suffix: "+", label: "Successful Cases" },
   { value: 500, suffix: "+", label: "Corporate Clients" },
-  { value: 10000, suffix: "+", label: "Hours of Counsel" },
+  { value: 7000, suffix: "+", label: "Hours of Counsel" },
 ];
 
 export default function SuccessStatistics() {
@@ -33,7 +33,7 @@ export default function SuccessStatistics() {
               delay={index * 0.1}
               className="bg-primary/40 p-8 text-center backdrop-blur-sm"
             >
-              <p className="text-5xl font-bold text-accent sm:text-6xl">
+              <p className="text-4xl font-bold text-accent sm:text-5xl">
                 <AnimatedCounter end={stat.value} suffix={stat.suffix} />
               </p>
               <p className="mt-3 text-sm font-medium text-white/70 sm:text-base">
