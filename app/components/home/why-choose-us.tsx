@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SectionHeading from "../ui/section-heading";
 import Reveal from "../ui/reveal";
+import { Check } from "lucide-react";
 
 const reasons = [
   {
@@ -22,7 +23,7 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-surface py-20 lg:py-28">
+    <section className="bg-surface py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal direction="right" className="relative">
@@ -67,16 +68,11 @@ export default function WhyChooseUs() {
                   className="flex gap-4"
                 >
                   <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/20">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
+                    <Check
                       className="h-4 w-4 text-accent"
+                      strokeWidth={2}
                       aria-hidden="true"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
+                    />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-primary">
