@@ -1,5 +1,8 @@
+"use client";
+
 import { Scale } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -48,23 +51,38 @@ function Logo({
   );
 }
 
-
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Logo />
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav
+          className="hidden items-center gap-8 md:flex"
+          aria-label="Main navigation"
+        >
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`relative text-sm font-medium transition-colors duration-300 ${isActive
+                    ? "text-accent-light"
+                    : "text-foreground/80 hover:text-accent-light"
+                  }`}
+              >
+                {link.label}
+
+                {isActive && (
+                  <span className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-accent-light" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         <Link
@@ -76,7 +94,7 @@ export default function Header() {
 
         <Link
           href="/contact-us"
-          className="rounded-full bg-accent px-4 py-2 text-xs font-semibold text-primary md:hidden"
+          className="rounded-full bg-accent px-4 py-2 text-xs font-semibold text-primary transition-colors hover:bg-accent-light md:hidden"
         >
           Consult
         </Link>
