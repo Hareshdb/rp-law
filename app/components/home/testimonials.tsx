@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import SectionHeading from "../ui/section-heading";
+import Reveal from "../ui/reveal";
 
 const testimonials = [
   {
@@ -84,13 +85,13 @@ export default function Testimonials() {
   return (
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center">
+        <Reveal className="flex flex-col items-center">
           <SectionHeading
             eyebrow="Client Stories"
             title="What Our Clients Say"
             description="Real experiences from individuals and businesses who trusted us with their most important legal matters."
           />
-        </div>
+        </Reveal>
 
         <div className="relative mt-14">
           <div
@@ -103,14 +104,22 @@ export default function Testimonials() {
                 key={testimonial.name}
                 className="flex flex-col rounded-2xl border border-border bg-surface p-8 shadow-sm"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="mb-4 h-8 w-8 text-accent/40"
-                  aria-hidden="true"
+                <div
+                  className="mb-4 flex gap-1 text-accent"
+                  aria-label="Rated 5 out of 5 stars"
                 >
-                  <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0c-1.03-1.094-1.583-2.321-1.583-4.311 0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
-                </svg>
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <svg
+                      key={starIndex}
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="h-5 w-5"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                  ))}
+                </div>
                 <blockquote className="flex-1 text-muted leading-relaxed">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>

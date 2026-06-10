@@ -1,36 +1,72 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
+
+const heroStats = [
+  { value: "15+", label: "Years of Experience" },
+  { value: "2000+", label: "Cases Won" },
+  { value: "500+", label: "Corporate Clients" },
+];
 
 export default function HeroSection() {
-  return (
-    <section className="relative flex min-h-[85vh] items-center overflow-hidden">
-      <Image
-        src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80"
-        alt="Law office interior"
-        fill
-        priority
-        className="object-cover"
-        sizes="100vw"
-      />
-      <div className="absolute inset-0 bg-primary/80" />
+  const reduceMotion = useReducedMotion();
 
-      <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent">
+  const container = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+  };
+
+  const item = {
+    hidden: reduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+    },
+  };
+
+  return (
+    <section className="relative overflow-hidden bg-primary">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary-dark" />
+      <div
+        aria-hidden="true"
+        className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-accent/10 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl"
+      />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-28">
+        <motion.div variants={container} initial="hidden" animate="visible">
+          <motion.p
+            variants={item}
+            className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent"
+          >
             RP Law Associates
-          </p>
-          <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Trusted Legal Excellence for Every Challenge
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-white/85 sm:text-xl">
+          </motion.p>
+          <motion.h1
+            variants={item}
+            className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+          >
+            Trusted Legal Excellence for{" "}
+            <span className="italic text-accent">Every Challenge.</span>
+          </motion.h1>
+          <motion.p
+            variants={item}
+            className="mt-6 max-w-xl text-lg leading-relaxed text-white/80"
+          >
             Dedicated advocates delivering strategic counsel across corporate,
             litigation, and personal legal matters — with integrity you can
             count on.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          </motion.p>
+
+          <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/contact-us"
-              className="inline-flex items-center rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-primary transition-colors hover:bg-accent-light"
+              className="inline-flex items-center rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-primary shadow-lg shadow-accent/20 transition-colors hover:bg-accent-light"
             >
               Schedule a Consultation
             </Link>
@@ -40,8 +76,65 @@ export default function HeroSection() {
             >
               Explore Practice Areas
             </Link>
+          </motion.div>
+
+          <motion.dl
+            variants={item}
+            className="mt-12 flex flex-wrap gap-x-10 gap-y-6 border-t border-white/10 pt-8"
+          >
+            {heroStats.map((stat) => (
+              <div key={stat.label}>
+                <dt className="text-3xl font-bold text-white">{stat.value}</dt>
+                <dd className="mt-1 text-sm font-medium text-white/60">
+                  {stat.label}
+                </dd>
+              </div>
+            ))}
+          </motion.dl>
+        </motion.div>
+
+        <motion.div
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="relative"
+        >
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10">
+            <Image
+              src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80"
+              alt="Scales of justice in a law office"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
           </div>
-        </div>
+
+          <div className="absolute -bottom-6 -left-6 hidden rounded-2xl bg-surface p-5 shadow-xl sm:block">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent/15 text-accent">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-6 w-6"
+                  aria-hidden="true"
+                >
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-sm font-bold text-primary">98% Success Rate</p>
+                <p className="text-xs text-muted">Proven track record</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
