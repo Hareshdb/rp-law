@@ -73,14 +73,14 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={`relative text-sm font-medium transition-colors duration-300 ${isActive
-                    ? "text-accent-light"
-                    : "text-foreground/80 hover:text-accent-light"
+                    ? "text-accent"
+                    : "text-foreground/80 hover:text-accent"
                   }`}
               >
                 {link.label}
 
                 {isActive && (
-                  <span className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-accent-light" />
+                  <span className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-accent" />
                 )}
               </Link>
             );

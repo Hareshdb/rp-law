@@ -2,14 +2,17 @@
 
 :root {
   --background: #fafafa;
-  --foreground: #0f172a;
-  --primary: #1e3a5f;
-  --primary-dark: #152a45;
-  --accent: #c9a227;
-  --accent-light: #e8c547;
-  --muted: #64748b;
+  --foreground: #111827;
+
+  --primary: #3f4854;
+--primary-dark: #2f3745;
+
+  --accent: #eab308;        /* Amber Yellow */
+  --accent-light: #facc15;  /* Bright Amber */
+
+  --muted: #737373;
   --surface: #ffffff;
-  --border: #e2e8f0;
+  --border: #e5e5e5;
 }
 
 @theme inline {
