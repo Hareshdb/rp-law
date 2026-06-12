@@ -46,7 +46,7 @@ export default function HeroSection() {
           </motion.h1>
           <motion.p
             variants={item}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-white/80"
+            className="mt-6 max-w-xl text-lg leading-relaxed text-white"
           >
             Dedicated advocates delivering strategic counsel across corporate,
             litigation, and personal legal matters — with integrity you can
