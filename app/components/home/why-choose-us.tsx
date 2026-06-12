@@ -38,14 +38,14 @@ export default function WhyChooseUs() {
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </div>
 
-            <div className="absolute -bottom-6 right-6 flex items-center gap-4 rounded-2xl bg-primary p-5 shadow-xl sm:-right-6">
+            {/* <div className="absolute -bottom-6 right-6 flex items-center gap-4 rounded-2xl bg-primary p-5 shadow-xl sm:-right-6">
               <p className="text-4xl font-bold text-accent">15+</p>
               <p className="text-sm font-medium leading-tight text-white/80">
                 Years of trusted
                 <br />
                 legal practice
               </p>
-            </div>
+            </div> */}
           </Reveal>
 
           <div>
