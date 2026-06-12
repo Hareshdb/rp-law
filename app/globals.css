@@ -38,3 +38,7 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+.container {
+  @apply px-4 lg:px-36 mx-auto;
+}

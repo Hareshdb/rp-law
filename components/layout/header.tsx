@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/contact-us", label: "Contact Us" },
+  { href: "/blog", label: "Blog" },
 ];
 
 function Logo({
@@ -55,6 +56,9 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const currentModule = pathname.split('/')[1] || '';
+
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
@@ -66,7 +70,7 @@ export default function Header() {
           aria-label="Main navigation"
         >
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+             const isActive = currentModule === link.href.split('/')[1];
 
             return (
               <Link
