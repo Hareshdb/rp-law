@@ -408,11 +408,11 @@ export default function AboutPage() {
       <section className="relative overflow-hidden bg-primary-dark py-28">
         <div
           aria-hidden="true"
-          className="absolute inset-0 opacity-[0.04] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:36px_36px]"
+          className="absolute inset-0 opacity-[0.04] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_1)] [background-size:36px_36px]"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 left-1/2 h-[300px] w-[700px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,var(--color-accent)_0%,transparent_70%)] opacity-20"
+          className="pointer-events-none absolute -bottom-32 left-1/2 h-[300px] w-[700px] -translate-x-1/2 rounded-full opacity-20"
         />
 
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center sm:px-10">
