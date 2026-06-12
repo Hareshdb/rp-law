@@ -94,7 +94,7 @@ export default function BlogDetail({
 
             {/* Excerpt */}
             <section className="space-y-5 pt-5">
-                <div className="container mx-auto px-4 lg:px-36">
+                <div className="container">
                     <div className="mb-10 border-l-4 border-accent pl-6">
                         <p className="text-lg leading-8 text-muted italic">
                             {blog.excerpt}
@@ -175,7 +175,7 @@ export default function BlogDetail({
                     </article>
                 </div>
 
-                <div className="container mx-auto px-4 lg:px-36">
+                <div className="container">
 
                     {/* Rich HTML Content */}
                     <div
@@ -202,8 +202,8 @@ export default function BlogDetail({
             </section>
 
             <section className="py-5">
-                <div className="max-w-5xl px-4 lg:px-36">
-                    <div className="container flex flex-col items-center gap-6 rounded-3xl border border-border bg-surface p-8 text-center md:flex-row md:text-left ">
+                <div className="container max-w-5xl">
+                    <div className=" flex flex-col items-center gap-6 rounded-3xl border border-border bg-surface p-8 text-center md:flex-row md:text-left ">
                         <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full outline outline-2 outline-offset-[3px] outline-accent">
                             <Image
                                 src={blog.authorImage}
