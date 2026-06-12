@@ -67,10 +67,10 @@ export default function WhyChooseUs() {
                   delay={0.1 + index * 0.1}
                   className="flex gap-4"
                 >
-                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/20">
+                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/10">
                     <Check
                       className="h-4 w-4 text-accent"
-                      strokeWidth={2}
+                      strokeWidth={3}
                       aria-hidden="true"
                     />
                   </div>

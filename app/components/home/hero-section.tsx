@@ -29,16 +29,6 @@ export default function HeroSection() {
 
   return (
     <section className="relative overflow-hidden bg-primary">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary-dark" />
-      <div
-        aria-hidden="true"
-        className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-accent/10 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl"
-      />
-
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-28">
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.p
@@ -80,7 +70,7 @@ export default function HeroSection() {
 
           <motion.dl
             variants={item}
-            className="mt-12 flex flex-wrap gap-x-10 gap-y-6 border-t border-white/10 pt-8"
+            className="mt-12 flex flex-wrap gap-x-10 gap-y-6 pt-8"
           >
             {heroStats.map((stat) => (
               <div key={stat.label}>
@@ -99,7 +89,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
             <Image
               src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80"
               alt="Scales of justice in a law office"
@@ -108,10 +98,9 @@ export default function HeroSection() {
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
           </div>
 
-          <div className="absolute -bottom-6 -left-6 hidden rounded-2xl bg-surface p-5 shadow-xl sm:block">
+          <div className="absolute -bottom-6 -left-6 hidden rounded-2xl bg-surface p-5 sm:block">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent/15 text-accent">
                 <svg
