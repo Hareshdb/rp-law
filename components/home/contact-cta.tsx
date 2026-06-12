@@ -49,7 +49,7 @@ export default function ContactCta() {
     >
       <div
         aria-hidden="true"
-        className="absolute -right-20 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-accent/10 blur-3xl"
+        className="absolute -right-20 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full"
       />
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <Reveal direction="right">

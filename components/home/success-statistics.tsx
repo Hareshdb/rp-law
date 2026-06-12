@@ -1,6 +1,6 @@
-import AnimatedCounter from "../ui/animated-counter";
-import SectionHeading from "../ui/section-heading";
-import Reveal from "../ui/reveal";
+import AnimatedCounter from "@components/ui/animated-counter";
+import SectionHeading from "@components/ui/section-heading";
+import Reveal from "@components/ui/reveal";
 
 const stats = [
   { value: 15, suffix: "+", label: "Years in Practice" },
@@ -14,7 +14,7 @@ export default function SuccessStatistics() {
     <section className="relative overflow-hidden bg-primary py-20 lg:py-28">
       <div
         aria-hidden="true"
-        className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
+        className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full"
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="flex flex-col items-center">
