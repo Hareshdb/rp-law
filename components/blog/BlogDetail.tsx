@@ -1,10 +1,11 @@
-import BlogArticleCta from "@/components/blog/BlogArticleCta";
-import BlogPortableText from "@/components/blog/BlogPortableText";
-import RelatedBlogs from "@/components/blog/RelatedBlogs";
-import TableOfContents from "@/components/blog/TableOfContents";
-import { formatDate } from "@/lib/helpers";
+import { formatDate, getImageUrl } from "@/lib/helpers";
 import { extractTocHeadings } from "@/lib/portable-text";
-import type { PortableTextBlock } from "@/lib/portable-text";
+import { SanityPost } from "@/lib/types";
+import BlogArticleCta from "@components/blog/BlogArticleCta";
+import BlogPortableText from "@components/blog/BlogPortableText";
+import RelatedBlogs from "@components/blog/RelatedBlogs";
+import TableOfContents from "@components/blog/TableOfContents";
+import { SanityImageSource } from "@sanity/image-url";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,41 +14,29 @@ interface RelatedBlog {
     id: string;
     title: string;
     slug: string;
-    excerpt: string;
+    short_description: string;
     image: string;
     category: string;
     publishedAt: string;
 }
 
 interface BlogDetailProps {
-    blog: {
-        title: string;
-        subtitle: string;
-        slug: string;
-        category: string;
-        image: string;
-        publishedAt: string;
-        excerpt: string;
-        author: string;
-        authorImage: string;
-        authorDescription: string;
-        content: PortableTextBlock[];
-    };
+    blogDetail: SanityPost;
     relatedBlogs?: RelatedBlog[];
 }
 
 export default function BlogDetail({
-    blog,
+    blogDetail,
     relatedBlogs = [],
 }: BlogDetailProps) {
-    const tocHeadings = extractTocHeadings(blog.content);
+    const tocHeadings = extractTocHeadings(blogDetail.body);
 
     return (
         <article className="bg-background">
             <section className="relative flex min-h-[62vh] items-start overflow-hidden">
                 <Image
-                    src={blog.image}
-                    alt={blog.title}
+                    src={blogDetail?.mainImage ? getImageUrl(blogDetail.mainImage as SanityImageSource) : "/placeholder.jpg"}
+                    alt={blogDetail.title}
                     fill
                     priority
                     className="object-cover object-center"
@@ -63,7 +52,7 @@ export default function BlogDetail({
                             className="mb-6 flex items-center gap-2 text-sm text-white/70"
                         >
                             <Link
-                                href="/blog"
+                                href="/blogDetail"
                                 className="text-xl transition-colors hover:text-accent"
                             >
                                 Blog
@@ -77,7 +66,7 @@ export default function BlogDetail({
                             </span>
 
                             <span className="line-clamp-1 text-xl text-white">
-                                {blog.title}
+                                {blogDetail.title}
                             </span>
                         </nav>
 
@@ -85,20 +74,20 @@ export default function BlogDetail({
                             <div className="mb-6 flex items-center gap-3">
                                 <span className="h-px w-8 bg-accent" />
                                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
-                                    {blog.category}
+                                    {blogDetail.categories?.[0]?.title}
                                 </span>
                             </div>
 
                             <h1 className="text-2xl font-bold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-4xl">
-                                {blog.title}
+                                {blogDetail.title}
                             </h1>
 
                             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-                                {blog.subtitle}
+                                {blogDetail.short_description}
                             </p>
 
                             <p className="mt-6 text-sm font-medium text-white/70">
-                                {formatDate(blog.publishedAt)}
+                                {formatDate(blogDetail.publishedAt)}
                             </p>
                         </div>
                     </div>
@@ -109,12 +98,12 @@ export default function BlogDetail({
                 <div className="container">
                     <div className="mb-12 border-l-4 border-accent pl-6">
                         <p className="text-lg leading-8 text-muted italic">
-                            {blog.excerpt}
+                            {blogDetail.short_description}
                         </p>
                     </div>
 
                     <TableOfContents headings={tocHeadings}>
-                        <BlogPortableText content={blog.content} />
+                        <BlogPortableText content={blogDetail.body} />
                     </TableOfContents>
                 </div>
             </section>
@@ -126,8 +115,8 @@ export default function BlogDetail({
                     <div className="flex flex-col items-center gap-6 rounded-3xl border border-border bg-surface p-8 text-center md:flex-row md:text-left">
                         <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full outline outline-2 outline-offset-[3px] outline-accent">
                             <Image
-                                src={blog.authorImage}
-                                alt={blog.author}
+                                src={blogDetail.author?.image ? getImageUrl(blogDetail.author.image as SanityImageSource) : "/placeholder.jpg"}
+                                alt={blogDetail.author?.name ?? ""}
                                 fill
                                 className="object-cover"
                                 sizes="80px"
@@ -136,11 +125,11 @@ export default function BlogDetail({
 
                         <div>
                             <h3 className="text-2xl font-bold text-primary">
-                                {blog.author}
+                                {blogDetail.author?.name ?? ""}
                             </h3>
 
                             <p className="mt-2 text-muted">
-                                {blog.authorDescription}
+                                {blogDetail.author?.bio?.map((block) => block.children?.map((child) => child.text).join("")).join("") ?? ""}
                             </p>
                         </div>
                     </div>

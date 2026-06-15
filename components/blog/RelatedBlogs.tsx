@@ -1,18 +1,9 @@
 import BlogCard from "@components/blog/BlogCard";
+import type { Blog } from "@/lib/types";
 import Link from "next/link";
 
-interface RelatedBlog {
-    id: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    image: string;
-    category: string;
-    publishedAt: string;
-}
-
 interface RelatedBlogsProps {
-    blogs: RelatedBlog[];
+    blogs: Blog[];
 }
 
 export default function RelatedBlogs({ blogs }: RelatedBlogsProps) {
