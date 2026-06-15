@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { HomePageData } from "@/lib/types";
 
 const heroStats = [
   { value: "15+", label: "Years of Experience" },
@@ -10,7 +11,13 @@ const heroStats = [
   { value: "500+", label: "Corporate Clients" },
 ];
 
-export default function HeroSection() {
+export default function HeroSection({
+  homePageData,
+  heroImageUrl,
+}: {
+  homePageData: HomePageData;
+  heroImageUrl: string;
+}) {
   const reduceMotion = useReducedMotion();
 
   const container = {
@@ -41,8 +48,8 @@ export default function HeroSection() {
             variants={item}
             className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
-            Trusted Legal Excellence for{" "}
-            <span className="italic text-accent">Every Challenge.</span>
+            {homePageData.heroTitle}{" "}
+            <span className="italic text-accent">{homePageData.heroHighlightText}.</span>
           </motion.h1>
           <motion.p
             variants={item}
