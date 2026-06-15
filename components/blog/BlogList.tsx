@@ -1,21 +1,10 @@
-// components/blogs/BlogListing.tsx
-
 "use client";
 
 import { useMemo, useState } from "react";
 import BlogCard from "@components/blog/BlogCard";
 import Pagination from "@components/common/pagination";
+import type { Blog } from "@/lib/types";
 import Image from "next/image";
-
-interface Blog {
-    id: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    image: string;
-    category: string;
-    publishedAt: string;
-}
 
 interface Props {
     blogs: Blog[];

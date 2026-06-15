@@ -1,3 +1,6 @@
+import { SanityImageSource } from "@sanity/image-url";
+import { urlFor } from "./sanity-image-builder";
+
 export const formatDate = (dateString: string) => {
     const date = new Date(dateString);
 
@@ -19,4 +22,10 @@ export const formatDate = (dateString: string) => {
     const year = date.getFullYear();
 
     return `${day}${suffix} ${month} ${year}`;
+}
+
+export const getImageUrl = (image: SanityImageSource) => {
+    return image
+        ? urlFor(image).url()
+        : process.env.PLACEHOLDER_IMAGE_URL || "/placeholder.jpg";
 }

@@ -1,18 +1,7 @@
-// components/blogs/BlogCard.tsx
-
 import { formatDate } from "@/lib/helpers";
+import type { Blog } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
-
-interface Blog {
-    id: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    image: string;
-    category: string;
-    publishedAt: string;
-}
 
 export default function BlogCard({ blog }: { blog: Blog }) {
     return (
@@ -45,7 +34,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
             {/* Description */}
             <div className="mb-5 min-h-[72px]">
               <p className="line-clamp-3 text-sm leading-6 text-muted">
-                {blog.excerpt}
+                {blog.short_description}
               </p>
             </div>
       
