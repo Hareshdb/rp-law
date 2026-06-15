@@ -106,3 +106,11 @@ export async function getHomePageData(): Promise<HomePageData> {
   `);
   return homePageData;
 }
+
+export async function getSettings() {
+  return sanityClient.fetch(`
+    *[_type == "settings"][0]{
+      logo
+    }
+  `);
+}

@@ -1,8 +1,9 @@
 "use client";
-import { Scale, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Logo } from "@components/common/logo";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -11,58 +12,15 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
 ];
 
-function Logo({
-  className = "",
-  variant = "default",
-}: {
-  className?: string;
-  variant?: "default" | "light";
-}) {
-  const isLight = variant === "light";
-
-  return (
-    <Link href="/" className={`flex items-center gap-3 ${className}`}>
-      <div
-        className={`flex h-10 w-10 items-center justify-center rounded-lg ${isLight ? "bg-white/10" : "bg-primary"
-          }`}
-      >
-        <Scale
-          className="h-6 w-6 text-accent"
-          strokeWidth={1.75}
-          aria-hidden="true"
-        />
-      </div>
-
-      <div className="flex flex-col leading-tight">
-        <span
-          className={`text-lg font-bold ${isLight ? "text-white" : "text-primary"
-            }`}
-        >
-          RP Law
-        </span>
-
-        <span
-          className={`text-xs font-medium uppercase tracking-wide ${isLight ? "text-white/60" : "text-muted"
-            }`}
-        >
-          Associates
-        </span>
-      </div>
-    </Link>
-  );
-}
-
-export default function Header() {
+export default function Header({ logoUrl }: { logoUrl: string }) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const currentModule = pathname.split('/')[1] || '';
-
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Logo />
+        <Logo logoUrl={logoUrl} size="large" />
 
         {/* Desktop Navigation */}
         <nav
