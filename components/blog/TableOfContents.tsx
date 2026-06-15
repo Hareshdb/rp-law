@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronRightIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { TocHeading } from "@/lib/portable-text";
 
 const HEADER_OFFSET = 80;
@@ -16,11 +16,13 @@ export default function TableOfContents({
     children,
 }: TableOfContentsProps) {
     const [activeId, setActiveId] = useState(headings[0]?.id ?? "");
+    const navigatingToRef = useRef<string | null>(null);
 
     const handleNavigate = (id: string) => {
         const target = document.getElementById(id);
         if (!target) return;
 
+        navigatingToRef.current = id;
         setActiveId(id);
         target.scrollIntoView({ behavior: "smooth", block: "start" });
     };
@@ -29,6 +31,20 @@ export default function TableOfContents({
         if (headings.length === 0) return;
 
         const handleScroll = () => {
+            const pendingId = navigatingToRef.current;
+            if (pendingId) {
+                const pendingEl = document.getElementById(pendingId);
+                if (
+                    pendingEl &&
+                    pendingEl.getBoundingClientRect().top <= HEADER_OFFSET + 16
+                ) {
+                    navigatingToRef.current = null;
+                } else {
+                    setActiveId(pendingId);
+                    return;
+                }
+            }
+
             let current = headings[0].id;
 
             for (const heading of headings) {
