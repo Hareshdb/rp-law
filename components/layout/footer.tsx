@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo } from "./header";
+import { Logo } from "@components/common/logo";
 import { Mail, MapPin, PhoneCall } from "lucide-react";
 
 const quickLinks = [
@@ -44,13 +44,13 @@ const socialLinks = [
   },
 ];
 
-export default function Footer() {
+export default function Footer({ logoUrl }: { logoUrl: string }) {
   return (
     <footer className="bg-primary text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-3">
           <div>
-            <Logo variant="light" />
+            <Logo logoUrl={logoUrl} size="custom" className="w-[140px]"/>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
               RP Law Associates delivers trusted legal counsel with integrity,
               expertise, and a relentless commitment to protecting your rights.
