@@ -1,6 +1,6 @@
 import { formatDate, getImageUrl } from "@/lib/helpers";
 import { extractTocHeadings } from "@/lib/portable-text";
-import { SanityPost } from "@/lib/types";
+import { Blog, SanityPost } from "@/lib/types";
 import BlogArticleCta from "@components/blog/BlogArticleCta";
 import BlogPortableText from "@components/blog/BlogPortableText";
 import RelatedBlogs from "@components/blog/RelatedBlogs";
@@ -10,19 +10,9 @@ import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface RelatedBlog {
-    id: string;
-    title: string;
-    slug: string;
-    short_description: string;
-    image: string;
-    category: string;
-    publishedAt: string;
-}
-
 interface BlogDetailProps {
     blogDetail: SanityPost;
-    relatedBlogs?: RelatedBlog[];
+    relatedBlogs?: Blog[];
 }
 
 export default function BlogDetail({
