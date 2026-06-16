@@ -4,7 +4,9 @@ import { ChevronRightIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { TocHeading } from "@/lib/portable-text";
 
-const HEADER_OFFSET = 80;
+// Matches `scroll-mt-32` on blog headings in BlogPortableText.
+const SCROLL_ANCHOR_OFFSET = 128;
+const ACTIVE_THRESHOLD = SCROLL_ANCHOR_OFFSET + 16;
 
 interface TableOfContentsProps {
     headings: TocHeading[];
@@ -17,6 +19,7 @@ export default function TableOfContents({
 }: TableOfContentsProps) {
     const [activeId, setActiveId] = useState(headings[0]?.id ?? "");
     const navigatingToRef = useRef<string | null>(null);
+    const handleScrollRef = useRef<() => void>(() => {});
 
     const handleNavigate = (id: string) => {
         const target = document.getElementById(id);
@@ -24,6 +27,23 @@ export default function TableOfContents({
 
         navigatingToRef.current = id;
         setActiveId(id);
+
+        let finished = false;
+        const finishNavigation = () => {
+            if (finished) return;
+            finished = true;
+            window.removeEventListener("scrollend", finishNavigation);
+            window.clearTimeout(fallbackTimer);
+
+            if (navigatingToRef.current === id) {
+                navigatingToRef.current = null;
+                handleScrollRef.current();
+            }
+        };
+
+        window.addEventListener("scrollend", finishNavigation, { once: true });
+        const fallbackTimer = window.setTimeout(finishNavigation, 1200);
+
         target.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
@@ -36,7 +56,7 @@ export default function TableOfContents({
                 const pendingEl = document.getElementById(pendingId);
                 if (
                     pendingEl &&
-                    pendingEl.getBoundingClientRect().top <= HEADER_OFFSET + 16
+                    pendingEl.getBoundingClientRect().top <= ACTIVE_THRESHOLD
                 ) {
                     navigatingToRef.current = null;
                 } else {
@@ -49,13 +69,15 @@ export default function TableOfContents({
 
             for (const heading of headings) {
                 const el = document.getElementById(heading.id);
-                if (el && el.getBoundingClientRect().top <= HEADER_OFFSET + 16) {
+                if (el && el.getBoundingClientRect().top <= ACTIVE_THRESHOLD) {
                     current = heading.id;
                 }
             }
 
             setActiveId(current);
         };
+
+        handleScrollRef.current = handleScroll;
 
         window.addEventListener("scroll", handleScroll, { passive: true });
         handleScroll();
