@@ -1,6 +1,6 @@
-import AnimatedCounter from "../ui/animated-counter";
-import SectionHeading from "../ui/section-heading";
-import Reveal from "../ui/reveal";
+import AnimatedCounter from "@components/ui/animated-counter";
+import SectionHeading from "@components/ui/section-heading";
+import Reveal from "@components/ui/reveal";
 
 const stats = [
   { value: 15, suffix: "+", label: "Years in Practice" },
