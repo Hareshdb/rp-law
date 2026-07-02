@@ -1,7 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
 import { Crosshair, Eye } from 'lucide-react';
-import Image from 'next/image';
 import Reveal from '../ui/reveal';
 import Eyebrow from './EyeBrow';
 
@@ -64,31 +63,6 @@ const MissionVision = () => {
                         </motion.div>
                     </Reveal>
                 </div>
-
-                <Reveal delay={0.2}>
-                    <div className="mt-10 flex flex-col items-center gap-8 rounded-2xl border border-accent/20 bg-accent/8 p-8 sm:flex-row sm:p-10">
-                        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full outline outline-2 outline-offset-[3px] outline-accent">
-                            <Image
-                                src="/avatar-one.jpg"
-                                alt="Founder"
-                                fill
-                                className="object-cover"
-                                sizes="80px"
-                            />
-                        </div>
-                        <div>
-                            <p className="text-lg italic leading-relaxed text-white/80">
-                                &ldquo;Adv. Rinal Patel is the Founder and Principal Advocate of RP Law Offices. With a strong commitment to justice and professional ethics, Adv. Patel advises and represents clients in a broad range of civil, commercial, corporate, family, and regulatory matters.&rdquo;
-                            </p>                           
-                            <div className="mt-4">
-                                <div className="font-semibold text-white">Adv. Rinal Patel</div>
-                                <div className="text-sm text-accent">
-                                    Founder &amp; Senior Advocate
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Reveal>
             </div>
         </section>
     )

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import type { FooterData } from "@/lib/types";
+import { useFooterData } from "@/context/footer-data-context";
 import Reveal from "../ui/reveal";
 import { Mail, PhoneCall } from "lucide-react";
 
@@ -13,11 +14,8 @@ const defaultFooterData: Pick<Required<FooterData>, "mobileNumber" | "email"> = 
 const fieldClass =
   "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none transition-colors focus:border-accent focus:bg-white/10";
 
-export default function ContactCta({
-  footerData,
-}: {
-  footerData?: FooterData;
-}) {
+export default function ContactCta() {
+  const footerData = useFooterData();
   const [submitted, setSubmitted] = useState(false);
 
   const mobileNumber =

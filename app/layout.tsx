@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import WhatsAppFloat from "@components/common/whatsapp-float";
+import ContactCta from "@components/home/contact-cta";
 import Header from "@components/layout/header";
 import Footer from "@components/layout/footer";
+import { FooterDataProvider } from "@/context/footer-data-context";
 import "./globals.css";
 import { getFooterData, getSettings } from "@/lib/apis";
 import { getImageUrl } from "@/lib/helpers";
@@ -44,10 +46,12 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <Header logoUrl={logoUrl} />
-        <main className="flex-1">{children}</main>
-        <Footer logoUrl={logoInvertedUrl} footerData={footerData} />
-        <WhatsAppFloat mobileNumber={footerData?.mobileNumber} />
+        <FooterDataProvider footerData={footerData}>
+          <Header logoUrl={logoUrl} />
+          <main className="flex-1">{children}</main>
+          <Footer logoUrl={logoInvertedUrl} footerData={footerData} />
+          <WhatsAppFloat mobileNumber={footerData?.mobileNumber} />
+        </FooterDataProvider>
       </body>
     </html>
   );

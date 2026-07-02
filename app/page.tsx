@@ -1,3 +1,4 @@
+import ContactCta from "@/components/home/contact-cta";
 import { getHomePageData } from "@/lib/apis";
 import { PLACEHOLDER_IMAGE } from "@/lib/constants";
 import { urlFor } from "@/lib/sanity-image-builder";
@@ -31,6 +32,7 @@ export default async function Home() {
       <SuccessStatistics />
       <Testimonials />
       <Faq />
+      <ContactCta />
     </>
   );
 }

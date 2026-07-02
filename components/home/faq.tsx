@@ -27,7 +27,7 @@ const faqs = [
       "Absolutely. Client confidentiality is a core principle of our practice. All information shared with us is handled with the highest level of privacy and professional ethics.",
   },
   {
-    question: "5. How are your legal fees determined?",
+    question: "How are your legal fees determined?",
     answer:
       "Our fees depend on the nature, complexity, and scope of the legal matter. We discuss the fee structure transparently during the initial consultation so you know what to expect before we begin.",
   },
@@ -66,7 +66,7 @@ export default function Faq() {
                   className="flex w-full items-center justify-between gap-4 py-5 text-left"
                 >
                   <span className="text-base font-semibold text-primary sm:text-lg">
-                    {faq.question}
+                    {index + 1}. {faq.question}
                   </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}

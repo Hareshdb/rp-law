@@ -34,7 +34,7 @@ export default function SuccessStatistics() {
               className="bg-primary/40 p-8 text-center backdrop-blur-sm"
             >
               <p className="text-4xl font-bold text-accent sm:text-5xl">
-                <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+                <AnimatedCounter duration={index === 0 ? 700 : 2000} end={stat.value} suffix={stat.suffix} />
               </p>
               <p className="mt-3 text-sm font-medium text-white/70 sm:text-base">
                 {stat.label}
