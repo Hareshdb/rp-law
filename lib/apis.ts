@@ -57,6 +57,37 @@ const postBySlugQuery = `
   }
 `;
 
+const postsByCategoryQuery = `
+  *[
+    _type == "post" &&
+    $categoryId in categories[]._ref
+  ]
+  | order(publishedAt desc)
+  [$offset...$offset + $limit] {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    short_description,
+    body,
+    mainImage,
+
+    author->{
+      _id,
+      name,
+      "slug": slug.current,
+      image,
+      bio
+    },
+
+    categories[]->{
+      _id,
+      title,
+      description
+    }
+  }
+`;
+
 const relatedPostsByCategoryQuery = `
   *[
     _type == "post" &&
@@ -149,6 +180,38 @@ export async function getPostsByCategory({
 
   return posts.map(mapSanityPostToBlog);
 }
+
+const relatedPostsQuery = `
+  *[
+    _type == "post" &&
+    _id != $postId &&
+    $categoryId in categories[]._ref
+  ]
+  | order(publishedAt desc)
+  [0...$limit] {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    short_description,
+    body,
+    mainImage,
+
+    author->{
+      _id,
+      name,
+      "slug": slug.current,
+      image,
+      bio
+    },
+
+    categories[]->{
+      _id,
+      title,
+      description
+    }
+  }
+`;
 
 export async function getRelatedPosts(
   postId: string,
