@@ -14,7 +14,7 @@ export default function AnimatedCounter({
   end,
   suffix = "",
   prefix = "",
-  duration = 2000,
+  duration = 1000,
   className,
 }: AnimatedCounterProps) {
   const [count, setCount] = useState(0);
