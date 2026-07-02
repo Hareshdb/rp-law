@@ -1,13 +1,12 @@
+import { DEFAULT_LIMIT, DEFAULT_OFFSET, PLACEHOLDER_IMAGE } from "./constants";
 import { sanityClient } from "./sanity-client";
 import { urlFor } from "./sanity-image-builder";
 import type { Blog, HomePageData, SanityPost } from "./types";
 
-const PLACEHOLDER_IMAGE =
-  process.env.PLACEHOLDER_IMAGE_URL ||
-  "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80";
-
 const postsQuery = `
-  *[_type == "post"] | order(publishedAt desc) {
+  *[_type == "post"]
+  | order(publishedAt desc)
+  [$offset...$offset + $limit] {
     _id,
     title,
     "slug": slug.current,
@@ -31,7 +30,6 @@ const postsQuery = `
     }
   }
 `;
-
 
 const postBySlugQuery = `
   *[_type == "post" && slug.current == $slug][0] {
@@ -103,8 +101,19 @@ export function mapSanityPostToBlog(post: SanityPost): Blog {
   };
 }
 
-export async function getPosts(): Promise<Blog[]> {
-  const posts: SanityPost[] = await sanityClient.fetch(postsQuery);
+type PostsQueryOptions = {
+  limit?: number;
+  offset?: number;
+};
+
+export async function getPosts({
+  limit = DEFAULT_LIMIT,
+  offset = DEFAULT_OFFSET,
+}: PostsQueryOptions = {}): Promise<Blog[]> {
+  const posts: SanityPost[] = await sanityClient.fetch(postsQuery, {
+    limit,
+    offset,
+  });
 
   return posts.map(mapSanityPostToBlog);
 }
@@ -121,7 +130,41 @@ export async function getPostBySlug(
     return null;
   }
 
-  return post
+  return post;
+}
+
+export async function getPostsByCategory({
+  categoryId,
+  limit = DEFAULT_LIMIT,
+  offset = DEFAULT_OFFSET,
+}: PostsQueryOptions & { categoryId: string }): Promise<Blog[]> {
+  const posts: SanityPost[] = await sanityClient.fetch(
+    postsByCategoryQuery,
+    {
+      categoryId,
+      limit,
+      offset,
+    }
+  );
+
+  return posts.map(mapSanityPostToBlog);
+}
+
+export async function getRelatedPosts(
+  postId: string,
+  categoryId: string,
+  limit: number = 2
+): Promise<Blog[]> {
+  const posts: SanityPost[] = await sanityClient.fetch(
+    relatedPostsQuery,
+    {
+      postId,
+      categoryId,
+      limit,
+    }
+  );
+
+  return posts.map(mapSanityPostToBlog);
 }
 
 export async function getRelatedPostsByCategory(
@@ -146,6 +189,7 @@ export async function getHomePageData(): Promise<HomePageData> {
       heroImage
     }
   `);
+
   return homePageData;
 }
 
