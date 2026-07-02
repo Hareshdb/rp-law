@@ -1,5 +1,4 @@
 import { getHomePageData } from "@/lib/apis";
-import { sanityClient } from "@/lib/sanity-client";
 import { urlFor } from "@/lib/sanity-image-builder";
 import { HomePageData } from "@/lib/types";
 import Faq from "@components/home/faq";
@@ -25,7 +24,6 @@ export default async function Home() {
       <SuccessStatistics />
       <Testimonials />
       <Faq />
-      {/* <ContactCta /> */}
     </>
   );
 }

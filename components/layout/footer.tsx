@@ -50,7 +50,7 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-3">
           <div>
-            <Logo logoUrl={logoUrl} size="custom" className="w-[140px]"/>
+            <Logo logoUrl={logoUrl} className="w-[188px]"/>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
               RP Law Associates delivers trusted legal counsel with integrity,
               expertise, and a relentless commitment to protecting your rights.
@@ -112,9 +112,9 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
                   aria-hidden="true"
                 />
                 <span>
-                  42 Justice Avenue, Legal District
+                  A-208, Ananta Square, Opp. 108 EMRI, Naroda, 
                   <br />
-                  Mumbai, Maharashtra 400001
+                  Ahmedabad, Gujarat 382330, India
                 </span>
               </li>
 
@@ -125,10 +125,10 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
                   aria-hidden="true"
                 />
                 <a
-                  href="tel:+912212345678"
+                  href="tel:+919512123013"
                   className="transition-colors hover:text-accent"
                 >
-                  +91 22 1234 5678
+                 +91 95121 23013
                 </a>
               </li>
 
@@ -139,10 +139,10 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
                   aria-hidden="true"
                 />
                 <a
-                  href="mailto:info@rplaw.com"
+                  href="mailto:advocate.rinal@gmail.com"
                   className="transition-colors hover:text-accent"
                 >
-                  info@rplaw.com
+                  advocate.rinal@gmail.com
                 </a>
               </li>
             </ul>

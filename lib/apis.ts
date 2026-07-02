@@ -57,45 +57,12 @@ const postBySlugQuery = `
   }
 `;
 
-const postsByCategoryQuery = `
-  *[
-    _type == "post" &&
-    $categoryId in categories[]._ref
-  ]
-  | order(publishedAt desc)
-  [$offset...$offset + $limit] {
-    _id,
-    title,
-    "slug": slug.current,
-    publishedAt,
-    short_description,
-    body,
-    mainImage,
-
-    author->{
-      _id,
-      name,
-      "slug": slug.current,
-      image,
-      bio
-    },
-
-    categories[]->{
-      _id,
-      title,
-      description
-    }
-  }
-`;
-
-const relatedPostsQuery = `
+const relatedPostsByCategoryQuery = `
   *[
     _type == "post" &&
     _id != $postId &&
     $categoryId in categories[]._ref
-  ]
-  | order(publishedAt desc)
-  [0...$limit] {
+  ] | order(publishedAt desc)[0...3] {
     _id,
     title,
     "slug": slug.current,
@@ -200,6 +167,18 @@ export async function getRelatedPosts(
   return posts.map(mapSanityPostToBlog);
 }
 
+export async function getRelatedPostsByCategory(
+  categoryId: string,
+  postId: string
+): Promise<Blog[]> {
+  const posts: SanityPost[] = await sanityClient.fetch(
+    relatedPostsByCategoryQuery,
+    { categoryId, postId }
+  );
+
+  return posts.map(mapSanityPostToBlog);
+}
+
 export async function getHomePageData(): Promise<HomePageData> {
   const homePageData = await sanityClient.fetch(`
     *[_type == "homePage"][0]{
@@ -217,7 +196,8 @@ export async function getHomePageData(): Promise<HomePageData> {
 export async function getSettings() {
   return sanityClient.fetch(`
     *[_type == "settings"][0]{
-      logo
+      logo,
+      logoInverted
     }
   `);
 }

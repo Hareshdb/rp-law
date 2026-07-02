@@ -38,8 +38,7 @@ function PreFooterCTA() {
                     </h2>
 
                     <p className="mx-auto mb-10 max-w-xl text-lg text-white/65">
-                        Schedule a consultation today to discuss your legal needs with our
-                        expert team. Trusted counsel, decisive action, proven results.
+                    If you are facing a legal challenge or require professional legal advice, RP Law Offices is ready to assist you. Contact us to discuss your matter and receive practical legal guidance tailored to your specific needs.
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4">
@@ -48,13 +47,13 @@ function PreFooterCTA() {
                                 href="/contact-us"
                                 className="inline-flex items-center gap-2 rounded-full bg-accent px-9 py-4 text-sm font-bold tracking-wide text-primary-dark transition-[filter] hover:brightness-110"
                             >
-                                Book a Consultation <ArrowRight size={16} />
+                                Schedule a Consultation <ArrowRight size={16} />
                             </Link>
                         </motion.div>
 
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                             <Link
-                                href="tel:+911234567890"
+                                href="tel:+919512123013"
                                 className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-white/25 px-9 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                             >
                                 <Phone size={16} /> Call Us Now
