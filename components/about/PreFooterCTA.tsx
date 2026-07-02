@@ -53,7 +53,7 @@ function PreFooterCTA() {
 
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                             <Link
-                                href="tel:+911234567890"
+                                href="tel:+919512123013"
                                 className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-white/25 px-9 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                             >
                                 <Phone size={16} /> Call Us Now
