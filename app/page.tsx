@@ -1,4 +1,5 @@
 import { getHomePageData } from "@/lib/apis";
+import { PLACEHOLDER_IMAGE } from "@/lib/constants";
 import { urlFor } from "@/lib/sanity-image-builder";
 import { HomePageData } from "@/lib/types";
 import Faq from "@components/home/faq";
@@ -13,14 +14,20 @@ export default async function Home() {
 
   const homePageData: HomePageData = await getHomePageData();
   const heroImageUrl = homePageData.heroImage
-    ? urlFor(homePageData.heroImage).url()
-    : process.env.PLACEHOLDER_IMAGE_URL || "/placeholder.jpg";
+    ? urlFor(homePageData.heroImage).width(1200).quality(85).auto("format").url()
+    : PLACEHOLDER_IMAGE;
+  const whyChooseUsImageUrl = homePageData.whyChooseUsImage
+    ? urlFor(homePageData.whyChooseUsImage).width(800).quality(85).auto("format").url()
+    : PLACEHOLDER_IMAGE;
 
   return (
     <>
       <HeroSection homePageData={homePageData} heroImageUrl={heroImageUrl} />
       <PracticeAreas />
-      <WhyChooseUs />
+      <WhyChooseUs
+        homePageData={homePageData}
+        whyChooseUsImageUrl={whyChooseUsImageUrl}
+      />
       <SuccessStatistics />
       <Testimonials />
       <Faq />

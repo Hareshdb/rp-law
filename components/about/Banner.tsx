@@ -41,37 +41,26 @@ const Banner = () => {
 
             {/* <div className="absolute left-0 top-0 h-full w-1 bg-accent" /> */}
 
-            <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-20 pt-40 sm:px-10 lg:px-16">
+            <div className="relative z-10 my-auto w-full max-w-7xl px-30">
                 <motion.div
                     className="max-w-3xl"
                     variants={stagger}
                     initial="hidden"
                     animate="visible"
                 >
-                    <motion.div
-                        variants={fadeUp}
-                        custom={0}
-                        className="mb-6 flex items-center gap-3"
-                    >
-                        <span className="h-px w-8 bg-accent" />
-                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
-                            Since 2005 · RP Law Offices
-                        </span>
-                    </motion.div>
-
                     <motion.h1
                         variants={fadeUp}
                         custom={80}
-                        className="text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl"
+                        className="text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl"
                     >
-                        Serving Clients <br />
-                        <span className="text-accent">Across India</span>
+                        About &nbsp;
+                        <span className="text-accent">RP Law Offices</span>
                     </motion.h1>
 
                     <motion.p
                         variants={fadeUp}
                         custom={160}
-                        className="mt-6 max-w-xl text-lg leading-relaxed text-white/72"
+                        className="mt-6 max-w-4xl text-lg leading-relaxed text-white/72"
                     >
                         Although headquartered in Ahmedabad, Gujarat, RP Law Offices proudly serves clients across India. Through technology-enabled consultations and strategic legal coordination, we assist individuals, businesses, NRIs, and corporate clients in handling legal matters before courts, tribunals, and regulatory authorities nationwide.
                     </motion.p>

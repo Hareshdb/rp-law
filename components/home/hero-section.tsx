@@ -42,7 +42,7 @@ export default function HeroSection({
             variants={item}
             className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent"
           >
-            RP Law Associates
+            RP Law Offices
           </motion.p>
           <motion.h1
             variants={item}
@@ -55,9 +55,7 @@ export default function HeroSection({
             variants={item}
             className="mt-6 max-w-xl text-lg leading-relaxed text-white"
           >
-            Dedicated advocates delivering strategic counsel across corporate,
-            litigation, and personal legal matters — with integrity you can
-            count on.
+            At RP Law Offices, we provide trusted legal counsel and effective representation with professionalism, integrity, and dedication. We are committed to protecting your rights and delivering practical legal solutions tailored to your needs.
           </motion.p>
 
           <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
@@ -98,8 +96,13 @@ export default function HeroSection({
         >
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
             <Image
-              src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80"
-              alt="Scales of justice in a law office"
+              src={heroImageUrl}
+              alt={
+                homePageData.heroImage?.alt ||
+                (homePageData.heroTitle
+                  ? `${homePageData.heroTitle} - RP Law Associates`
+                  : "RP Law Associates hero image")
+              }
               fill
               priority
               className="object-cover"
@@ -125,7 +128,7 @@ export default function HeroSection({
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-bold text-primary">98% Success Rate</p>
+                <p className="text-sm font-bold text-primary">98% Client Satisfaction</p>
                 <p className="text-xs text-muted">Proven track record</p>
               </div>
             </div>

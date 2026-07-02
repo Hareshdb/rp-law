@@ -3,10 +3,10 @@ import SectionHeading from "@components/ui/section-heading";
 import Reveal from "@components/ui/reveal";
 
 const stats = [
-  { value: 15, suffix: "+", label: "Years in Practice" },
-  { value: 2000, suffix: "+", label: "Successful Cases" },
-  { value: 500, suffix: "+", label: "Corporate Clients" },
-  { value: 7000, suffix: "+", label: "Hours of Counsel" },
+  { value: 5, suffix: "+", label: "Years of Legal Excellence" },
+  { value: 100, suffix: "+", label: "Satisfied Clients" },
+  { value: 98, suffix: "%", label: "Client Satisfaction" },
+  { value: 100, suffix: "%", label: "Confidentiality Assured" },
 ];
 
 export default function SuccessStatistics() {
@@ -20,8 +20,8 @@ export default function SuccessStatistics() {
         <Reveal className="flex flex-col items-center">
           <SectionHeading
             eyebrow="Our Track Record"
-            title="Success Statistics"
-            description="Numbers that reflect our dedication, expertise, and the trust our clients place in us."
+            title="Trusted by Clients. Proven Through Results."
+            description="Our achievements reflect years of legal excellence, successful outcomes, and the confidence that individuals and businesses place in RP Law Offices."
             light
           />
         </Reveal>

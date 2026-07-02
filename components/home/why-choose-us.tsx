@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HomePageData } from "@/lib/types";
 import SectionHeading from "../ui/section-heading";
 import Reveal from "../ui/reveal";
 import { Check } from "lucide-react";
@@ -32,11 +33,17 @@ const reasons = [
   {
     title: "Comprehensive Legal Services",
     description:
-      "Comprehensive Legal Services",
+      "Expertise across civil, commercial, corporate, family, property, GST, RERA, IBC, and High Court matters.",
   },
 ];
 
-export default function WhyChooseUs() {
+export default function WhyChooseUs({
+  homePageData,
+  whyChooseUsImageUrl,
+}: {
+  homePageData: HomePageData;
+  whyChooseUsImageUrl: string;
+}) {
   return (
     <section className="bg-surface py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -44,8 +51,11 @@ export default function WhyChooseUs() {
           <Reveal direction="right" className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl lg:aspect-[3/4]">
               <Image
-                src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80"
-                alt="Professional legal team in discussion"
+                src={whyChooseUsImageUrl}
+                alt={
+                  homePageData.whyChooseUsImage?.alt ||
+                  "Professional legal team in discussion"
+                }
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -58,8 +68,8 @@ export default function WhyChooseUs() {
             <Reveal direction="left">
               <SectionHeading
                 eyebrow="Why Choose RP Law Offices?"
-                title="Your Trusted Legal Partner"
-                description="We combine deep legal expertise with a genuine commitment to your success — because your case deserves nothing less."
+                title="Trusted Legal Partner. Proven Commitment."
+                description="We deliver strategic legal solutions backed by experience, integrity, and personalized attention—providing confident representation and practical guidance for every legal challenge."
                 align="left"
               />
             </Reveal>

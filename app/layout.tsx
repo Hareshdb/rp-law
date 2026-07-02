@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@components/layout/header";
 import Footer from "@components/layout/footer";
 import "./globals.css";
-import { getSettings } from "@/lib/apis";
+import { getFooterData, getSettings } from "@/lib/apis";
 import { getImageUrl } from "@/lib/helpers";
 
 const geistSans = Geist({
@@ -28,7 +28,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const settings = await getSettings();
+  const [settings, footerData] = await Promise.all([
+    getSettings(),
+    getFooterData(),
+  ]);
   const logoUrl = settings?.logo ? getImageUrl(settings.logo) : "/logo.png";
   const logoInvertedUrl = settings?.logoInverted
     ? getImageUrl(settings.logoInverted)
@@ -42,7 +45,7 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col">
         <Header logoUrl={logoUrl} />
         <main className="flex-1">{children}</main>
-        <Footer logoUrl={logoInvertedUrl} />
+        <Footer logoUrl={logoInvertedUrl} footerData={footerData} />
       </body>
     </html>
   );

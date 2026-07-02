@@ -16,10 +16,10 @@ export default function SectionHeading({
   const alignment = align === "center" ? "text-center mx-auto" : "text-left";
 
   return (
-    <div className={`max-w-2xl ${alignment}`}>
+    <div className={`max-w-6xl ${alignment}`}>
       {eyebrow && (
         <p
-          className={`mb-3 text-sm font-semibold uppercase tracking-widest ${
+          className={`mb-3 text-sm font-semibold tracking-widest ${
             light ? "text-accent-light" : "text-accent"
           }`}
         >
