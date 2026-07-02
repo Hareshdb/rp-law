@@ -54,8 +54,7 @@ export default function BlogListing({ blogs }: Props) {
 
                         {/* Subtitle */}
                         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white sm:text-lg">
-                            Explore blogs, legal updates, and practical guidance from our
-                            experienced legal team.
+                        Explore expert-written blogs, practical legal guidance, and updates designed to simplify complex legal issues and keep you informed.
                         </p>
 
                     </div>

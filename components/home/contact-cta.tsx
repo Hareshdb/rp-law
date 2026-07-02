@@ -1,41 +1,56 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import type { FooterData } from "@/lib/types";
 import Reveal from "../ui/reveal";
 import { Mail, PhoneCall } from "lucide-react";
 
-const contactDetails = [
-  {
-    label: "Call us",
-    value: "+91 9512123013",
-    href: "tel:+919512123013",
-    icon: (
-      <PhoneCall
-        className="h-5 w-5"
-        strokeWidth={1.5}
-        aria-hidden="true"
-      />
-    ),
-  },
-  {
-    label: "Email us",
-    value: "advocate.rinal@gmail.com",
-    href: "mailto:advocate.rinal@gmail.com",
-    icon: (
-      <Mail
-        className="h-5 w-5"
-        strokeWidth={1.5}
-        aria-hidden="true"
-      />
-    ),
-  },
-];
+const defaultFooterData: Pick<Required<FooterData>, "mobileNumber" | "email"> = {
+  mobileNumber: "+91 95121 23013",
+  email: "advocate.rinal@gmail.com",
+};
 
 const fieldClass =
   "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none transition-colors focus:border-accent focus:bg-white/10";
 
-export default function ContactCta() {
+export default function ContactCta({
+  footerData,
+}: {
+  footerData?: FooterData;
+}) {
   const [submitted, setSubmitted] = useState(false);
+
+  const mobileNumber =
+    footerData?.mobileNumber || defaultFooterData.mobileNumber;
+  const email = footerData?.email || defaultFooterData.email;
+  const phoneHref = `tel:${mobileNumber.replace(/\s/g, "")}`;
+
+  const contactDetails = [
+    {
+      label: "Call us",
+      value: mobileNumber,
+      href: phoneHref,
+      icon: (
+        <PhoneCall
+          className="h-5 w-5"
+          strokeWidth={1.5}
+          aria-hidden="true"
+        />
+      ),
+    },
+    {
+      label: "Email us",
+      value: email,
+      href: `mailto:${email}`,
+      icon: (
+        <Mail
+          className="h-5 w-5"
+          strokeWidth={1.5}
+          aria-hidden="true"
+        />
+      ),
+    },
+  ];
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,12 +72,10 @@ export default function ContactCta() {
             Get In Touch
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Let&rsquo;s discuss your case
+            Let&rsquo;s Discuss Your Legal Needs
           </h2>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-white/75">
-            Share a few details about your legal matter and our team will get
-            back to you within one business day. Your information stays
-            confidential.
+          Share your legal requirements with us, and our team will respond within one business day. Every inquiry is handled with complete confidentiality, professionalism, and care.
           </p>
 
           <ul className="mt-10 space-y-5">

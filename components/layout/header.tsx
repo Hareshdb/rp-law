@@ -7,9 +7,10 @@ import { Logo } from "@components/common/logo";
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/#practice-areas", label: "Practice Areas" },
   { href: "/about", label: "About" },
+  { href: "/blog", label: "Insight" },
   { href: "/contact-us", label: "Contact Us" },
-  { href: "/blog", label: "Blog" },
 ];
 
 export default function Header({ logoUrl }: { logoUrl: string }) {
@@ -50,15 +51,15 @@ export default function Header({ logoUrl }: { logoUrl: string }) {
         </nav>
 
         {/* Desktop CTA */}
-        <Link
+        {/* <Link
           href="/contact-us"
           className="hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-accent-light md:inline-flex"
         >
           Schedule Consultation
-        </Link>
+        </Link> */}
 
         {/* Mobile Right Side */}
-        <div className="flex items-center gap-3 md:hidden">
+        {/* <div className="flex items-center gap-3 md:hidden">
           <Link
             href="/contact-us"
             className="rounded-full bg-accent px-4 py-2 text-xs font-semibold text-primary transition-colors hover:bg-accent-light"
@@ -78,7 +79,7 @@ export default function Header({ logoUrl }: { logoUrl: string }) {
               <Menu className="h-6 w-6" />
             )}
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Mobile Navigation */}

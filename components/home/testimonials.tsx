@@ -7,34 +7,24 @@ import Reveal from "../ui/reveal";
 const testimonials = [
   {
     quote:
-      "RP Law Associates handled our corporate merger with exceptional professionalism. Their attention to detail and strategic guidance made a complex process seamless.",
-    name: "Rajesh Mehta",
-    role: "CEO, Mehta Industries",
+      "RP Law Offices handled our corporate legal matters with exceptional professionalism. Their strategic advice and prompt communication gave us complete confidence throughout the process. I highly recommend their services.",
+    name: "Rahul Mehta",
   },
   {
     quote:
-      "When I needed legal support for my NRI property dispute, the team was responsive, transparent, and fought tirelessly for my rights. Highly recommended.",
-    name: "Priya Sharma",
-    role: "NRI Client, Dubai",
+      "I was impressed by their professionalism, transparency, and dedication. They handled my legal matter efficiently and kept me informed at every stage. I truly appreciate their support.",
+    name: "Neha Desai",
   },
   {
     quote:
-      "Their litigation team secured a favorable outcome in a case others said was unwinnable. True experts who genuinely care about their clients.",
-    name: "Amit Patel",
-    role: "Business Owner",
+      "From contract drafting to legal consultation, RP Law Offices has been a dependable legal partner for our business. Their expertise and attention to detail have been invaluable.",
+    name: "Amit Patel",   
   },
   {
     quote:
-      "From employment contracts to labor disputes, RP Law has been our go-to legal partner for over five years. Reliable, knowledgeable, and always accessible.",
-    name: "Sneha Reddy",
-    role: "HR Director, TechCorp",
-  },
-  {
-    quote:
-      "The real estate team guided us through every step of our property purchase. Their title verification and RERA expertise saved us from a costly mistake.",
-    name: "Vikram Singh",
-    role: "Property Investor",
-  },
+      "The team was knowledgeable, approachable, and genuinely committed to achieving the best outcome for my case. They explained every legal step clearly and made the entire process stress-free.",
+    name: "Priya Shah",    
+  }
 ];
 
 function useSlidesToShow() {
@@ -75,12 +65,17 @@ export default function Testimonials() {
     goTo(current <= 0 ? maxIndex : current - 1);
   }, [current, maxIndex, goTo]);
 
+  const showSlider = testimonials.length > 3;
+
   useEffect(() => {
+    if (!showSlider) return;
     const interval = setInterval(next, 6000);
     return () => clearInterval(interval);
-  }, [next]);
+  }, [next, showSlider]);
 
-  const visible = testimonials.slice(current, current + slidesToShow);
+  const visible = showSlider
+    ? testimonials.slice(current, current + slidesToShow)
+    : testimonials;
 
   return (
     <section className="bg-background py-20 lg:py-28">
@@ -89,14 +84,16 @@ export default function Testimonials() {
           <SectionHeading
             eyebrow="Client Stories"
             title="What Our Clients Say"
-            description="Real experiences from individuals and businesses who trusted us with their most important legal matters."
+            description="Trusted by individuals, families, and businesses for reliable legal counsel, transparent communication, and dedicated representation. Here's what our clients have to say about their experience with RP Law Offices."
           />
         </Reveal>
 
         <div className="relative mt-14">
           <div
             className={`grid gap-6 ${
-              slidesToShow === 3 ? "lg:grid-cols-3" : "grid-cols-1"
+              slidesToShow === 3 && testimonials.length >= 3
+                ? "lg:grid-cols-3"
+                : "grid-cols-1"
             }`}
           >
             {visible.map((testimonial) => (
@@ -125,65 +122,66 @@ export default function Testimonials() {
                 </blockquote>
                 <footer className="mt-6 border-t border-border pt-6">
                   <p className="font-semibold text-primary">{testimonial.name}</p>
-                  <p className="text-sm text-muted">{testimonial.role}</p>
                 </footer>
               </article>
             ))}
           </div>
 
-          <div className="mt-10 flex items-center justify-center gap-4">
-            <button
-              type="button"
-              onClick={prev}
-              aria-label="Previous testimonials"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-primary transition-colors hover:border-accent hover:text-accent"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="h-5 w-5"
-                aria-hidden="true"
+          {showSlider && (
+            <div className="mt-10 flex items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Previous testimonials"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-primary transition-colors hover:border-accent hover:text-accent"
               >
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="h-5 w-5"
+                  aria-hidden="true"
+                >
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
 
-            <div className="flex gap-2">
-              {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => goTo(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                  className={`h-2.5 rounded-full transition-all ${
-                    index === current
-                      ? "w-8 bg-accent"
-                      : "w-2.5 bg-border hover:bg-accent/50"
-                  }`}
-                />
-              ))}
+              <div className="flex gap-2">
+                {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => goTo(index)}
+                    aria-label={`Go to slide ${index + 1}`}
+                    className={`h-2.5 rounded-full transition-all ${
+                      index === current
+                        ? "w-8 bg-accent"
+                        : "w-2.5 bg-border hover:bg-accent/50"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next testimonials"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-primary transition-colors hover:border-accent hover:text-accent"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="h-5 w-5"
+                  aria-hidden="true"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
             </div>
-
-            <button
-              type="button"
-              onClick={next}
-              aria-label="Next testimonials"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-primary transition-colors hover:border-accent hover:text-accent"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="h-5 w-5"
-                aria-hidden="true"
-              >
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </section>

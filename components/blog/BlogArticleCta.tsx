@@ -20,20 +20,18 @@ export default function BlogArticleCta() {
                 </p>
 
                 <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                    Need Expert Legal Counsel?
+                Need Professional Legal Advice?
                 </h2>
 
                 <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/65 sm:text-lg">
-                    Our experienced legal team helps individuals and businesses
-                    navigate complex matters with clarity and confidence.
-                    Schedule your consultation today.
+                If you are facing a legal challenge or require professional legal advice, RP Law Offices is ready to assist you. Contact us to discuss your matter and receive practical legal guidance tailored to your specific needs.
                 </p>
 
                 <Link
                     href="/contact-us"
                     className="mt-10 inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-bold tracking-wide text-primary-dark shadow-[0_0_32px_rgba(234,179,8,0.35)] transition-[filter] hover:brightness-110"
                 >
-                    Book a Consultation
+                    Schedule a Consultation
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
             </div>

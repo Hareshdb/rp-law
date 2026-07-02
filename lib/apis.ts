@@ -1,7 +1,7 @@
 import { DEFAULT_LIMIT, DEFAULT_OFFSET, PLACEHOLDER_IMAGE } from "./constants";
 import { sanityClient } from "./sanity-client";
 import { urlFor } from "./sanity-image-builder";
-import type { Blog, HomePageData, SanityPost } from "./types";
+import type { Blog, FooterData, HomePageData, SanityPost } from "./types";
 
 const postsQuery = `
   *[_type == "post"]
@@ -249,11 +249,23 @@ export async function getHomePageData(): Promise<HomePageData> {
       heroTitle,
       heroHighlightText,
       heroSubtitle,
-      heroImage
+      heroImage,
+      whyChooseUsImage
     }
   `);
 
   return homePageData;
+}
+
+export async function getFooterData(): Promise<FooterData> {
+  return sanityClient.fetch(`
+    *[_type == "homePage"][0]{
+      footerSummary,
+      address,
+      mobileNumber,
+      email
+    }
+  `);
 }
 
 export async function getSettings() {

@@ -6,7 +6,15 @@ export type HomePageData = {
   heroTitle: string;
   heroHighlightText: string;
   heroSubtitle: string;
-  heroImage: SanityImageSource;
+  heroImage?: SanityImageSource & { alt?: string };
+  whyChooseUsImage?: SanityImageSource & { alt?: string };
+};
+
+export type FooterData = {
+  footerSummary?: string;
+  address?: string;
+  mobileNumber?: string;
+  email?: string;
 };
 
 export type PostAuthor = {

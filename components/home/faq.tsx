@@ -7,29 +7,29 @@ import Reveal from "../ui/reveal";
 
 const faqs = [
   {
-    question: "How do I schedule an initial consultation?",
+    question: "What types of legal services does RP Law Offices provide?",
     answer:
-      "You can schedule a consultation by filling out our contact form, calling our office directly, or sending us an email. We typically respond within one business day to arrange a convenient time.",
+      "We offer legal services across multiple practice areas, including corporate law, civil disputes, family law, property matters, contract drafting, legal consultation, and litigation.",
   },
   {
-    question: "What should I bring to my first meeting?",
+    question: "How do I schedule a consultation?",
     answer:
-      "Bring any documents relevant to your matter — contracts, notices, correspondence, court papers, or identification. Don't worry if you're missing something; we'll guide you on anything additional we need.",
+      "You can schedule a consultation by calling us, sending an email, or filling out the contact form on our website. Our team will get in touch to arrange a convenient appointment.",
   },
   {
-    question: "How are your legal fees structured?",
+    question: "Do you provide legal services for businesses?",
     answer:
-      "Our fee structure depends on the nature and complexity of your case. We offer transparent pricing — including fixed fees, hourly rates, and retainers — and discuss all costs upfront so there are no surprises.",
+      "Yes. We assist startups, SMEs, and established companies with corporate advisory, contract drafting and review, compliance, dispute resolution, and other business-related legal matters.",
   },
   {
-    question: "Do you handle cases outside of your city?",
+    question: "Will my information remain confidential?",
     answer:
-      "Yes. We represent clients across multiple jurisdictions and regularly assist NRI clients globally through secure virtual consultations and coordinated local representation.",
+      "Absolutely. Client confidentiality is a core principle of our practice. All information shared with us is handled with the highest level of privacy and professional ethics.",
   },
   {
-    question: "How long will my case take to resolve?",
+    question: "5. How are your legal fees determined?",
     answer:
-      "Timelines vary widely based on the type of matter and court schedules. During your consultation we'll provide a realistic assessment and keep you updated at every stage of the process.",
+      "Our fees depend on the nature, complexity, and scope of the legal matter. We discuss the fee structure transparently during the initial consultation so you know what to expect before we begin.",
   },
 ];
 
@@ -41,14 +41,10 @@ export default function Faq() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
         <Reveal direction="right">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
-            FAQ
+          Frequently Asked Questions
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-            Questions, answered
-          </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted">
-            Everything you need to know about working with us. Can&rsquo;t find
-            the answer you&rsquo;re looking for? Reach out to our team.
+          Everything you need to know about our legal services, consultation process, and how RP Law Offices delivers trusted, client-focused legal solutions.
           </p>
           <Link
             href="/contact-us"

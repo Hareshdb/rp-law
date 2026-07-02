@@ -1,6 +1,16 @@
 import Link from "next/link";
 import { Logo } from "@components/common/logo";
 import { Mail, MapPin, PhoneCall } from "lucide-react";
+import type { FooterData } from "@/lib/types";
+
+const defaultFooterData: Required<FooterData> = {
+  footerSummary:
+    "RP Law Associates delivers trusted legal counsel with integrity, expertise, and a relentless commitment to protecting your rights.",
+  address:
+    "A-208, Ananta Square, Opp. 108 EMRI, Naroda,\nAhmedabad, Gujarat 382330, India",
+  mobileNumber: "+91 95121 23013",
+  email: "advocate.rinal@gmail.com",
+};
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -44,7 +54,20 @@ const socialLinks = [
   },
 ];
 
-export default function Footer({ logoUrl }: { logoUrl: string }) {
+export default function Footer({
+  logoUrl,
+  footerData,
+}: {
+  logoUrl: string;
+  footerData?: FooterData;
+}) {
+  const summary = footerData?.footerSummary || defaultFooterData.footerSummary;
+  const address = footerData?.address || defaultFooterData.address;
+  const mobileNumber =
+    footerData?.mobileNumber || defaultFooterData.mobileNumber;
+  const email = footerData?.email || defaultFooterData.email;
+  const phoneHref = `tel:${mobileNumber.replace(/\s/g, "")}`;
+
   return (
     <footer className="bg-primary text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -52,8 +75,7 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
           <div>
             <Logo logoUrl={logoUrl} className="w-[188px]"/>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
-              RP Law Associates delivers trusted legal counsel with integrity,
-              expertise, and a relentless commitment to protecting your rights.
+              {summary}
             </p>
             <div className="mt-6 flex gap-3">
               {socialLinks.map((social) => (
@@ -111,11 +133,7 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
                   strokeWidth={1.5}
                   aria-hidden="true"
                 />
-                <span>
-                  A-208, Ananta Square, Opp. 108 EMRI, Naroda, 
-                  <br />
-                  Ahmedabad, Gujarat 382330, India
-                </span>
+                <span className="whitespace-pre-line">{address}</span>
               </li>
 
               <li className="flex gap-3">
@@ -125,10 +143,10 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
                   aria-hidden="true"
                 />
                 <a
-                  href="tel:+919512123013"
+                  href={phoneHref}
                   className="transition-colors hover:text-accent"
                 >
-                 +91 95121 23013
+                  {mobileNumber}
                 </a>
               </li>
 
@@ -139,10 +157,10 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
                   aria-hidden="true"
                 />
                 <a
-                  href="mailto:advocate.rinal@gmail.com"
+                  href={`mailto:${email}`}
                   className="transition-colors hover:text-accent"
                 >
-                  advocate.rinal@gmail.com
+                  {email}
                 </a>
               </li>
             </ul>
@@ -156,11 +174,9 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
           </p>
           <div className="flex gap-6 text-sm text-white/50">
             <Link href="#" className="hover:text-accent">
-              Privacy Policy
+              Designed & Developed by <span className="text-accent">eBranding Studio</span>
             </Link>
-            <Link href="#" className="hover:text-accent">
-              Terms of Service
-            </Link>
+            
           </div>
         </div>
       </div>
