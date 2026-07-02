@@ -5,19 +5,34 @@ import { Check } from "lucide-react";
 
 const reasons = [
   {
-    title: "Experienced Advocates",
+    title: "Experienced Legal Expertise",
     description:
-      "Our team brings decades of courtroom and advisory experience across diverse legal domains.",
+      "Practical solutions backed by strong legal knowledge.",
+  },
+  {
+    title: "Client-Centric Approach",
+    description:
+      "Every case receives personalized attention and strategic guidance.",
   },
   {
     title: "Transparent Communication",
     description:
-      "We keep you informed at every stage with clear, honest updates — no legal jargon, no surprises.",
+      "Clear advice and regular updates throughout your legal journey.",
   },
   {
-    title: "Client-Focused Strategy",
+    title: "Ethical & Professional Practice",
     description:
-      "Every case receives a tailored approach designed around your goals, timeline, and priorities.",
+      "Integrity, confidentiality, and honesty in every matter.",
+  },
+  {
+    title: "Result-Oriented Representation",
+    description:
+      "Focused advocacy to protect your rights and interests.",
+  },
+  {
+    title: "Comprehensive Legal Services",
+    description:
+      "Comprehensive Legal Services",
   },
 ];
 
@@ -37,21 +52,12 @@ export default function WhyChooseUs() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </div>
-
-            {/* <div className="absolute -bottom-6 right-6 flex items-center gap-4 rounded-2xl bg-primary p-5 shadow-xl sm:-right-6">
-              <p className="text-4xl font-bold text-accent">15+</p>
-              <p className="text-sm font-medium leading-tight text-white/80">
-                Years of trusted
-                <br />
-                legal practice
-              </p>
-            </div> */}
           </Reveal>
 
           <div>
             <Reveal direction="left">
               <SectionHeading
-                eyebrow="Why Choose Us"
+                eyebrow="Why Choose RP Law Offices?"
                 title="Your Trusted Legal Partner"
                 description="We combine deep legal expertise with a genuine commitment to your success — because your case deserves nothing less."
                 align="left"

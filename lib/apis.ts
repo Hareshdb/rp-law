@@ -59,6 +59,36 @@ const postBySlugQuery = `
   }
 `;
 
+const relatedPostsByCategoryQuery = `
+  *[
+    _type == "post" &&
+    _id != $postId &&
+    $categoryId in categories[]._ref
+  ] | order(publishedAt desc)[0...3] {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    short_description,
+    body,
+    mainImage,
+
+    author->{
+      _id,
+      name,
+      "slug": slug.current,
+      image,
+      bio
+    },
+
+    categories[]->{
+      _id,
+      title,
+      description
+    }
+  }
+`;
+
 export function mapSanityPostToBlog(post: SanityPost): Blog {
   return {
     id: post._id,
@@ -94,6 +124,18 @@ export async function getPostBySlug(
   return post
 }
 
+export async function getRelatedPostsByCategory(
+  categoryId: string,
+  postId: string
+): Promise<Blog[]> {
+  const posts: SanityPost[] = await sanityClient.fetch(
+    relatedPostsByCategoryQuery,
+    { categoryId, postId }
+  );
+
+  return posts.map(mapSanityPostToBlog);
+}
+
 export async function getHomePageData(): Promise<HomePageData> {
   const homePageData = await sanityClient.fetch(`
     *[_type == "homePage"][0]{
@@ -110,7 +152,8 @@ export async function getHomePageData(): Promise<HomePageData> {
 export async function getSettings() {
   return sanityClient.fetch(`
     *[_type == "settings"][0]{
-      logo
+      logo,
+      logoInverted
     }
   `);
 }

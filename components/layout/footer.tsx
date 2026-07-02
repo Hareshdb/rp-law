@@ -50,7 +50,7 @@ export default function Footer({ logoUrl }: { logoUrl: string }) {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-3">
           <div>
-            <Logo logoUrl={logoUrl} size="custom" className="w-[140px]"/>
+            <Logo logoUrl={logoUrl} className="w-[188px]"/>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
               RP Law Associates delivers trusted legal counsel with integrity,
               expertise, and a relentless commitment to protecting your rights.

@@ -49,7 +49,7 @@ export default function HeroSection({
             className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
             {homePageData.heroTitle}{" "}
-            <span className="italic text-accent">{homePageData.heroHighlightText}.</span>
+            <span className="italic text-accent">{homePageData.heroHighlightText}</span>
           </motion.h1>
           <motion.p
             variants={item}
@@ -75,7 +75,7 @@ export default function HeroSection({
             </Link>
           </motion.div>
 
-          <motion.dl
+          {/* <motion.dl
             variants={item}
             className="mt-12 flex flex-wrap gap-x-10 gap-y-6 pt-8"
           >
@@ -87,7 +87,7 @@ export default function HeroSection({
                 </dd>
               </div>
             ))}
-          </motion.dl>
+          </motion.dl> */}
         </motion.div>
 
         <motion.div
