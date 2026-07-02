@@ -84,23 +84,14 @@ export default function BlogDetail({
                 </div>
             </section>
 
-            <section className="pt-8 pb-16">
-                <div className="container">
-                    <div className="mb-12 border-l-4 border-accent pl-6">
-                        <p className="text-lg leading-8 text-muted italic">
-                            {blogDetail.short_description}
-                        </p>
-                    </div>
-
+            <section className="pt-8 pb-10">
+                <div className="container">                    
                     <TableOfContents headings={tocHeadings}>
                         <BlogPortableText content={blogDetail.body} />
                     </TableOfContents>
                 </div>
             </section>
-
-            <BlogArticleCta />
-
-            <section className="py-12">
+            <section className="py-10">
                 <div className="container max-w-5xl">
                     <div className="flex flex-col items-center gap-6 rounded-3xl border border-border bg-surface p-8 text-center md:flex-row md:text-left">
                         <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full outline outline-2 outline-offset-[3px] outline-accent">
@@ -125,8 +116,9 @@ export default function BlogDetail({
                     </div>
                 </div>
             </section>
-
             <RelatedBlogs blogs={relatedBlogs} />
+            <BlogArticleCta />
+
         </article>
     );
 }

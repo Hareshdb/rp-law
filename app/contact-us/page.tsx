@@ -1,9 +1,14 @@
-import ContactCta from '@components/home/contact-cta'
+import { getFooterData } from "@/lib/apis";
+import ContactCta from "@components/home/contact-cta";
+import Testimonials from "@components/home/testimonials";
 
-const ContactUs = () => {
-    return (
-        <ContactCta />
-    )
+export default async function ContactUs() {
+  const footerData = await getFooterData();
+
+  return (
+    <>
+      <ContactCta footerData={footerData} />
+      <Testimonials />
+    </>
+  );
 }
-
-export default ContactUs

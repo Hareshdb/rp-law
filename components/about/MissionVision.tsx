@@ -40,7 +40,7 @@ const MissionVision = () => {
                                 Our Mission
                             </h3>
                             <p className="text-lg leading-relaxed text-white/68">
-                            Our mission is to provide dependable, practical, and ethical legal solutions through sound legal knowledge, strategic advocacy, and unwavering commitment to our client's interests. We strive to make quality legal services accessible while maintaining the highest standards of professionalism.
+                            Our mission is to provide dependable, practical, and ethical legal solutions through sound legal knowledge, strategic advocacy, and unwavering commitment to our client&rsquo;s interests. We strive to make quality legal services accessible while maintaining the highest standards of professionalism.
                             </p>
                         </motion.div>
                     </Reveal>

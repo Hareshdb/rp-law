@@ -32,13 +32,13 @@ function PreFooterCTA() {
                         </span>
                     </div>
 
-                    <h2 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl">
-                        Ready to Secure <br />
-                        <span className="text-accent">Your Future?</span>
+                     <h2 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl">
+                    Ready to Discuss <br />
+                        <span className="text-accent">Your Legal Needs?</span>
                     </h2>
 
-                    <p className="mx-auto mb-10 max-w-xl text-lg text-white/65">
-                    If you are facing a legal challenge or require professional legal advice, RP Law Offices is ready to assist you. Contact us to discuss your matter and receive practical legal guidance tailored to your specific needs.
+                    <p className="mx-auto mb-10 max-w-6xl text-lg text-white/65">
+                    Whether you're seeking legal advice, resolving a dispute, or planning for the future, RP Law Offices is here to provide trusted guidance, strategic solutions, and dedicated representation every step of the way.
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4">
