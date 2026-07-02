@@ -29,3 +29,8 @@ export const getImageUrl = (image: SanityImageSource) => {
         ? urlFor(image).url()
         : process.env.PLACEHOLDER_IMAGE_URL || "/placeholder.jpg";
 }
+
+export const buildWhatsAppUrl = (phone: string) => {
+    const digits = phone.replace(/\D/g, "");
+    return `https://api.whatsapp.com/send/?phone=${digits}&text&type=phone_number&app_absent=0`;
+}

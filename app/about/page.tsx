@@ -1,6 +1,8 @@
+import ContactCta from '@/components/home/contact-cta'
 import AboutFirm from '@components/about/AboutFirm'
 import Banner from '@components/about/Banner'
 import CoreValues from '@components/about/CoreValues'
+import FounderProfile from '@components/about/FounderProfile'
 import MissionVision from '@components/about/MissionVision'
 import PreFooterCTA from '@components/about/PreFooterCTA'
 import Testimonials from '@components/home/testimonials'
@@ -11,9 +13,11 @@ export default function AboutUsPage() {
       <Banner />
       <AboutFirm />
       <MissionVision />
+      <FounderProfile />
       <CoreValues />
       <Testimonials />
       <PreFooterCTA />
+      <ContactCta />
     </main>
   )
 }

@@ -1,7 +1,13 @@
 import { DEFAULT_LIMIT, DEFAULT_OFFSET, PLACEHOLDER_IMAGE } from "./constants";
 import { sanityClient } from "./sanity-client";
 import { urlFor } from "./sanity-image-builder";
-import type { Blog, FooterData, HomePageData, SanityPost } from "./types";
+import type {
+  Blog,
+  FooterData,
+  HomePageData,
+  PostAuthor,
+  SanityPost,
+} from "./types";
 
 const postsQuery = `
   *[_type == "post"]
@@ -275,4 +281,18 @@ export async function getSettings() {
       logoInverted
     }
   `);
+}
+
+const firstAuthorQuery = `
+  *[_type == "author"] | order(_createdAt asc)[0] {
+    _id,
+    name,
+    "slug": slug.current,
+    image,
+    bio
+  }
+`;
+
+export async function getFirstAuthor(): Promise<PostAuthor | null> {
+  return sanityClient.fetch(firstAuthorQuery);
 }
