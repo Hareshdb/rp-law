@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import SectionHeading from "../ui/section-heading";
 import Reveal from "../ui/reveal";
 import {
@@ -8,56 +11,120 @@ import {
   House,
   Heart,
   ArrowRight,
+  Shield,
+  Building,
+  DollarSign,
+  FileText,
+  University,
+  Banknote,
+  Unlink,
+  LockKeyhole,
+  BookMarked,
+  BookType,
+  BookA,
 } from "lucide-react";
 
 const practiceAreas = [
   {
-    title: "Corporate Law",
+    title: "Gujarat High Court Matters",
     description:
-      "Comprehensive legal support for businesses — from incorporation and compliance to mergers, acquisitions, and corporate governance.",
+      "Representation in writ petitions, civil and criminal appeals, constitutional matters, bail applications, commercial disputes, and other proceedings before the Gujarat High Court.",
     icon: Building2,
   },
   {
-    title: "Litigation Services",
+    title: "District & Civil Court Litigation",
     description:
-      "Aggressive and strategic representation in civil, commercial, and criminal litigation across all levels of courts.",
+      "Legal representation in civil suits, recovery matters, injunctions, property disputes, family disputes, criminal trials, appeals, and execution proceedings before District and Civil Courts.",
     icon: Scale,
   },
   {
-    title: "Labor & Employment",
+    title: "RERA (Real Estate) Matters",
     description:
-      "Expert guidance on employment contracts, workplace disputes, labor compliance, and industrial relations matters.",
-    icon: Users,
+      "Legal assistance for homebuyers, developers, and builders in RERA complaints, delayed possession, refund claims, compensation, and real estate disputes.",
+    icon: Building,
   },
   {
-    title: "NRI Services",
+    title: "GST Litigation & Advisory",
     description:
-      "Specialized legal assistance for Non-Resident Indians in property matters, inheritance, family law, and investment compliance.",
-    icon: Globe,
+      "Professional representation in GST notices, assessments, appeals, refunds, compliance, and indirect tax litigation before authorities and courts.",
+    icon: FileText,
   },
   {
-    title: "Real Estate",
+    title: "Insolvency & Bankruptcy (IBC)",
     description:
-      "End-to-end legal services for property transactions, title verification, RERA compliance, and real estate disputes.",
-    icon: House,
+      "Legal services for creditors, businesses, and corporate entities in insolvency proceedings, debt recovery, restructuring, and NCLT matters.",
+    icon: University,
   },
   {
-    title: "Family Law",
+    title: "Cheque Bounce (NI Act) Matters",
     description:
-      "Compassionate counsel on divorce, maintenance, child custody, succession, and other sensitive family matters.",
-    icon: Heart,
+      "Comprehensive legal assistance in cheque dishonour cases, including legal notices, complaint filing, defence, recovery proceedings, and appeals.",
+    icon: Banknote,
+  },
+  {
+    title: "Divorce & Family Law",
+    description:
+      "Expert legal support in mutual consent divorce, contested divorce, child custody, maintenance, domestic violence, guardianship, and family settlements.",
+    icon: Unlink,
+  },
+  {
+    title: "Property Law Services",
+    description:
+      "Legal assistance in title verification, property disputes, partition suits, sale deeds, land matters, inheritance, documentation, and real estate transactions.",
+    icon: Shield,
+  },
+  {
+    title: "Consumer Protection Matters",
+    description:
+      "Representation before Consumer Commissions for disputes involving defective products, deficient services, insurance, banking, medical negligence, and e-commerce.",
+    icon: LockKeyhole,
+  },
+  {
+    title: "Company & Commercial Law",
+    description:
+      "Legal advisory for startups and businesses covering commercial contracts, shareholder disputes, corporate governance, compliance, business agreements, and commercial litigation.",
+    icon: BookMarked,
+  },
+  {
+    title: "Legal Consultation & Documentation",
+    description:
+      "Professional legal opinions, contract drafting, legal notices, agreements, deeds, Power of Attorney, wills, affidavits, and business documentation.",
+      icon: BookType,
+  },
+  {
+    title: "NRI Legal Services",
+    description:
+      "Dedicated legal support for Non-Resident Indians in property matters, inheritance, family disputes, documentation, Power of Attorney, and court representation across India.",
+    icon: BookA,
   },
 ];
 
 export default function PracticeAreas() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (window.location.hash !== "#practice-areas") {
+      return;
+    }
+
+    sectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, []);
+
   return (
-    <section id="practice-areas" className="bg-background py-20 lg:py-28">
+    <section
+      ref={sectionRef}
+      id="practice-areas"
+      className="scroll-mt-20 bg-background py-20 lg:scroll-mt-24 lg:py-28"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="flex flex-col items-center">
           <SectionHeading
             eyebrow="What We Do"
             title="Our Practice Areas"
-            description="Comprehensive legal services tailored to protect your interests and achieve the best possible outcomes."
+            description="At RP Law Offices, we provide comprehensive legal services to individuals, businesses, startups, and corporate clients across Ahmedabad, Gujarat, and throughout India. Our firm is committed to delivering strategic legal advice, effective representation, and practical solutions across a wide range of legal matters."
           />
         </Reveal>
 

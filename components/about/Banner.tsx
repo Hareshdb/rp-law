@@ -3,8 +3,10 @@ import { Variants, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Banner = () => {
+    const router = useRouter();
 
     const fadeUp: Variants = {
         hidden: { opacity: 0, y: 28 },
@@ -53,7 +55,7 @@ const Banner = () => {
                     >
                         <span className="h-px w-8 bg-accent" />
                         <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
-                            Since 2005 · RP Law Associates
+                            Since 2005 · RP Law Offices
                         </span>
                     </motion.div>
 
@@ -62,8 +64,8 @@ const Banner = () => {
                         custom={80}
                         className="text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl"
                     >
-                        About Our <br />
-                        <span className="text-accent">Law Firm</span>
+                        Serving Clients <br />
+                        <span className="text-accent">Across India</span>
                     </motion.h1>
 
                     <motion.p
@@ -71,9 +73,7 @@ const Banner = () => {
                         custom={160}
                         className="mt-6 max-w-xl text-lg leading-relaxed text-white/72"
                     >
-                        Providing strategic legal counsel, dedicated representation, and
-                        trusted advocacy for individuals, families, and businesses across
-                        India.
+                        Although headquartered in Ahmedabad, Gujarat, RP Law Offices proudly serves clients across India. Through technology-enabled consultations and strategic legal coordination, we assist individuals, businesses, NRIs, and corporate clients in handling legal matters before courts, tribunals, and regulatory authorities nationwide.
                     </motion.p>
 
                     <motion.div
@@ -88,10 +88,14 @@ const Banner = () => {
                             Schedule a Consultation <ArrowRight size={16} />
                         </Link>
                         <Link
-                            href="/#practice-areas"
+                            href=""
+                            onClick={(event) => {
+                                event.preventDefault();
+                                router.push('/#practice-areas');
+                            }}
                             className="inline-flex items-center rounded-full border-[1.5px] border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                         >
-                            Our Practice Areas
+                         Our Practice Areas
                         </Link>
                     </motion.div>
                 </motion.div>

@@ -35,25 +35,19 @@ const AboutFirm = () => {
                     <Reveal delay={0.08}>
                         <Eyebrow>Our Origins</Eyebrow>
                         <h2 className="mb-6 mt-3 text-4xl font-bold leading-tight text-primary">
-                            About Our Firm
+                            About RP Law Offices
                         </h2>
                         <blockquote className="mb-6 border-l-[3px] border-accent pl-5 text-lg italic leading-relaxed text-muted">
-                            &ldquo;Founded on the principles of integrity and diligence, RP
-                            Law Associates has spent two decades redefining the landscape of
-                            legal excellence.&rdquo;
+                        Trusted Legal Solutions in Ahmedabad, Gujarat
                         </blockquote>
                         <p className="mb-5 leading-relaxed text-muted">
-                            RP Law Associates is a full-service law firm delivering
-                            high-calibre legal solutions across corporate, civil, criminal,
-                            and family law. Our attorneys combine deep courtroom advocacy
-                            with strategic counsel to protect your interests at every stage.
+                        At RP Law Offices, we are committed to providing practical, ethical, and result-oriented legal services to individuals, families, entrepreneurs, and businesses across Gujarat and India. Founded by Adv. Rinal Patel, our firm combines legal knowledge, strategic thinking, and a client-centric approach to deliver effective solutions for complex legal matters.
                         </p>
                         <p className="leading-relaxed text-muted">
-                            We have established strategic alliances with associate lawyers
-                            across more than 20 states, enabling us to offer clients the
-                            advantage of a single trusted service provider for all their
-                            legal matters — nationwide, under one unified umbrella.
+                        We understand that every legal issue has personal, financial, and commercial implications. Whether you are involved in litigation, require legal advice, or need assistance with documentation and compliance, we work closely with you to protect your rights and achieve the most appropriate legal outcome.
                         </p>
+                        <p className="leading-relaxed text-muted">
+                        Based in Ahmedabad, Gujarat, RP Law Offices represents clients before the Gujarat High Court, District & Sessions Courts, Civil Courts, Family Courts, Consumer Commissions, Commercial Courts, and various judicial and quasi-judicial authorities. Our commitment is to provide clear legal guidance, responsive communication, and professional representation at every stage of your matter.                        </p>
                         <div className="mt-8 flex flex-wrap gap-3">
                             {TAGS.map((tag) => (
                                 <span

@@ -30,6 +30,9 @@ export default async function RootLayout({
 
   const settings = await getSettings();
   const logoUrl = settings?.logo ? getImageUrl(settings.logo) : "/logo.png";
+  const logoInvertedUrl = settings?.logoInverted
+    ? getImageUrl(settings.logoInverted)
+    : logoUrl;
 
   return (
     <html
@@ -39,7 +42,7 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col">
         <Header logoUrl={logoUrl} />
         <main className="flex-1">{children}</main>
-        <Footer logoUrl={logoUrl} />
+        <Footer logoUrl={logoInvertedUrl} />
       </body>
     </html>
   );

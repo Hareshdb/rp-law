@@ -40,10 +40,7 @@ const MissionVision = () => {
                                 Our Mission
                             </h3>
                             <p className="text-lg leading-relaxed text-white/68">
-                                To provide unwavering legal support and strategic counsel that
-                                empowers our clients to navigate their most complex challenges
-                                with absolute confidence. We strive to turn legal obstacles
-                                into opportunities for growth and security.
+                            Our mission is to provide dependable, practical, and ethical legal solutions through sound legal knowledge, strategic advocacy, and unwavering commitment to our client's interests. We strive to make quality legal services accessible while maintaining the highest standards of professionalism.
                             </p>
                         </motion.div>
                     </Reveal>
@@ -62,10 +59,7 @@ const MissionVision = () => {
                                 Our Vision
                             </h3>
                             <p className="text-lg leading-relaxed text-white/68">
-                                To be the global standard for legal excellence — recognized
-                                not only for our victories but for fostering a legacy of
-                                justice, innovation, and unwavering client advocacy that
-                                shapes the future of law.
+                            To establish RP Law Offices as a trusted and respected legal practice known for excellence, integrity, and client-focused legal services while contributing meaningfully to the administration of justice.
                             </p>
                         </motion.div>
                     </Reveal>
@@ -84,14 +78,12 @@ const MissionVision = () => {
                         </div>
                         <div>
                             <p className="text-lg italic leading-relaxed text-white/80">
-                                &ldquo;Our mission is to provide practical legal guidance while
-                                maintaining the highest standards of professionalism,
-                                integrity, and client service — every single day.&rdquo;
-                            </p>
+                                &ldquo;Adv. Rinal Patel is the Founder and Principal Advocate of RP Law Offices. With a strong commitment to justice and professional ethics, Adv. Patel advises and represents clients in a broad range of civil, commercial, corporate, family, and regulatory matters.&rdquo;
+                            </p>                           
                             <div className="mt-4">
-                                <div className="font-semibold text-white">Rajesh Patel</div>
+                                <div className="font-semibold text-white">Adv. Rinal Patel</div>
                                 <div className="text-sm text-accent">
-                                    Founder &amp; Managing Partner
+                                    Founder &amp; Senior Advocate
                                 </div>
                             </div>
                         </div>

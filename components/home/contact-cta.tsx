@@ -7,8 +7,8 @@ import { Mail, PhoneCall } from "lucide-react";
 const contactDetails = [
   {
     label: "Call us",
-    value: "+91 22 1234 5678",
-    href: "tel:+912212345678",
+    value: "+91 9512123013",
+    href: "tel:+919512123013",
     icon: (
       <PhoneCall
         className="h-5 w-5"
@@ -19,8 +19,8 @@ const contactDetails = [
   },
   {
     label: "Email us",
-    value: "info@rplaw.com",
-    href: "mailto:info@rplaw.com",
+    value: "advocate.rinal@gmail.com",
+    href: "mailto:advocate.rinal@gmail.com",
     icon: (
       <Mail
         className="h-5 w-5"

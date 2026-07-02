@@ -1,33 +1,39 @@
 import React from 'react'
 import SectionHeading from '../ui/section-heading';
 import Reveal from '../ui/reveal';
-import { ArrowRight, ShieldCheck, Star, TrendingUp, Users } from 'lucide-react';
+import { ArrowRight, Lock, MessageCircle, ShieldCheck, Star, TrendingUp, Users } from 'lucide-react';
 
 const CORE_VALUES = [
     {
         title: "Integrity",
         description:
-            "Uncompromising ethical standards are the bedrock of our practice. Transparency and honesty above all else.",
+            "We uphold honesty, fairness, and ethical conduct in every professional engagement.",
         icon: ShieldCheck,
     },
     {
         title: "Excellence",
         description:
-            "We pursue perfection in every case. Good enough is never enough — we aim for the extraordinary in every brief.",
+            "We continuously strive to deliver legal services of the highest quality through preparation, dedication, and attention to detail.",
         icon: Star,
     },
     {
-        title: "Client First",
+        title: "Confidentiality",
         description:
-            "Your success is our priority. We listen deeply, understand fully, and act decisively to protect your interests.",
-        icon: Users,
+            "Every client's information is treated with complete privacy and professional discretion.",
+        icon: Lock,
     },
     {
-        title: "Results Driven",
+        title: "Commitment",
         description:
-            "Every strategy is built around a single goal — delivering practical solutions and winning outcomes for you.",
+            "We remain dedicated to protecting our clients' legal rights and pursuing their objectives with diligence and responsibility.",
         icon: TrendingUp,
     },
+    {
+        title: "Transparency",
+        description:
+            "We believe in clear communication, honest advice, and keeping clients informed throughout the legal process.",
+        icon: MessageCircle,
+    }
 ] as const;
 
 const AWARDS = [
