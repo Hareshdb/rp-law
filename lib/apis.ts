@@ -135,6 +135,7 @@ export function mapSanityPostToBlog(post: SanityPost): Blog {
     image: post.mainImage
       ? urlFor(post.mainImage).width(800).height(480).url()
       : PLACEHOLDER_IMAGE,
+    imageAlt: post.mainImage?.alt,
     category: post.categories?.[0]?.title ?? "Legal",
     publishedAt: post.publishedAt,
   };

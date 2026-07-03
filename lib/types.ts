@@ -66,7 +66,7 @@ export type SanityPost = {
   publishedAt: string;
   short_description?: string;
   body: PortableTextBlock[];
-  mainImage?: SanityImageSource;
+  mainImage?: SanityImageSource & { alt?: string };
   author?: PostAuthor;
   categories?: PostCategory[];
 };
@@ -77,6 +77,7 @@ export type Blog = {
   slug: string;
   short_description: string;
   image: string;
+  imageAlt?: string;
   category?: string;
   publishedAt: string;
 };
