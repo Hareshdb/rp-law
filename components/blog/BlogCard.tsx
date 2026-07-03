@@ -20,11 +20,11 @@ export default function BlogCard({ blog }: { blog: Blog }) {
           {/* Content */}
           <div className="flex min-h-[180px] flex-col">
             {/* Category */}
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
                 {blog.category}
               </span>
-            </div>
+            </div> */}
       
             {/* Title */}
             <h3 className="mb-3 line-clamp-2 text-xl font-bold text-primary transition-colors duration-300 group-hover:text-accent">

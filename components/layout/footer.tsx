@@ -22,28 +22,14 @@ const quickLinks = [
 const socialLinks = [
   {
     label: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/rinal-patel-0b999920a/",
     icon: (
       <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" />
     ),
   },
   {
-    label: "Facebook",
-    href: "https://facebook.com",
-    icon: (
-      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-    ),
-  },
-  {
-    label: "X",
-    href: "https://x.com",
-    icon: (
-      <path d="M4 4l7.5 9.5L4 20h2.5l5.8-7.2L16.5 20H20l-7.8-10.2L19 4h-2.5l-5.3 6.5L7.5 4H4z" />
-    ),
-  },
-  {
     label: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/legal_charm",
     icon: (
       <>
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -73,7 +59,7 @@ export default function Footer({
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-3">
           <div>
-            <Logo logoUrl={logoUrl} className="w-[188px]"/>
+            <Logo logoUrl={logoUrl} className="w-[188px]" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
               {summary}
             </p>
@@ -172,10 +158,15 @@ export default function Footer({
             &copy; {new Date().getFullYear()} RP Law Associates. All rights
             reserved.
           </p>
-          <div className="flex gap-6 text-sm text-white/50">
-            <Link href="https://ebranding.studio" target="_blank">
-              Designed & Developed by <span className="text-accent">eBranding Studio</span>
-            </Link>            
+          <div className="flex gap-1 text-sm text-white/50">
+            Designed & Developed by
+            <Link
+              className="text-accent hover:underline"
+              href="https://ebranding.studio"
+              target="_blank"
+            >
+              eBranding Studio
+            </Link>
           </div>
         </div>
       </div>

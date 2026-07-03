@@ -46,6 +46,8 @@ const postBySlugQuery = `
     "slug": slug.current,
     publishedAt,
     short_description,
+    metaTitle,
+    metaDescription,
     body,
     mainImage,
 
