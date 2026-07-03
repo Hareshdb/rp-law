@@ -20,7 +20,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RP Law Associates | Trusted Legal Excellence",
+  title: {
+    default: "RP Law Associates | Trusted Legal Excellence",
+    template: "%s",
+  },
   description:
     "RP Law Associates provides expert legal counsel in corporate law, litigation, labor & employment, NRI services, and real estate.",
 };

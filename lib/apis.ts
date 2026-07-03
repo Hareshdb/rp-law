@@ -6,6 +6,7 @@ import type {
   Blog,
   FooterData,
   HomePageData,
+  PageSeoData,
   PostAuthor,
   SanityPost,
 } from "./types";
@@ -249,6 +250,30 @@ export async function getRelatedPostsByCategory(
   return posts.map(mapSanityPostToBlog);
 }
 
+export async function getPageSeoData(): Promise<PageSeoData | null> {
+  return sanityClient.fetch(`
+    *[_type == "pageSeo"][0]{
+      _id,
+      homePageSeo {
+        metaTitle,
+        metaDescription
+      },
+      blogPageSeo {
+        metaTitle,
+        metaDescription
+      },
+      aboutPageSeo {
+        metaTitle,
+        metaDescription
+      },
+      contactPageSeo {
+        metaTitle,
+        metaDescription
+      }
+    }
+  `);
+}
+
 export async function getAboutPageData(): Promise<AboutPageData | null> {
   return sanityClient.fetch(`
     *[_type == "aboutPage"][0]{
@@ -273,6 +298,7 @@ export async function getHomePageData(): Promise<HomePageData> {
       heroHighlightText,
       heroSubtitle,
       heroImage,
+      aboutImage,
       whyChooseUsImage
     }
   `);
