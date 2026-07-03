@@ -61,12 +61,12 @@ export default function BlogDetail({
                         </nav>
 
                         <div className="mt-20">
-                            <div className="mb-6 flex items-center gap-3">
+                            {/* <div className="mb-6 flex items-center gap-3">
                                 <span className="h-px w-8 bg-accent" />
                                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
                                     {blogDetail.categories?.[0]?.title}
                                 </span>
-                            </div>
+                            </div> */}
 
                             <h1 className="text-2xl font-bold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-4xl">
                                 {blogDetail.title}

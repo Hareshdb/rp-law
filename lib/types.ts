@@ -65,6 +65,8 @@ export type SanityPost = {
   slug: string;
   publishedAt: string;
   short_description?: string;
+  metaTitle?: string;
+  metaDescription?: string;
   body: PortableTextBlock[];
   mainImage?: SanityImageSource & { alt?: string };
   author?: PostAuthor;
