@@ -1,6 +1,21 @@
 import type { PortableTextBlock } from "@/lib/portable-text";
 import type { SanityImageSource } from "@sanity/image-url";
 
+export type PageSeoFields = {
+  metaTitle?: string;
+  metaDescription?: string;
+};
+
+export type PageSeoKey = "home" | "blog" | "about" | "contact";
+
+export type PageSeoData = {
+  _id: string;
+  homePageSeo?: PageSeoFields;
+  blogPageSeo?: PageSeoFields;
+  aboutPageSeo?: PageSeoFields;
+  contactPageSeo?: PageSeoFields;
+};
+
 export type AboutPageData = {
   _id: string;
   title?: string;
@@ -19,6 +34,7 @@ export type HomePageData = {
   heroHighlightText: string;
   heroSubtitle: string;
   heroImage?: SanityImageSource & { alt?: string };
+  aboutImage?: SanityImageSource & { alt?: string };
   whyChooseUsImage?: SanityImageSource & { alt?: string };
 };
 

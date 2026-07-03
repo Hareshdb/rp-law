@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import SectionHeading from "../ui/section-heading";
 import Reveal from "../ui/reveal";
 
+const MAX_QUOTE_LENGTH = 125;
+
 const testimonials = [
   {
     quote:
@@ -26,6 +28,44 @@ const testimonials = [
     name: "Priya Shah",    
   }
 ];
+
+function truncateQuote(quote: string, maxLength: number) {
+  if (quote.length <= maxLength) return quote;
+
+  const truncated = quote.slice(0, maxLength);
+  const lastSpace = truncated.lastIndexOf(" ");
+
+  if (lastSpace > maxLength * 0.7) {
+    return truncated.slice(0, lastSpace);
+  }
+
+  return truncated;
+}
+
+function TestimonialQuote({ quote }: { quote: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const isLong = quote.length > MAX_QUOTE_LENGTH;
+  const displayQuote =
+    expanded || !isLong ? quote : truncateQuote(quote, MAX_QUOTE_LENGTH);
+
+  return (
+    <blockquote className="min-h-28 flex-1 text-muted leading-relaxed">
+      <p>
+        &ldquo;{displayQuote}
+        {!expanded && isLong && "…"}&rdquo;
+      </p>
+      {isLong && (
+        <button
+          type="button"
+          onClick={() => setExpanded((prev) => !prev)}
+          className="mt-2 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+        >
+          {expanded ? "Read less" : "Read more"}
+        </button>
+      )}
+    </blockquote>
+  );
+}
 
 function useSlidesToShow() {
   const [slidesToShow, setSlidesToShow] = useState(1);
@@ -67,12 +107,6 @@ export default function Testimonials() {
 
   const showSlider = testimonials.length > 3;
 
-  useEffect(() => {
-    if (!showSlider) return;
-    const interval = setInterval(next, 6000);
-    return () => clearInterval(interval);
-  }, [next, showSlider]);
-
   const visible = showSlider
     ? testimonials.slice(current, current + slidesToShow)
     : testimonials;
@@ -99,7 +133,7 @@ export default function Testimonials() {
             {visible.map((testimonial) => (
               <article
                 key={testimonial.name}
-                className="flex flex-col rounded-2xl border border-border bg-surface p-8 shadow-sm"
+                className="flex h-full flex-col rounded-2xl border border-border bg-surface p-8 shadow-sm"
               >
                 <div
                   className="mb-4 flex gap-1 text-accent"
@@ -117,9 +151,7 @@ export default function Testimonials() {
                     </svg>
                   ))}
                 </div>
-                <blockquote className="flex-1 text-muted leading-relaxed">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </blockquote>
+                <TestimonialQuote quote={testimonial.quote} />
                 <footer className="mt-6 border-t border-border pt-6">
                   <p className="font-semibold text-primary">{testimonial.name}</p>
                 </footer>
