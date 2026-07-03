@@ -9,7 +9,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/#practice-areas", label: "Practice Areas" },
   { href: "/about", label: "About" },
-  { href: "/blog", label: "Insight" },
+  { href: "/blog", label: "Insights" },
   { href: "/contact-us", label: "Contact Us" },
 ];
 

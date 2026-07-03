@@ -283,7 +283,9 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
       titleHighlight,
       subtitle,
       featuredImage,
+      featuredImageAlt,
       aboutUsImage,
+      aboutUsImageAlt,
       missionText,
       visionText,
       ctaButtonText
@@ -299,8 +301,11 @@ export async function getHomePageData(): Promise<HomePageData> {
       heroHighlightText,
       heroSubtitle,
       heroImage,
+      heroImageAlt,
       aboutImage,
-      whyChooseUsImage
+      aboutImageAlt,
+      whyChooseUsImage,
+      whyChooseUsImageAlt
     }
   `);
 

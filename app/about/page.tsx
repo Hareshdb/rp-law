@@ -28,8 +28,15 @@ export default async function AboutUsPage() {
 
   return (
     <main className="overflow-x-hidden bg-background text-foreground">
-      <Banner aboutPageData={aboutPageData} featuredImageUrl={featuredImageUrl} />
-      <AboutFirm aboutUsImageUrl={aboutUsImageUrl} />
+      <Banner
+        aboutPageData={aboutPageData}
+        featuredImageUrl={featuredImageUrl}
+        featuredImageAlt={aboutPageData?.featuredImage?.alt}
+      />
+      <AboutFirm
+        aboutUsImageUrl={aboutUsImageUrl}
+        imageAlt={aboutPageData?.aboutUsImage?.alt}
+      />
       <MissionVision aboutPageData={aboutPageData} />
       <FounderProfile />
       <CoreValues />
