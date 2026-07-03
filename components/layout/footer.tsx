@@ -173,7 +173,7 @@ export default function Footer({
             reserved.
           </p>
           <div className="flex gap-6 text-sm text-white/50">
-            <Link href="https://ebranding.studio" target="_blank" className="hover:text-accent">
+            <Link href="https://ebranding.studio" target="_blank">
               Designed & Developed by <span className="text-accent">eBranding Studio</span>
             </Link>            
           </div>

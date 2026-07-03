@@ -50,6 +50,8 @@ export default function Header({ logoUrl }: { logoUrl: string }) {
           })}
         </nav>
 
+         <span>&nbsp;</span> 
+
         {/* Desktop CTA */}
         {/* <Link
           href="/contact-us"
@@ -59,14 +61,7 @@ export default function Header({ logoUrl }: { logoUrl: string }) {
         </Link> */}
 
         {/* Mobile Right Side */}
-        {/* <div className="flex items-center gap-3 md:hidden">
-          <Link
-            href="/contact-us"
-            className="rounded-full bg-accent px-4 py-2 text-xs font-semibold text-primary transition-colors hover:bg-accent-light"
-          >
-            Consult
-          </Link>
-
+        <div className="flex items-center gap-3 md:hidden">          
           <button
             type="button"
             aria-label="Toggle menu"
@@ -79,7 +74,7 @@ export default function Header({ logoUrl }: { logoUrl: string }) {
               <Menu className="h-6 w-6" />
             )}
           </button>
-        </div> */}
+        </div>
       </div>
 
       {/* Mobile Navigation */}

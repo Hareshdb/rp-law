@@ -15,9 +15,9 @@ const FounderProfile = async () => {
     return (
         <section className="bg-surface py-28">
             <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
-                <div className="grid items-center gap-16 lg:grid-cols-[auto_1fr]">
+                <div className="grid items-center justify-items-center gap-16 lg:grid-cols-[auto_1fr] lg:justify-items-start">
                     <Reveal>
-                        <div className="mx-auto lg:mx-0">
+                        <div>
                             <div className="relative h-48 w-48 overflow-hidden rounded-full outline outline-4 outline-offset-[6px] outline-accent shadow-2xl sm:h-56 sm:w-56">
                                 <Image
                                     src={imageUrl}
@@ -30,7 +30,7 @@ const FounderProfile = async () => {
                         </div>
                     </Reveal>
 
-                    <Reveal delay={0.08}>
+                    <Reveal delay={0.08} className="text-center lg:text-left">
                         <Eyebrow>Founder &amp; Senior Advocate</Eyebrow>
                         <h2 className="mt-3 text-3xl font-bold text-primary sm:text-4xl">
                             {name}
