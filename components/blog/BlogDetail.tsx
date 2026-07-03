@@ -26,7 +26,7 @@ export default function BlogDetail({
             <section className="relative flex min-h-[62vh] items-start overflow-hidden">
                 <Image
                     src={blogDetail?.mainImage ? getImageUrl(blogDetail.mainImage as SanityImageSource) : "/placeholder.jpg"}
-                    alt={blogDetail.title}
+                    alt={blogDetail.mainImage?.alt || blogDetail.title}
                     fill
                     priority
                     className="object-cover object-center"

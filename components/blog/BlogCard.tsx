@@ -11,7 +11,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
           <div className="relative mb-5 h-60 overflow-hidden rounded-2xl">
             <Image
               src={blog.image}
-              alt={blog.title}
+              alt={blog.imageAlt || blog.title}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
