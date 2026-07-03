@@ -1,6 +1,18 @@
 import type { PortableTextBlock } from "@/lib/portable-text";
 import type { SanityImageSource } from "@sanity/image-url";
 
+export type AboutPageData = {
+  _id: string;
+  title?: string;
+  titleHighlight?: string;
+  subtitle?: string;
+  featuredImage?: SanityImageSource & { alt?: string };
+  aboutUsImage?: SanityImageSource & { alt?: string };
+  missionText?: string;
+  visionText?: string;
+  ctaButtonText?: string;
+};
+
 export type HomePageData = {
   _id: string;
   heroTitle: string;

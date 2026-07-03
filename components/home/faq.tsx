@@ -41,8 +41,13 @@ export default function Faq() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
         <Reveal direction="right">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
-          Frequently Asked Questions
+          FAQs
           </p>
+          <div
+            className={`text-xl font-bold tracking-tight text-primary`}
+          >
+            Frequently Asked Questions
+          </div>
           <p className="mt-4 text-lg leading-relaxed text-muted">
           Everything you need to know about our legal services, consultation process, and how RP Law Offices delivers trusted, client-focused legal solutions.
           </p>
