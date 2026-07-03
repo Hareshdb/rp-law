@@ -1,6 +1,7 @@
 import ContactCta from '@/components/home/contact-cta'
 import { getAboutPageData } from '@/lib/apis'
 import { PLACEHOLDER_IMAGE } from '@/lib/constants'
+import { getPageMetadata } from '@/lib/metadata'
 import { urlFor } from '@/lib/sanity-image-builder'
 import AboutFirm from '@components/about/AboutFirm'
 import Banner from '@components/about/Banner'
@@ -8,6 +9,11 @@ import CoreValues from '@components/about/CoreValues'
 import FounderProfile from '@components/about/FounderProfile'
 import MissionVision from '@components/about/MissionVision'
 import Testimonials from '@components/home/testimonials'
+import type { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata('about')
+}
 
 export default async function AboutUsPage() {
   const aboutPageData = await getAboutPageData()
