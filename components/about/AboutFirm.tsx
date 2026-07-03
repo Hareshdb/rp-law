@@ -2,7 +2,11 @@ import Reveal from "@components/ui/reveal";
 import Image from "next/image";
 import Eyebrow from "./EyeBrow";
 
-const AboutFirm = () => {
+type AboutFirmProps = {
+    aboutUsImageUrl: string;
+};
+
+const AboutFirm = ({ aboutUsImageUrl }: AboutFirmProps) => {
 
     return (
         <section className="bg-surface py-28">
@@ -12,7 +16,7 @@ const AboutFirm = () => {
                         <div className="relative">
                             <div className="aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=80"
+                                    src={aboutUsImageUrl}
                                     alt="Law office interior"
                                     fill
                                     className="object-cover"
@@ -20,6 +24,7 @@ const AboutFirm = () => {
                                 />
                             </div>                            
                             <div className="absolute -left-4 -top-4 h-16 w-16 rounded-xl bg-accent opacity-[0.18]" />
+                            <div className="absolute -bottom-4 -right-4 h-16 w-16 rounded-xl bg-accent opacity-[0.18]" />
                         </div>
                     </Reveal>
 
@@ -27,7 +32,7 @@ const AboutFirm = () => {
                         <Eyebrow>Our Origins</Eyebrow>
                         <div className="space-y-5 mt-5">
                         <blockquote className="mb-6 border-l-[3px] border-accent pl-5 text-lg italic leading-relaxed text-muted">
-                        About RP Law Offices
+                        Trusted Legal Solutions in Ahmedabad, Gujarat
                         </blockquote>
                         <p className="leading-relaxed text-muted">
                         At RP Law Offices, we are committed to providing practical, ethical, and result-oriented legal services to individuals, families, entrepreneurs, and businesses across Gujarat and India. Founded by Adv. Rinal Patel, our firm combines legal knowledge, strategic thinking, and a client-centric approach to deliver effective solutions for complex legal matters.

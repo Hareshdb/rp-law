@@ -1,10 +1,22 @@
 'use client';
+import type { AboutPageData } from '@/lib/types';
 import { motion } from 'framer-motion';
 import { Crosshair, Eye } from 'lucide-react';
 import Reveal from '../ui/reveal';
 import Eyebrow from './EyeBrow';
 
-const MissionVision = () => {
+type MissionVisionProps = {
+    aboutPageData?: AboutPageData | null;
+};
+
+const MissionVision = ({ aboutPageData }: MissionVisionProps) => {
+    const missionText =
+        aboutPageData?.missionText ??
+        "Our mission is to provide dependable, practical, and ethical legal solutions through sound legal knowledge, strategic advocacy, and unwavering commitment to our client's interests. We strive to make quality legal services accessible while maintaining the highest standards of professionalism.";
+    const visionText =
+        aboutPageData?.visionText ??
+        'To establish RP Law Offices as a trusted and respected legal practice known for excellence, integrity, and client-focused legal services while contributing meaningfully to the administration of justice.';
+
     return (
         <section className="relative overflow-hidden bg-primary py-28">
             <div
@@ -39,7 +51,7 @@ const MissionVision = () => {
                                 Our Mission
                             </h3>
                             <p className="text-lg leading-relaxed text-white/68">
-                            Our mission is to provide dependable, practical, and ethical legal solutions through sound legal knowledge, strategic advocacy, and unwavering commitment to our client&rsquo;s interests. We strive to make quality legal services accessible while maintaining the highest standards of professionalism.
+                            {missionText}
                             </p>
                         </motion.div>
                     </Reveal>
@@ -58,7 +70,7 @@ const MissionVision = () => {
                                 Our Vision
                             </h3>
                             <p className="text-lg leading-relaxed text-white/68">
-                            To establish RP Law Offices as a trusted and respected legal practice known for excellence, integrity, and client-focused legal services while contributing meaningfully to the administration of justice.
+                            {visionText}
                             </p>
                         </motion.div>
                     </Reveal>
