@@ -36,7 +36,7 @@ const Banner = ({ aboutPageData, featuredImageUrl }: BannerProps) => {
     };
 
     return (
-        <section className="relative flex min-h-[88vh] items-end overflow-hidden">
+        <section className="relative flex min-h-[88vh] items-center overflow-hidden sm:items-end">
             <Image
                 src={featuredImageUrl}
                 alt="Law office"
@@ -54,9 +54,9 @@ const Banner = ({ aboutPageData, featuredImageUrl }: BannerProps) => {
 
             {/* <div className="absolute left-0 top-0 h-full w-1 bg-accent" /> */}
 
-            <div className="relative z-10 my-auto w-full max-w-7xl px-30">
+            <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 sm:px-10 sm:py-0 lg:px-16">
                 <motion.div
-                    className="max-w-3xl"
+                    className="max-w-3xl text-left"
                     variants={stagger}
                     initial="hidden"
                     animate="visible"
@@ -66,7 +66,7 @@ const Banner = ({ aboutPageData, featuredImageUrl }: BannerProps) => {
                         custom={80}
                         className="text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl"
                     >
-                        {title} &nbsp;
+                        {title}{' '}
                         <span className="text-accent">{titleHighlight}</span>
                     </motion.h1>
 
