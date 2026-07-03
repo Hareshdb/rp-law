@@ -2,6 +2,7 @@ import { DEFAULT_LIMIT, DEFAULT_OFFSET, PLACEHOLDER_IMAGE } from "./constants";
 import { sanityClient } from "./sanity-client";
 import { urlFor } from "./sanity-image-builder";
 import type {
+  AboutPageData,
   Blog,
   FooterData,
   HomePageData,
@@ -246,6 +247,22 @@ export async function getRelatedPostsByCategory(
   );
 
   return posts.map(mapSanityPostToBlog);
+}
+
+export async function getAboutPageData(): Promise<AboutPageData | null> {
+  return sanityClient.fetch(`
+    *[_type == "aboutPage"][0]{
+      _id,
+      title,
+      titleHighlight,
+      subtitle,
+      featuredImage,
+      aboutUsImage,
+      missionText,
+      visionText,
+      ctaButtonText
+    }
+  `);
 }
 
 export async function getHomePageData(): Promise<HomePageData> {

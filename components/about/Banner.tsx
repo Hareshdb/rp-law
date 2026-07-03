@@ -1,12 +1,25 @@
 'use client';
+import type { AboutPageData } from '@/lib/types';
 import { Variants, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const Banner = () => {
+type BannerProps = {
+    aboutPageData?: AboutPageData | null;
+    featuredImageUrl: string;
+};
+
+const Banner = ({ aboutPageData, featuredImageUrl }: BannerProps) => {
     const router = useRouter();
+
+    const title = aboutPageData?.title ?? 'About';
+    const titleHighlight = aboutPageData?.titleHighlight ?? 'RP Law Offices';
+    const subtitle =
+        aboutPageData?.subtitle ??
+        'Although headquartered in Ahmedabad, Gujarat, RP Law Offices proudly serves clients across India. Through technology-enabled consultations and strategic legal coordination, we assist individuals, businesses, NRIs, and corporate clients in handling legal matters before courts, tribunals, and regulatory authorities nationwide.';
+    const ctaButtonText = aboutPageData?.ctaButtonText ?? 'Schedule a Consultation';
 
     const fadeUp: Variants = {
         hidden: { opacity: 0, y: 28 },
@@ -25,7 +38,7 @@ const Banner = () => {
     return (
         <section className="relative flex min-h-[88vh] items-end overflow-hidden">
             <Image
-                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80"
+                src={featuredImageUrl}
                 alt="Law office"
                 fill
                 priority
@@ -53,8 +66,8 @@ const Banner = () => {
                         custom={80}
                         className="text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl"
                     >
-                        About &nbsp;
-                        <span className="text-accent">RP Law Offices</span>
+                        {title} &nbsp;
+                        <span className="text-accent">{titleHighlight}</span>
                     </motion.h1>
 
                     <motion.p
@@ -62,7 +75,7 @@ const Banner = () => {
                         custom={160}
                         className="mt-6 max-w-4xl text-lg leading-relaxed text-white/72"
                     >
-                        Although headquartered in Ahmedabad, Gujarat, RP Law Offices proudly serves clients across India. Through technology-enabled consultations and strategic legal coordination, we assist individuals, businesses, NRIs, and corporate clients in handling legal matters before courts, tribunals, and regulatory authorities nationwide.
+                        {subtitle}
                     </motion.p>
 
                     <motion.div
@@ -74,7 +87,7 @@ const Banner = () => {
                             href="/contact-us"
                             className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 text-sm font-bold tracking-wide text-primary transition-[filter] hover:brightness-110"
                         >
-                            Schedule a Consultation <ArrowRight size={16} />
+                            {ctaButtonText} <ArrowRight size={16} />
                         </Link>
                         <Link
                             href=""

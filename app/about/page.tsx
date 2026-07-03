@@ -1,22 +1,34 @@
 import ContactCta from '@/components/home/contact-cta'
+import { getAboutPageData } from '@/lib/apis'
+import { PLACEHOLDER_IMAGE } from '@/lib/constants'
+import { urlFor } from '@/lib/sanity-image-builder'
 import AboutFirm from '@components/about/AboutFirm'
 import Banner from '@components/about/Banner'
 import CoreValues from '@components/about/CoreValues'
 import FounderProfile from '@components/about/FounderProfile'
 import MissionVision from '@components/about/MissionVision'
-import PreFooterCTA from '@components/about/PreFooterCTA'
 import Testimonials from '@components/home/testimonials'
 
-export default function AboutUsPage() {
+export default async function AboutUsPage() {
+  const aboutPageData = await getAboutPageData()
+
+  const featuredImageUrl = aboutPageData?.featuredImage
+    ? urlFor(aboutPageData.featuredImage).width(1920).quality(85).auto('format').url()
+    : PLACEHOLDER_IMAGE
+
+  const aboutUsImageUrl = aboutPageData?.aboutUsImage
+    ? urlFor(aboutPageData.aboutUsImage).width(900).quality(85).auto('format').url()
+    : 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=80'
+
   return (
     <main className="overflow-x-hidden bg-background text-foreground">
-      <Banner />
-      <AboutFirm />
-      <MissionVision />
+      <Banner aboutPageData={aboutPageData} featuredImageUrl={featuredImageUrl} />
+      <AboutFirm aboutUsImageUrl={aboutUsImageUrl} />
+      <MissionVision aboutPageData={aboutPageData} />
       <FounderProfile />
       <CoreValues />
       <Testimonials />
-      <PreFooterCTA />
+      {/* <PreFooterCTA /> */}
       <ContactCta />
     </main>
   )
