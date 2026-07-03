@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import WhatsAppFloat from "@components/common/whatsapp-float";
-import ContactCta from "@components/home/contact-cta";
-import Header from "@components/layout/header";
-import Footer from "@components/layout/footer";
 import { FooterDataProvider } from "@/context/footer-data-context";
-import "./globals.css";
 import { getFooterData, getSettings } from "@/lib/apis";
 import { getImageUrl } from "@/lib/helpers";
+import WhatsAppFloat from "@components/common/whatsapp-float";
+import Footer from "@components/layout/footer";
+import Header from "@components/layout/header";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -9,9 +9,10 @@ import { useRouter } from 'next/navigation';
 type BannerProps = {
     aboutPageData?: AboutPageData | null;
     featuredImageUrl: string;
+    featuredImageAlt?: string;
 };
 
-const Banner = ({ aboutPageData, featuredImageUrl }: BannerProps) => {
+const Banner = ({ aboutPageData, featuredImageUrl, featuredImageAlt }: BannerProps) => {
     const router = useRouter();
 
     const title = aboutPageData?.title ?? 'About';
@@ -39,7 +40,11 @@ const Banner = ({ aboutPageData, featuredImageUrl }: BannerProps) => {
         <section className="relative flex min-h-[88vh] items-center overflow-hidden sm:items-start">
             <Image
                 src={featuredImageUrl}
-                alt="Law office"
+                alt={
+                    featuredImageAlt ||
+                    aboutPageData?.featuredImage?.alt ||
+                    `${title} - ${titleHighlight}`
+                }
                 fill
                 priority
                 className="object-cover object-center"

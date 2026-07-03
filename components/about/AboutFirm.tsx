@@ -4,9 +4,10 @@ import Eyebrow from "./EyeBrow";
 
 type AboutFirmProps = {
     aboutUsImageUrl: string;
+    imageAlt?: string;
 };
 
-const AboutFirm = ({ aboutUsImageUrl }: AboutFirmProps) => {
+const AboutFirm = ({ aboutUsImageUrl, imageAlt }: AboutFirmProps) => {
 
     return (
         <section className="bg-surface py-28">
@@ -17,7 +18,7 @@ const AboutFirm = ({ aboutUsImageUrl }: AboutFirmProps) => {
                             <div className="aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl">
                                 <Image
                                     src={aboutUsImageUrl}
-                                    alt="Law office interior"
+                                    alt={imageAlt || "Law office interior"}
                                     fill
                                     className="object-cover"
                                     sizes="(max-width:1024px) 100vw, 50vw"

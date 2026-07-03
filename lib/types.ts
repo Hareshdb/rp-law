@@ -49,7 +49,7 @@ export type PostAuthor = {
   _id: string;
   name: string;
   slug: string;
-  image?: SanityImageSource;
+  image?: SanityImageSource & { alt?: string };
   bio?: PortableTextBlock[];
 };
 

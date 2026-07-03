@@ -33,7 +33,7 @@ export default function BlogListing({ blogs }: Props) {
             <section className="relative flex min-h-[42vh] items-center justify-center overflow-hidden">
                 <Image
                     src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80"
-                    alt="Law office"
+                    alt="Insights & Resources Listing Page"
                     fill
                     priority
                     className="object-cover object-center"
