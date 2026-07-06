@@ -21,7 +21,7 @@ export async function generateMetadata({
         title: post.metaTitle || post.title,
         description: post.metaDescription || post.short_description,
         alternates: {
-            canonical: `/blog/${slug}`,
+            canonical: `${process.env.SITE_URL}/blog/${slug}`,
         },
     };
 }
