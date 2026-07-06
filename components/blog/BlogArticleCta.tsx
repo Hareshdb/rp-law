@@ -24,7 +24,7 @@ export default function BlogArticleCta() {
                 </h2>
 
                 <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/65 sm:text-lg">
-                If you are facing a legal challenge or require professional legal advice, RP Law Offices is ready to assist you. Contact us to discuss your matter and receive practical legal guidance tailored to your specific needs.
+                If you are facing a legal challenge or require professional legal advice, RP Law Firm is ready to assist you. Contact us to discuss your matter and receive practical legal guidance tailored to your specific needs.
                 </p>
 
                 <Link

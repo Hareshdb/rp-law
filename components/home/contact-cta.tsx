@@ -1,10 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState, type FormEvent } from "react";
 import type { FooterData } from "@/lib/types";
 import { useFooterData } from "@/context/footer-data-context";
 import Reveal from "../ui/reveal";
 import { Mail, PhoneCall } from "lucide-react";
+
+const ReCAPTCHAWidget = dynamic(() => import("react-google-recaptcha"), {
+  ssr: false,
+});
+
+const recaptchaSiteKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
 const defaultFooterData: Pick<Required<FooterData>, "mobileNumber" | "email"> = {
   mobileNumber: "+91 95121 23013",
@@ -16,6 +23,8 @@ const fieldClass =
 
 export default function ContactCta() {
   const footerData = useFooterData();
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [recaptchaResetKey, setRecaptchaResetKey] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -24,6 +33,11 @@ export default function ContactCta() {
     footerData?.mobileNumber || defaultFooterData.mobileNumber;
   const email = footerData?.email || defaultFooterData.email;
   const phoneHref = `tel:${mobileNumber.replace(/\s/g, "")}`;
+
+  const resetRecaptcha = () => {
+    setRecaptchaToken(null);
+    setRecaptchaResetKey((key) => key + 1);
+  };
 
   const contactDetails = [
     {
@@ -58,12 +72,20 @@ export default function ContactCta() {
     setIsSubmitting(true);
 
     const formData = new FormData(event.currentTarget);
+
+    if (!recaptchaToken) {
+      setError("Please complete the reCAPTCHA verification.");
+      setIsSubmitting(false);
+      return;
+    }
+
     const payload = {
       firstName: String(formData.get("firstName") ?? ""),
       lastName: String(formData.get("lastName") ?? ""),
       email: String(formData.get("email") ?? ""),
       phone: String(formData.get("phone") ?? ""),
       message: String(formData.get("message") ?? ""),
+      recaptchaToken,
     };
 
     try {
@@ -82,7 +104,9 @@ export default function ContactCta() {
       }
 
       setSubmitted(true);
+      resetRecaptcha();
     } catch (submitError) {
+      resetRecaptcha();
       setError(
         submitError instanceof Error
           ? submitError.message
@@ -234,6 +258,20 @@ export default function ContactCta() {
                   className={`${fieldClass} resize-none`}
                 />
               </div>
+              {recaptchaSiteKey ? (
+                <div className="flex justify-center sm:justify-start">
+                  <ReCAPTCHAWidget
+                    key={recaptchaResetKey}
+                    sitekey={recaptchaSiteKey}
+                    theme="dark"
+                    onChange={(token) => {
+                      setRecaptchaToken(token);
+                      setError(null);
+                    }}
+                    onExpired={() => setRecaptchaToken(null)}
+                  />
+                </div>
+              ) : null}
               {error ? (
                 <p
                   role="alert"

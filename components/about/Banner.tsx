@@ -4,6 +4,10 @@ import { Variants, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+  PRACTICE_AREAS_HREF,
+  markPracticeAreasScrollIntent,
+} from '@/lib/practice-areas-navigation';
 import { useRouter } from 'next/navigation';
 
 type BannerProps = {
@@ -16,10 +20,10 @@ const Banner = ({ aboutPageData, featuredImageUrl, featuredImageAlt }: BannerPro
     const router = useRouter();
 
     const title = aboutPageData?.title ?? 'About';
-    const titleHighlight = aboutPageData?.titleHighlight ?? 'RP Law Offices';
+    const titleHighlight = aboutPageData?.titleHighlight ?? 'RP Law Firm';
     const subtitle =
         aboutPageData?.subtitle ??
-        'Although headquartered in Ahmedabad, Gujarat, RP Law Offices proudly serves clients across India. Through technology-enabled consultations and strategic legal coordination, we assist individuals, businesses, NRIs, and corporate clients in handling legal matters before courts, tribunals, and regulatory authorities nationwide.';
+        'Although headquartered in Ahmedabad, Gujarat, RP Law Firm proudly serves clients across India. Through technology-enabled consultations and strategic legal coordination, we assist individuals, businesses, NRIs, and corporate clients in handling legal matters before courts, tribunals, and regulatory authorities nationwide.';
     const ctaButtonText = aboutPageData?.ctaButtonText ?? 'Schedule a Consultation';
 
     const fadeUp: Variants = {
@@ -95,10 +99,11 @@ const Banner = ({ aboutPageData, featuredImageUrl, featuredImageAlt }: BannerPro
                             {ctaButtonText} <ArrowRight size={16} />
                         </Link>
                         <Link
-                            href=""
+                            href={PRACTICE_AREAS_HREF}
                             onClick={(event) => {
                                 event.preventDefault();
-                                router.push('/#practice-areas');
+                                markPracticeAreasScrollIntent();
+                                router.push(PRACTICE_AREAS_HREF);
                             }}
                             className="inline-flex items-center rounded-full border-[1.5px] border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                         >

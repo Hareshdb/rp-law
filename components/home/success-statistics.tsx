@@ -21,7 +21,7 @@ export default function SuccessStatistics() {
           <SectionHeading
             eyebrow="Our Track Record"
             title="Trusted by Clients. Proven Through Results."
-            description="Our achievements reflect years of legal excellence, successful outcomes, and the confidence that individuals and businesses place in RP Law Offices."
+            description="Our achievements reflect years of legal excellence, successful outcomes, and the confidence that individuals and businesses place in RP Law Firm."
             light
           />
         </Reveal>

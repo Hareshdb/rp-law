@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Reveal from "../ui/reveal";
 
 const faqs = [
   {
-    question: "What types of legal services does RP Law Offices provide?",
+    question: "What types of legal services does RP Law Firm provide?",
     answer:
       "We offer legal services across multiple practice areas, including corporate law, civil disputes, family law, property matters, contract drafting, legal consultation, and litigation.",
   },
@@ -49,13 +50,14 @@ export default function Faq() {
             Frequently Asked Questions
           </div>
           <p className="mt-4 text-lg leading-relaxed text-muted">
-          Everything you need to know about our legal services, consultation process, and how RP Law Offices delivers trusted, client-focused legal solutions.
+          Everything you need to know about our legal services, consultation process, and how RP Law Firm delivers trusted, client-focused legal solutions.
           </p>
           <Link
             href="/contact-us"
-            className="mt-8 inline-flex items-center rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-primary-dark"
+            className="group mt-8 inline-flex items-center rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-primary-dark"
           >
             Schedule a Consultation
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Link>
         </Reveal>
 

@@ -4,6 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { HomePageData } from "@/lib/types";
+import { ArrowRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import {
+  PRACTICE_AREAS_HREF,
+  handlePracticeAreasNavigationClick,
+} from "@/lib/practice-areas-navigation";
 
 const heroStats = [
   { value: "15+", label: "Years of Experience" },
@@ -19,6 +25,7 @@ export default function HeroSection({
   heroImageUrl: string;
 }) {
   const reduceMotion = useReducedMotion();
+  const pathname = usePathname();
 
   const container = {
     hidden: {},
@@ -36,13 +43,13 @@ export default function HeroSection({
 
   return (
     <section className="relative overflow-hidden bg-primary">
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-28">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:py-28">
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.p
             variants={item}
             className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent"
           >
-            RP Law Offices
+            RP Law Firm
           </motion.p>
           <motion.h1
             variants={item}
@@ -55,18 +62,22 @@ export default function HeroSection({
             variants={item}
             className="mt-6 max-w-xl text-lg leading-relaxed text-white"
           >
-            At RP Law Offices, we provide trusted legal counsel and effective representation with professionalism, integrity, and dedication. We are committed to protecting your rights and delivering practical legal solutions tailored to your needs.
+            At RP Law Firm, we provide trusted legal counsel and effective representation with professionalism, integrity, and dedication. We are committed to protecting your rights and delivering practical legal solutions tailored to your needs.
           </motion.p>
 
           <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/contact-us"
-              className="inline-flex items-center rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-primary shadow-lg shadow-accent/20 transition-colors hover:bg-accent-light"
+              className="group inline-flex items-center rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-primary shadow-lg shadow-accent/20 transition-colors hover:bg-accent-light"
             >
               Schedule a Consultation
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              href="/#practice-areas"
+              href={PRACTICE_AREAS_HREF}
+              onClick={(event) =>
+                handlePracticeAreasNavigationClick(event, pathname)
+              }
               className="inline-flex items-center rounded-full border border-white/30 px-8 py-3.5 text-base font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
             >
               Explore Practice Areas

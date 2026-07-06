@@ -1,28 +1,28 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import SectionHeading from "../ui/section-heading";
-import Reveal from "../ui/reveal";
 import {
-  Building2,
-  Scale,
-  Users,
-  Globe,
-  House,
-  Heart,
-  ArrowRight,
-  Shield,
-  Building,
-  DollarSign,
-  FileText,
-  University,
+  clearPracticeAreasHash,
+  markPracticeAreasHomeMounted,
+  scrollToPracticeAreasElement,
+  shouldScrollToPracticeAreas,
+} from "@/lib/practice-areas-navigation";
+import {
   Banknote,
-  Unlink,
-  LockKeyhole,
+  BookA,
   BookMarked,
   BookType,
-  BookA,
+  Building,
+  Building2,
+  FileText,
+  LockKeyhole,
+  Scale,
+  Shield,
+  University,
+  Unlink
 } from "lucide-react";
+import { useEffect, useRef } from "react";
+import Reveal from "../ui/reveal";
+import SectionHeading from "../ui/section-heading";
 
 const practiceAreas = [
   {
@@ -103,14 +103,23 @@ export default function PracticeAreas() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (window.location.hash !== "#practice-areas") {
-      return;
-    }
+    const scrollIfNeeded = () => {
+      if (shouldScrollToPracticeAreas()) {
+        scrollToPracticeAreasElement(sectionRef.current);
+        return;
+      }
 
-    sectionRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+      clearPracticeAreasHash();
+    };
+
+    scrollIfNeeded();
+    markPracticeAreasHomeMounted();
+
+    window.addEventListener("hashchange", scrollIfNeeded);
+
+    return () => {
+      window.removeEventListener("hashchange", scrollIfNeeded);
+    };
   }, []);
 
   return (
@@ -124,7 +133,7 @@ export default function PracticeAreas() {
           <SectionHeading
             eyebrow="What We Do"
             title="Our Practice Areas"
-            description="At RP Law Offices, we provide comprehensive legal services to individuals, businesses, startups, and corporate clients across Ahmedabad, Gujarat, and throughout India. Our firm is committed to delivering strategic legal advice, effective representation, and practical solutions across a wide range of legal matters."
+            description="At RP Law Firm, we provide comprehensive legal services to individuals, businesses, startups, and corporate clients across Ahmedabad, Gujarat, and throughout India. Our firm is committed to delivering strategic legal advice, effective representation, and practical solutions across a wide range of legal matters."
           />
         </Reveal>
 

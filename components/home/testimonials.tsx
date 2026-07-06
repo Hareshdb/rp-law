@@ -9,7 +9,7 @@ const MAX_QUOTE_LENGTH = 125;
 const testimonials = [
   {
     quote:
-      "RP Law Offices handled our corporate legal matters with exceptional professionalism. Their strategic advice and prompt communication gave us complete confidence throughout the process. I highly recommend their services.",
+      "RP Law Firm handled our corporate legal matters with exceptional professionalism. Their strategic advice and prompt communication gave us complete confidence throughout the process. I highly recommend their services.",
     name: "Rahul Mehta",
   },
   {
@@ -19,7 +19,7 @@ const testimonials = [
   },
   {
     quote:
-      "From contract drafting to legal consultation, RP Law Offices has been a dependable legal partner for our business. Their expertise and attention to detail have been invaluable.",
+      "From contract drafting to legal consultation, RP Law Firm has been a dependable legal partner for our business. Their expertise and attention to detail have been invaluable.",
     name: "Amit Patel",   
   },
   {
@@ -118,7 +118,7 @@ export default function Testimonials() {
           <SectionHeading
             eyebrow="Client Stories"
             title="What Our Clients Say"
-            description="Trusted by individuals, families, and businesses for reliable legal counsel, transparent communication, and dedicated representation. Here's what our clients have to say about their experience with RP Law Offices."
+            description="Trusted by individuals, families, and businesses for reliable legal counsel, transparent communication, and dedicated representation. Here's what our clients have to say about their experience with RP Law Firm."
           />
         </Reveal>
 

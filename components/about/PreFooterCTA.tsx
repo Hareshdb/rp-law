@@ -38,7 +38,7 @@ function PreFooterCTA() {
                     </h2>
 
                     <p className="mx-auto mb-10 max-w-6xl text-lg text-white/65">
-                    Whether you're seeking legal advice, resolving a dispute, or planning for the future, RP Law Offices is here to provide trusted guidance, strategic solutions, and dedicated representation every step of the way.
+                    Whether you&apos;re seeking legal advice, resolving a dispute, or planning for the future, RP Law Firm is here to provide trusted guidance, strategic solutions, and dedicated representation every step of the way.
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4">

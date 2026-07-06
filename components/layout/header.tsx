@@ -4,10 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Logo } from "@components/common/logo";
+import {
+  PRACTICE_AREAS_HREF,
+  handleHomeNavigationClick,
+  handlePracticeAreasNavigationClick,
+} from "@/lib/practice-areas-navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/#practice-areas", label: "Practice Areas" },
+  { href: PRACTICE_AREAS_HREF, label: "Practice Areas" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Insights" },
   { href: "/contact-us", label: "Contact Us" },
@@ -22,7 +27,6 @@ export default function Header({ logoUrl }: { logoUrl: string }) {
     <header className="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <Logo logoUrl={logoUrl} className="w-[125px] h-auto" />
-
         {/* Desktop Navigation */}
         <nav
           className="hidden items-center gap-8 md:flex"
@@ -30,11 +34,23 @@ export default function Header({ logoUrl }: { logoUrl: string }) {
         >
           {navLinks.map((link) => {
              const isActive = currentModule === link.href.split('/')[1];
+            const isHomeLink = link.href === "/";
+            const isPracticeAreasLink = link.href === PRACTICE_AREAS_HREF;
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={(event) => {
+                  if (isHomeLink) {
+                    handleHomeNavigationClick(event, pathname);
+                    return;
+                  }
+
+                  if (isPracticeAreasLink) {
+                    handlePracticeAreasNavigationClick(event, pathname);
+                  }
+                }}
                 className={`relative text-sm font-medium transition-colors duration-300 ${isActive
                     ? "text-accent"
                     : "text-foreground/80 hover:text-accent"
@@ -87,12 +103,25 @@ export default function Header({ logoUrl }: { logoUrl: string }) {
         <nav className="flex flex-col px-4 py-4">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
+            const isHomeLink = link.href === "/";
+            const isPracticeAreasLink = link.href === PRACTICE_AREAS_HREF;
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(event) => {
+                  setMobileMenuOpen(false);
+
+                  if (isHomeLink) {
+                    handleHomeNavigationClick(event, pathname);
+                    return;
+                  }
+
+                  if (isPracticeAreasLink) {
+                    handlePracticeAreasNavigationClick(event, pathname);
+                  }
+                }}
                 className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${isActive
                     ? "bg-accent/10 text-accent-light"
                     : "text-foreground/80 hover:bg-primary/5 hover:text-accent-light"
