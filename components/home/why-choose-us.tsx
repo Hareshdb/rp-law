@@ -67,7 +67,7 @@ export default function WhyChooseUs({
           <div>
             <Reveal direction="left">
               <SectionHeading
-                eyebrow="Why Choose RP Law Offices?"
+                eyebrow="Why Choose RP Law Firm?"
                 title="Trusted Legal Partner. Proven Commitment."
                 description="We deliver strategic legal solutions backed by experience, integrity, and personalized attention—providing confident representation and practical guidance for every legal challenge."
                 align="left"

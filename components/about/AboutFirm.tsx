@@ -36,13 +36,13 @@ const AboutFirm = ({ aboutUsImageUrl, imageAlt }: AboutFirmProps) => {
                         Trusted Legal Solutions in Ahmedabad, Gujarat
                         </blockquote>
                         <p className="leading-relaxed text-muted">
-                        At RP Law Offices, we are committed to providing practical, ethical, and result-oriented legal services to individuals, families, entrepreneurs, and businesses across Gujarat and India. Founded by Adv. Rinal Patel, our firm combines legal knowledge, strategic thinking, and a client-centric approach to deliver effective solutions for complex legal matters.
+                        At RP Law Firm, we are committed to providing practical, ethical, and result-oriented legal services to individuals, families, entrepreneurs, and businesses across Gujarat and India. Founded by Adv. Rinal Patel, our firm combines legal knowledge, strategic thinking, and a client-centric approach to deliver effective solutions for complex legal matters.
                         </p>
                         <p className="leading-relaxed text-muted">
                         We understand that every legal issue has personal, financial, and commercial implications. Whether you are involved in litigation, require legal advice, or need assistance with documentation and compliance, we work closely with you to protect your rights and achieve the most appropriate legal outcome.
                         </p>
                         <p className="leading-relaxed text-muted">
-                        Based in Ahmedabad, Gujarat, RP Law Offices represents clients before the Gujarat High Court, District & Sessions Courts, Civil Courts, Family Courts, Consumer Commissions, Commercial Courts, and various judicial and quasi-judicial authorities. Our commitment is to provide clear legal guidance, responsive communication, and professional representation at every stage of your matter.</p>
+                        Based in Ahmedabad, Gujarat, RP Law Firm represents clients before the Gujarat High Court, District & Sessions Courts, Civil Courts, Family Courts, Consumer Commissions, Commercial Courts, and various judicial and quasi-judicial authorities. Our commitment is to provide clear legal guidance, responsive communication, and professional representation at every stage of your matter.</p>
                         </div>                                        
                     </Reveal>
                 </div>

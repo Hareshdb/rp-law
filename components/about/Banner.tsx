@@ -16,10 +16,10 @@ const Banner = ({ aboutPageData, featuredImageUrl, featuredImageAlt }: BannerPro
     const router = useRouter();
 
     const title = aboutPageData?.title ?? 'About';
-    const titleHighlight = aboutPageData?.titleHighlight ?? 'RP Law Offices';
+    const titleHighlight = aboutPageData?.titleHighlight ?? 'RP Law Firm';
     const subtitle =
         aboutPageData?.subtitle ??
-        'Although headquartered in Ahmedabad, Gujarat, RP Law Offices proudly serves clients across India. Through technology-enabled consultations and strategic legal coordination, we assist individuals, businesses, NRIs, and corporate clients in handling legal matters before courts, tribunals, and regulatory authorities nationwide.';
+        'Although headquartered in Ahmedabad, Gujarat, RP Law Firm proudly serves clients across India. Through technology-enabled consultations and strategic legal coordination, we assist individuals, businesses, NRIs, and corporate clients in handling legal matters before courts, tribunals, and regulatory authorities nationwide.';
     const ctaButtonText = aboutPageData?.ctaButtonText ?? 'Schedule a Consultation';
 
     const fadeUp: Variants = {

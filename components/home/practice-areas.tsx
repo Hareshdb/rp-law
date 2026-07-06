@@ -124,7 +124,7 @@ export default function PracticeAreas() {
           <SectionHeading
             eyebrow="What We Do"
             title="Our Practice Areas"
-            description="At RP Law Offices, we provide comprehensive legal services to individuals, businesses, startups, and corporate clients across Ahmedabad, Gujarat, and throughout India. Our firm is committed to delivering strategic legal advice, effective representation, and practical solutions across a wide range of legal matters."
+            description="At RP Law Firm, we provide comprehensive legal services to individuals, businesses, startups, and corporate clients across Ahmedabad, Gujarat, and throughout India. Our firm is committed to delivering strategic legal advice, effective representation, and practical solutions across a wide range of legal matters."
           />
         </Reveal>
 

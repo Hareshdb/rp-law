@@ -15,7 +15,7 @@ export function Logo({
         >
             <Image
                 src={logoUrl || "/logo.png"}
-                alt="RP Law Offices"
+                alt="RP Law Firm"
                 width={128}
                 height={44}
                 className={`object-cover ${className}`}
