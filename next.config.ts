@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  env: {
+    NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY:
+      process.env.GOOGLE_RECAPTCHA_SITE_KEY,
+  },
   images: {
     remotePatterns: [
       {

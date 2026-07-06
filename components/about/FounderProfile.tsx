@@ -31,7 +31,7 @@ const FounderProfile = async () => {
                     </Reveal>
 
                     <Reveal delay={0.08} className="text-center lg:text-left">
-                        <Eyebrow>Founder &amp; Senior Advocate</Eyebrow>
+                        <Eyebrow>Founder &amp; Advocate</Eyebrow>
                         <h2 className="mt-3 text-3xl font-bold text-primary sm:text-4xl">
                             {name}
                         </h2>
