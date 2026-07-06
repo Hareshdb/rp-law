@@ -1,7 +1,6 @@
-import React from 'react'
-import SectionHeading from '../ui/section-heading';
+import { Lock, MessageCircle, ShieldCheck, Star, TrendingUp } from 'lucide-react';
 import Reveal from '../ui/reveal';
-import { ArrowRight, Lock, MessageCircle, ShieldCheck, Star, TrendingUp, Users } from 'lucide-react';
+import SectionHeading from '../ui/section-heading';
 
 const CORE_VALUES = [
     {
@@ -47,6 +46,7 @@ function CoreValues() {
                         title="Our Core Values"
                         description="Our values define how we practice law and the trust we build with every client."
                         align="left"
+                        markAs="h3"
                     />
                 </Reveal>
 
@@ -69,9 +69,9 @@ function CoreValues() {
                                     />
                                 </div>
 
-                                <h3 className="text-xl font-bold text-primary">
+                                <div className="text-xl font-bold text-primary">
                                     {value.title}
-                                </h3>
+                                </div>
 
                                 <p className="mt-3 text-sm leading-relaxed text-muted">
                                     {value.description}

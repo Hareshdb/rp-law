@@ -3,7 +3,7 @@ import SectionHeading from "@components/ui/section-heading";
 import Reveal from "@components/ui/reveal";
 
 const stats = [
-  { value: 5, suffix: "+", label: "Years of Legal Excellence" },
+  { value: 100, suffix: "%", label: "Transparent Communication" },
   { value: 100, suffix: "+", label: "Satisfied Clients" },
   { value: 98, suffix: "%", label: "Client Satisfaction" },
   { value: 100, suffix: "%", label: "Confidentiality Assured" },
@@ -23,6 +23,7 @@ export default function SuccessStatistics() {
             title="Trusted by Clients. Proven Through Results."
             description="Our achievements reflect years of legal excellence, successful outcomes, and the confidence that individuals and businesses place in RP Law Firm."
             light
+            markAs="h4"
           />
         </Reveal>
 

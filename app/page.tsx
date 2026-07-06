@@ -1,6 +1,6 @@
 import AboutSection from "@/components/home/about-section";
 import ContactCta from "@/components/home/contact-cta";
-import { getAboutPageData, getFirstAuthor, getHomePageData } from "@/lib/apis";
+import { getFirstAuthor, getHomePageData } from "@/lib/apis";
 import { getImageUrl } from "@/lib/helpers";
 import { PLACEHOLDER_IMAGE } from "@/lib/constants";
 import { getPageMetadata } from "@/lib/metadata";
@@ -19,18 +19,17 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
 
-  const [homePageData, aboutPageData, author] = await Promise.all([
+  const [homePageData, author] = await Promise.all([
     getHomePageData(),
-    getAboutPageData(),
     getFirstAuthor(),
   ]);
 
   const heroImageUrl = homePageData.heroImage
     ? urlFor(homePageData.heroImage).width(1200).quality(85).auto("format").url()
     : PLACEHOLDER_IMAGE;
-  const aboutImageUrl = aboutPageData?.aboutUsImage
-    ? urlFor(aboutPageData.aboutUsImage).width(900).quality(85).auto("format").url()
-    : "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=80";
+  const aboutImageUrl = homePageData.aboutImage
+    ? urlFor(homePageData.aboutImage).width(900).quality(85).auto("format").url()
+    : PLACEHOLDER_IMAGE;
   const authorAvatarUrl = author?.image
     ? getImageUrl(author.image)
     : "/avatar-one.jpg";
@@ -43,7 +42,7 @@ export default async function Home() {
       <HeroSection homePageData={homePageData} heroImageUrl={heroImageUrl} />
       <AboutSection
         aboutImageUrl={aboutImageUrl}
-        imageAlt={aboutPageData?.aboutUsImage?.alt}
+        imageAlt={homePageData.aboutImage?.alt}
         authorAvatarUrl={authorAvatarUrl}
         authorName={author?.name ?? "Adv. Rinal Patel"}
       />

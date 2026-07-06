@@ -6,7 +6,7 @@ import FooterQuickLinks from "@components/navigation/footer-quick-links";
 
 const defaultFooterData: Required<FooterData> = {
   footerSummary:
-    "RP Law Associates delivers trusted legal counsel with integrity, expertise, and a relentless commitment to protecting your rights.",
+    "RP Law Firm delivers trusted legal counsel with integrity, expertise, and a relentless commitment to protecting your rights.",
   address:
     "A-208, Ananta Square, Opp. 108 EMRI, Naroda,\nAhmedabad, Gujarat 382330, India",
   mobileNumber: "+91 95121 23013",
@@ -85,16 +85,16 @@ export default function Footer({
           </div>
 
           <div className="w-full shrink-0 lg:w-auto">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-accent">
+            <div className="text-sm font-semibold uppercase tracking-widest text-accent">
               Quick Links
-            </h3>
+            </div>
             <FooterQuickLinks />
           </div>
 
           <div className="w-full shrink-0 lg:max-w-[280px]">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-accent">
+            <div className="text-sm font-semibold uppercase tracking-widest text-accent">
               Contact Us
-            </h3>
+            </div>
             <ul className="mt-6 space-y-4 text-sm text-white/70">
               <li className="flex gap-3">
                 <MapPin
@@ -136,7 +136,7 @@ export default function Footer({
           </div>
           <div className="w-full shrink-0 lg:w-auto">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.7529029649236!2d72.67758867477161!3d23.06951891457564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e87d737f41b27%3A0xe3f624358707cd01!2sRP%20Law%20Firm%20(Advocate%20Rinal%20Patel)!5e0!3m2!1sen!2sin!4v1783312180293!5m2!1sen!2sin"
+              src={process.env.GOOGLE_MAP_URL}
               title="RP Law Firm location"
               className="aspect-square w-full max-w-[280px] border-0 lg:max-w-[300px]"
               allowFullScreen={true}
@@ -148,8 +148,7 @@ export default function Footer({
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
           <p className="text-sm text-white/50">
-            &copy; {new Date().getFullYear()} RP Law Associates. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} RP Law Firm. All rights reserved.
           </p>
           <div className="flex gap-1 text-sm text-white/50">
             Designed & Developed by

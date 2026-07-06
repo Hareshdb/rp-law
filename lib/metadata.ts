@@ -15,26 +15,33 @@ const PAGE_SEO_FIELD_MAP: Record<
   contact: "contactPageSeo",
 };
 
+const PAGE_CANONICAL_PATHS: Record<PageSeoKey, string> = {
+  home: "/",
+  about: "/about",
+  blog: "/blog",
+  contact: "/contact-us",
+};
+
 const DEFAULT_PAGE_METADATA: Record<PageSeoKey, Metadata> = {
   home: {
-    title: "RP Law Associates | Trusted Legal Excellence",
+    title: "RP Law Firm | Trusted Legal Excellence",
     description:
-      "RP Law Associates provides expert legal counsel in corporate law, litigation, labor & employment, NRI services, and real estate.",
+      "RP Law Firm provides expert legal counsel in corporate law, litigation, labor & employment, NRI services, and real estate.",
   },
   blog: {
-    title: "Blog | RP Law Associates",
+    title: "Blog | RP Law Firm",
     description:
-      "Read legal insights, updates, and expert commentary from RP Law Associates on corporate law, litigation, and more.",
+      "Read legal insights, updates, and expert commentary from RP Law Firm on corporate law, litigation, and more.",
   },
   about: {
-    title: "About Us | RP Law Associates",
+    title: "About Us | RP Law Firm",
     description:
-      "Learn about RP Law Associates — our mission, vision, values, and the team behind our trusted legal services.",
+      "Learn about RP Law Firm — our mission, vision, values, and the team behind our trusted legal services.",
   },
   contact: {
-    title: "Contact Us | RP Law Associates",
+    title: "Contact Us | RP Law Firm",
     description:
-      "Get in touch with RP Law Associates for expert legal counsel. Reach us by phone, email, or our contact form.",
+      "Get in touch with RP Law Firm for expert legal counsel. Reach us by phone, email, or our contact form.",
   },
 };
 
@@ -47,5 +54,8 @@ export async function getPageMetadata(page: PageSeoKey): Promise<Metadata> {
   return {
     title: seo?.metaTitle || defaults.title,
     description: seo?.metaDescription || defaults.description,
+    alternates: {
+      canonical: PAGE_CANONICAL_PATHS[page],
+    },
   };
 }

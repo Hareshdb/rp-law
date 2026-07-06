@@ -96,9 +96,9 @@ export default function TableOfContents({
                             className="h-4 w-4 text-accent"
                             aria-hidden="true"
                         />
-                        <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                        <div className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
                             In This Article
-                        </h2>
+                        </div>
                     </div>
 
                     <nav aria-label="Table of contents">

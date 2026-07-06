@@ -134,6 +134,7 @@ export default function PracticeAreas() {
             eyebrow="What We Do"
             title="Our Practice Areas"
             description="At RP Law Firm, we provide comprehensive legal services to individuals, businesses, startups, and corporate clients across Ahmedabad, Gujarat, and throughout India. Our firm is committed to delivering strategic legal advice, effective representation, and practical solutions across a wide range of legal matters."
+            markAs="h3"
           />
         </Reveal>
 
@@ -156,9 +157,9 @@ export default function PracticeAreas() {
                   />
                 </div>
 
-                <h3 className="text-xl font-bold text-primary">
+                <div className="text-xl font-bold text-primary">
                   {area.title}
-                </h3>
+                </div>
 
                 <p className="mt-3 text-sm leading-relaxed text-muted">
                   {area.description}

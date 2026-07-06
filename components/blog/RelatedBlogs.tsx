@@ -14,9 +14,9 @@ export default function RelatedBlogs({ blogs }: RelatedBlogsProps) {
             <div className="container">
                 <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                     <div>
-                        <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+                        <div className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
                             Related Blogs
-                        </h2>
+                        </div>
                         <p className="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-muted">
                             More from our legal blog
                         </p>

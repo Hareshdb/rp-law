@@ -13,13 +13,16 @@ export async function generateMetadata({
 
     if (!post) {
         return {
-            title: "Blog | RP Law Associates",
+            title: "Blog | RP Law Firm",
         };
     }
 
     return {
         title: post.metaTitle || post.title,
         description: post.metaDescription || post.short_description,
+        alternates: {
+            canonical: `/blog/${slug}`,
+        },
     };
 }
 

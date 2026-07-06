@@ -91,9 +91,9 @@ export default function WhyChooseUs({
                     />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-primary">
+                    <div className="text-lg font-bold text-primary">
                       {reason.title}
-                    </h3>
+                    </div>
                     <p className="mt-1 text-muted">{reason.description}</p>
                   </div>
                 </Reveal>

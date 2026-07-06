@@ -33,7 +33,7 @@ export function buildContactInquiryEmail(data: ContactInquiryData): string {
           <tr>
             <td style="background-color:#3f4854;padding:28px 32px;">
               <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#eab308;">
-                RP Law Associates
+                RP Law Firm
               </p>
               <h1 style="margin:0;font-size:24px;line-height:1.3;color:#ffffff;">
                 New Contact Inquiry
@@ -96,7 +96,7 @@ export function buildContactInquiryEmail(data: ContactInquiryData): string {
           <tr>
             <td style="padding:20px 32px 28px;border-top:1px solid #e5e7eb;background-color:#fafafa;">
               <p style="margin:0;font-size:12px;line-height:1.6;color:#6b7280;">
-                This email was generated automatically from the RP Law Associates contact form.
+                This email was generated automatically from the RP Law Firm contact form.
               </p>
             </td>
           </tr>
@@ -110,5 +110,5 @@ export function buildContactInquiryEmail(data: ContactInquiryData): string {
 
 export function buildContactInquirySubject(data: ContactInquiryData): string {
   const fullName = `${data.firstName.trim()} ${data.lastName.trim()}`.trim();
-  return `New Contact Inquiry from ${fullName} - RP Law Associates`;
+  return `New Contact Inquiry from ${fullName} - RP Law Firm`;
 }
