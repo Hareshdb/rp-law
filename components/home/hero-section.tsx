@@ -5,6 +5,11 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { HomePageData } from "@/lib/types";
 import { ArrowRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import {
+  PRACTICE_AREAS_HREF,
+  handlePracticeAreasNavigationClick,
+} from "@/lib/practice-areas-navigation";
 
 const heroStats = [
   { value: "15+", label: "Years of Experience" },
@@ -20,6 +25,7 @@ export default function HeroSection({
   heroImageUrl: string;
 }) {
   const reduceMotion = useReducedMotion();
+  const pathname = usePathname();
 
   const container = {
     hidden: {},
@@ -37,7 +43,7 @@ export default function HeroSection({
 
   return (
     <section className="relative overflow-hidden bg-primary">
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-28">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:py-28">
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.p
             variants={item}
@@ -68,7 +74,10 @@ export default function HeroSection({
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              href="/#practice-areas"
+              href={PRACTICE_AREAS_HREF}
+              onClick={(event) =>
+                handlePracticeAreasNavigationClick(event, pathname)
+              }
               className="inline-flex items-center rounded-full border border-white/30 px-8 py-3.5 text-base font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
             >
               Explore Practice Areas

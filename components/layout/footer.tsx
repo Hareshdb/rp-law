@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Logo } from "@components/common/logo";
 import { Mail, MapPin, PhoneCall } from "lucide-react";
 import type { FooterData } from "@/lib/types";
+import FooterQuickLinks from "@components/navigation/footer-quick-links";
 
 const defaultFooterData: Required<FooterData> = {
   footerSummary:
@@ -11,13 +12,6 @@ const defaultFooterData: Required<FooterData> = {
   mobileNumber: "+91 95121 23013",
   email: "advocate.rinal@gmail.com",
 };
-
-const quickLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About Us" },
-  { href: "/#practice-areas", label: "Practice Areas" },
-  { href: "/contact-us", label: "Contact Us" },
-];
 
 const socialLinks = [
   {
@@ -57,10 +51,10 @@ export default function Footer({
   return (
     <footer className="bg-primary text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-3">
-          <div>
-            <Logo logoUrl={logoUrl} className="w-[188px]" />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
+        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+          <div className="w-full shrink-0 lg:max-w-[280px]">
+            <Logo logoUrl={logoUrl} className="w-[165px]" />
+            <p className="mt-4 text-sm leading-relaxed text-white/70">
               {summary}
             </p>
             <div className="mt-6 flex gap-3">
@@ -90,25 +84,14 @@ export default function Footer({
             </div>
           </div>
 
-          <div>
+          <div className="w-full shrink-0 lg:w-auto">
             <h3 className="text-sm font-semibold uppercase tracking-widest text-accent">
               Quick Links
             </h3>
-            <ul className="mt-6 space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-accent"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <FooterQuickLinks />
           </div>
 
-          <div>
+          <div className="w-full shrink-0 lg:max-w-[280px]">
             <h3 className="text-sm font-semibold uppercase tracking-widest text-accent">
               Contact Us
             </h3>
@@ -150,6 +133,16 @@ export default function Footer({
                 </a>
               </li>
             </ul>
+          </div>
+          <div className="w-full shrink-0 lg:w-auto">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.7529029649236!2d72.67758867477161!3d23.06951891457564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e87d737f41b27%3A0xe3f624358707cd01!2sRP%20Law%20Firm%20(Advocate%20Rinal%20Patel)!5e0!3m2!1sen!2sin!4v1783312180293!5m2!1sen!2sin"
+              title="RP Law Firm location"
+              className="aspect-square w-full max-w-[280px] border-0 lg:max-w-[300px]"
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+            ></iframe>
           </div>
         </div>
 

@@ -4,6 +4,10 @@ import { Variants, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+  PRACTICE_AREAS_HREF,
+  markPracticeAreasScrollIntent,
+} from '@/lib/practice-areas-navigation';
 import { useRouter } from 'next/navigation';
 
 type BannerProps = {
@@ -95,10 +99,11 @@ const Banner = ({ aboutPageData, featuredImageUrl, featuredImageAlt }: BannerPro
                             {ctaButtonText} <ArrowRight size={16} />
                         </Link>
                         <Link
-                            href=""
+                            href={PRACTICE_AREAS_HREF}
                             onClick={(event) => {
                                 event.preventDefault();
-                                router.push('/#practice-areas');
+                                markPracticeAreasScrollIntent();
+                                router.push(PRACTICE_AREAS_HREF);
                             }}
                             className="inline-flex items-center rounded-full border-[1.5px] border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                         >
