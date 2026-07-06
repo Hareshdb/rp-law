@@ -111,8 +111,8 @@ export default function HeroSection({
               alt={
                 homePageData.heroImage?.alt ||
                 (homePageData.heroTitle
-                  ? `${homePageData.heroTitle} - RP Law Associates`
-                  : "RP Law Associates hero image")
+                  ? `${homePageData.heroTitle} - RP Law Firm`
+                  : "RP Law Firm hero image")
               }
               fill
               priority

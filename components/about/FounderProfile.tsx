@@ -32,9 +32,9 @@ const FounderProfile = async () => {
 
                     <Reveal delay={0.08} className="text-center lg:text-left">
                         <Eyebrow>Founder &amp; Advocate</Eyebrow>
-                        <h2 className="mt-3 text-3xl font-bold text-primary sm:text-4xl">
+                        <div className="mt-3 text-3xl font-bold text-primary sm:text-4xl">
                             {name}
-                        </h2>
+                        </div>
                         <div className="mt-6 space-y-5">
                             <p className="leading-relaxed text-muted">
                                 Adv. Rinal Patel is the Founder and Principal Advocate of RP Law Firm. With a strong commitment to justice and professional ethics, Adv. Patel advises and represents clients in a broad range of civil, commercial, corporate, family, and regulatory matters.

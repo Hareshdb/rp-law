@@ -84,7 +84,7 @@ export async function POST(request: Request) {
     const to = process.env.CONTACT_FORM_TO_EMAIL;
     const fromEmail = process.env.CONTACT_FORM_FROM_EMAIL;
     const senderName =
-      process.env.CONTACT_FORM_SENDER_NAME || "RP Law Associates";
+      process.env.CONTACT_FORM_SENDER_NAME || "RP Law Firm";
 
     if (!to || !fromEmail) {
       return NextResponse.json(

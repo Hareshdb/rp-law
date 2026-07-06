@@ -36,12 +36,13 @@ export default function AboutSection({
                 eyebrow="About RP Law Firm"
                 title="Professional Legal Experts in Ahmedabad, Gujarat"
                 align="left"
+                markAs="h2"
               />
             </Reveal>
 
             <Reveal direction="left" delay={0.1}>
               <p className="mt-6 text-lg leading-relaxed text-muted">
-                RP Law Firm is a law firm based in Ahmedabad, Gujarat, providing
+                RP Law Firm is a trusted law firm based in Ahmedabad, Gujarat, providing
                 practical, ethical, and result-oriented legal services to individuals,
                 families, startups, and businesses. Led by Adv. Rinal Patel, we offer
                 strategic legal advice, professional representation, and effective
@@ -74,7 +75,7 @@ export default function AboutSection({
                   alt={imageAlt}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1024px) 100vw-30px, 50vw-16px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-transparent to-transparent" />
               </div>

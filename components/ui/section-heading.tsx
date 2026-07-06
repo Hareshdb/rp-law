@@ -4,6 +4,7 @@ type SectionHeadingProps = {
   description?: string;
   align?: "center" | "left";
   light?: boolean;
+  markAs?: "div" | "h2" | "h3" | "h4";
 };
 
 export default function SectionHeading({
@@ -12,8 +13,13 @@ export default function SectionHeading({
   description,
   align = "center",
   light = false,
+  markAs = "div",
 }: SectionHeadingProps) {
   const alignment = align === "center" ? "text-center mx-auto" : "text-left";
+  const TitleTag = markAs;
+  const titleClassName = `text-3xl font-bold tracking-tight sm:text-4xl ${
+    light ? "text-white" : "text-primary"
+  }`;
 
   return (
     <div className={`max-w-6xl ${alignment}`}>
@@ -26,13 +32,7 @@ export default function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <h2
-        className={`text-3xl font-bold tracking-tight sm:text-4xl ${
-          light ? "text-white" : "text-primary"
-        }`}
-      >
-        {title}
-      </h2>
+      <TitleTag className={titleClassName}>{title}</TitleTag>
       {description && (
         <p
           className={`mt-4 text-lg leading-relaxed ${

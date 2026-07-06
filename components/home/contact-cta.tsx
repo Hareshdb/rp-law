@@ -131,9 +131,9 @@ export default function ContactCta() {
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
             Get In Touch
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <div className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Let&rsquo;s Discuss Your Legal Needs
-          </h2>
+          </div>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-white/75">
           Share your legal requirements with us, and our team will respond within one business day. Every inquiry is handled with complete confidentiality, professionalism, and care.
           </p>

@@ -30,7 +30,7 @@ function createComponents(
                 return (
                     <h2
                         id={id}
-                        className={`${headingClass} mb-5 mt-12 text-2xl sm:text-3xl`}
+                        className={`${headingClass} mb-5 mt-12 text-2xl sm:text-3xl !text-accent`}
                     >
                         {children}
                     </h2>
@@ -44,7 +44,7 @@ function createComponents(
                 return (
                     <h3
                         id={id}
-                        className={`${headingClass} my-4 text-xl sm:text-2xl !text-accent`}
+                        className={`${headingClass} my-4 text-xl sm:text-2xl`}
                     >
                         {children}
                     </h3>

@@ -1,5 +1,6 @@
 import { FooterDataProvider } from "@/context/footer-data-context";
 import { getFooterData, getSettings } from "@/lib/apis";
+import { getSiteUrl } from "@/lib/constants";
 import { getImageUrl } from "@/lib/helpers";
 import WhatsAppFloat from "@components/common/whatsapp-float";
 import Footer from "@components/layout/footer";
@@ -19,12 +20,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "RP Law Associates | Trusted Legal Excellence",
+    default: "RP Law Firm | Trusted Legal Excellence",
     template: "%s",
   },
   description:
-    "RP Law Associates provides expert legal counsel in corporate law, litigation, labor & employment, NRI services, and real estate.",
+    "RP Law Firm provides expert legal counsel in corporate law, litigation, labor & employment, NRI services, and real estate.",
 };
 
 export default async function RootLayout({

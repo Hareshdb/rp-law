@@ -27,9 +27,9 @@ export default function BlogCard({ blog }: { blog: Blog }) {
             </div> */}
       
             {/* Title */}
-            <h3 className="mb-3 line-clamp-2 text-xl font-bold text-primary transition-colors duration-300 group-hover:text-accent">
+            <h2 className="mb-3 line-clamp-2 text-xl font-bold text-primary transition-colors duration-300 group-hover:text-accent">
               {blog.title}
-            </h3>
+            </h2>
       
             {/* Description */}
             <div className="mb-5 min-h-[72px]">

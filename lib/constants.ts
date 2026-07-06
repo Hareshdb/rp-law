@@ -4,3 +4,13 @@ export const PLACEHOLDER_IMAGE =
 
 export const DEFAULT_LIMIT = 9;
 export const DEFAULT_OFFSET = 0;
+
+export function getSiteUrl(): string {
+  if (process.env.SITE_URL) {
+    return process.env.SITE_URL.replace(/\/$/, "");
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
+}

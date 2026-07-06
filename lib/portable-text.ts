@@ -22,7 +22,7 @@ export function extractTocHeadings(blocks: PortableTextBlock[]): TocHeading[] {
 
     for (const block of blocks) {
         if (block._type !== "block") continue;
-        if (block.style !== "h2" && block.style !== "h3") continue;
+        if (block.style !== "h2") continue;
 
         const text =
             block.children

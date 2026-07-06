@@ -43,7 +43,7 @@ export default function BlogDetail({
                         >
                             <Link
                                 href="/blogDetail"
-                                className="text-xl transition-colors hover:text-accent"
+                                className="text-md transition-colors hover:text-accent"
                             >
                                 Blog
                             </Link>
@@ -55,12 +55,12 @@ export default function BlogDetail({
                                 />
                             </span>
 
-                            <span className="line-clamp-1 text-xl text-white">
+                            <span className="line-clamp-1 text-md text-white">
                                 {blogDetail.title}
                             </span>
                         </nav>
 
-                        <div className="mt-20">
+                        <div className="mt-15">
                             {/* <div className="mb-6 flex items-center gap-3">
                                 <span className="h-px w-8 bg-accent" />
                                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
@@ -105,9 +105,9 @@ export default function BlogDetail({
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-bold text-primary">
+                            <div className="text-2xl font-bold text-primary">
                                 {blogDetail.author?.name ?? ""}
-                            </h3>
+                            </div>
 
                             <p className="mt-2 text-muted">
                                 {blogDetail.author?.bio?.map((block) => block.children?.map((child) => child.text).join("")).join("") ?? ""}
