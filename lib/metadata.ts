@@ -55,7 +55,7 @@ export async function getPageMetadata(page: PageSeoKey): Promise<Metadata> {
     title: seo?.metaTitle || defaults.title,
     description: seo?.metaDescription || defaults.description,
     alternates: {
-      canonical: PAGE_CANONICAL_PATHS[page],
+      canonical: `${process.env.SITE_URL}${PAGE_CANONICAL_PATHS[page]}`,
     },
   };
 }
