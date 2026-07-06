@@ -28,14 +28,68 @@ export type AboutPageData = {
   ctaButtonText?: string;
 };
 
+export type PracticeAreaItem = {
+  icon?: SanityImageSource & { alt?: string };
+  label: string;
+  description: string;
+};
+
+export type WhyChooseUsItem = {
+  title: string;
+  subtitle: string;
+};
+
+export type TrackRecordItem = {
+  label: string;
+  value: string;
+};
+
+export type HomeFaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type HomeTestimonial = {
+  _id: string;
+  star: number;
+  description: string;
+  name: string;
+};
+
 export type HomePageData = {
   _id: string;
-  heroTitle: string;
-  heroHighlightText: string;
-  heroSubtitle: string;
+  heroTitle?: string;
+  heroHighlightText?: string;
+  heroSubtitle?: string;
   heroImage?: SanityImageSource & { alt?: string };
+  ctaButtonText?: string;
   aboutImage?: SanityImageSource & { alt?: string };
+  aboutTag?: string;
+  aboutTitle?: string;
+  aboutDescription?: string;
+  aboutCtaButtonText?: string;
+  practiceAreaTag?: string;
+  practiceAreaTitle?: string;
+  practiceAreaDescription?: string;
+  practiceAreas?: PracticeAreaItem[];
   whyChooseUsImage?: SanityImageSource & { alt?: string };
+  whyChooseUsTag?: string;
+  whyChooseUsTitle?: string;
+  whyChooseUsDescription?: string;
+  whyChooseUsItems?: WhyChooseUsItem[];
+  trackRecordTag?: string;
+  trackRecordTitle?: string;
+  trackRecordDescription?: string;
+  trackRecords?: TrackRecordItem[];
+  testimonialTag?: string;
+  testimonialTitle?: string;
+  testimonialDescription?: string;
+  testimonials?: HomeTestimonial[];
+  faqTag?: string;
+  faqTitle?: string;
+  faqDescription?: string;
+  faqCtaButtonText?: string;
+  faqs?: HomeFaqItem[];
 };
 
 export type FooterData = {

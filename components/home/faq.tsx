@@ -1,12 +1,13 @@
 "use client";
 
+import type { HomeFaqItem } from "@/lib/types";
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Reveal from "../ui/reveal";
 
-const faqs = [
+const defaultFaqs: HomeFaqItem[] = [
   {
     question: "What types of legal services does RP Law Firm provide?",
     answer:
@@ -34,7 +35,22 @@ const faqs = [
   },
 ];
 
-export default function Faq() {
+type FaqProps = {
+  faqTag?: string;
+  faqTitle?: string;
+  faqDescription?: string;
+  faqCtaButtonText?: string;
+  faqs?: HomeFaqItem[];
+};
+
+export default function Faq({
+  faqTag = "FAQs",
+  faqTitle = "Frequently Asked Questions",
+  faqDescription = "Everything you need to know about our legal services, consultation process, and how RP Law Firm delivers trusted, client-focused legal solutions.",
+  faqCtaButtonText = "Schedule a Consultation",
+  faqs = defaultFaqs,
+}: FaqProps) {
+  const items = faqs?.length ? faqs : defaultFaqs;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -42,27 +58,25 @@ export default function Faq() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
         <Reveal direction="right">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
-          FAQs
+            {faqTag}
           </p>
-          <div
-            className={`text-xl font-bold tracking-tight text-primary`}
-          >
-            Frequently Asked Questions
+          <div className="text-xl font-bold tracking-tight text-primary">
+            {faqTitle}
           </div>
           <p className="mt-4 text-lg leading-relaxed text-muted">
-          Everything you need to know about our legal services, consultation process, and how RP Law Firm delivers trusted, client-focused legal solutions.
+            {faqDescription}
           </p>
           <Link
             href="/contact-us"
             className="group mt-8 inline-flex items-center rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-primary-dark"
           >
-            Schedule a Consultation
+            {faqCtaButtonText}
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Link>
         </Reveal>
 
         <Reveal direction="left" className="divide-y divide-border">
-          {faqs.map((faq, index) => {
+          {items.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div key={faq.question}>

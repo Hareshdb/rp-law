@@ -295,23 +295,63 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
   `);
 }
 
-export async function getHomePageData(): Promise<HomePageData> {
-  const homePageData = await sanityClient.fetch(`
+export async function getHomePageData(): Promise<HomePageData | null> {
+  return sanityClient.fetch(`
     *[_type == "homePage"][0]{
       _id,
       heroTitle,
       heroHighlightText,
       heroSubtitle,
       heroImage,
-      heroImageAlt,
+      ctaButtonText,
       aboutImage,
-      aboutImageAlt,
+      aboutTag,
+      aboutTitle,
+      aboutDescription,
+      aboutCtaButtonText,
+      practiceAreaTag,
+      practiceAreaTitle,
+      practiceAreaDescription,
+      practiceAreas[]{
+        icon,
+        label,
+        description
+      },
       whyChooseUsImage,
-      whyChooseUsImageAlt
+      whyChooseUsTag,
+      whyChooseUsTitle,
+      whyChooseUsDescription,
+      whyChooseUsItems[]{
+        _id,
+        title,
+        subtitle
+      },
+      trackRecordTag,
+      trackRecordTitle,
+      trackRecordDescription,
+      trackRecords[]{
+        label,
+        value
+      },
+      testimonialTag,
+      testimonialTitle,
+      testimonialDescription,
+      testimonials[]->{
+        _id,
+        star,
+        description,
+        name
+      },
+      faqTag,
+      faqTitle,
+      faqDescription,
+      faqCtaButtonText,
+      faqs[]{
+        question,
+        answer
+      }
     }
   `);
-
-  return homePageData;
 }
 
 export async function getFooterData(): Promise<FooterData> {
