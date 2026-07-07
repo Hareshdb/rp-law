@@ -7,5 +7,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function ContactUs() {
-  return <ContactCtaSection />;
+  return <ContactCtaSection isContactPage={true} />;
 }
