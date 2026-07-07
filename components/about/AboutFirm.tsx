@@ -55,7 +55,7 @@ const AboutFirm = ({
                         <Eyebrow>{tag}</Eyebrow>
                         <div className="mt-5 space-y-5">
                             <blockquote className="mb-6 border-l-[3px] border-accent pl-5 text-lg italic leading-relaxed text-muted">
-                                {quote}
+                                <h2>{quote}</h2>
                             </blockquote>
                             {paragraphs.map((paragraph) => (
                                 <p
