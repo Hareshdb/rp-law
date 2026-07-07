@@ -13,7 +13,10 @@ const ReCAPTCHAWidget = dynamic(() => import("react-google-recaptcha"), {
 
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
-const defaultFooterData: Pick<Required<FooterData>, "mobileNumber" | "email"> = {
+const defaultFooterData: Pick<
+  Required<FooterData>,
+  "mobileNumber" | "email"
+> = {
   mobileNumber: "+91 95121 23013",
   email: "advocate.rinal@gmail.com",
 };
@@ -28,9 +31,13 @@ const DEFAULT_DESCRIPTION =
 
 type ContactCtaProps = {
   contactCtaData?: ContactCtaData | null;
+  isContactPage?: boolean;
 };
 
-export default function ContactCta({ contactCtaData }: ContactCtaProps) {
+export default function ContactCta({
+  contactCtaData,
+  isContactPage = false,
+}: ContactCtaProps) {
   const footerData = useFooterData();
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [recaptchaResetKey, setRecaptchaResetKey] = useState(0);
@@ -57,24 +64,14 @@ export default function ContactCta({ contactCtaData }: ContactCtaProps) {
       value: mobileNumber,
       href: phoneHref,
       icon: (
-        <PhoneCall
-          className="h-5 w-5"
-          strokeWidth={1.5}
-          aria-hidden="true"
-        />
+        <PhoneCall className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
       ),
     },
     {
       label: "Email us",
       value: email,
       href: `mailto:${email}`,
-      icon: (
-        <Mail
-          className="h-5 w-5"
-          strokeWidth={1.5}
-          aria-hidden="true"
-        />
-      ),
+      icon: <Mail className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />,
     },
   ];
 
@@ -143,9 +140,16 @@ export default function ContactCta({ contactCtaData }: ContactCtaProps) {
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
             {tag}
           </p>
-          <div className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            {title}
-          </div>
+          {isContactPage ? (
+            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              {title}
+            </h1>
+          ) : (
+            <div className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              {title}
+            </div>
+          )}
+
           <p className="mt-4 max-w-md text-lg leading-relaxed text-white/75">
             {description}
           </p>
@@ -153,10 +157,7 @@ export default function ContactCta({ contactCtaData }: ContactCtaProps) {
           <ul className="mt-10 space-y-5">
             {contactDetails.map((detail) => (
               <li key={detail.label}>
-                <a
-                  href={detail.href}
-                  className="group flex items-center gap-4"
-                >
+                <a href={detail.href} className="group flex items-center gap-4">
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/5 text-accent ring-1 ring-white/10 transition-colors group-hover:bg-accent group-hover:text-primary">
                     {detail.icon}
                   </span>
