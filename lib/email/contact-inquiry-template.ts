@@ -62,7 +62,7 @@ export function buildContactInquiryEmail(data: ContactInquiryData): string {
                       Email Address
                     </p>
                     <p style="margin:0;font-size:16px;color:#111827;">
-                      <a href="mailto:${process.env.CONTACT_FORM_TO_EMAIL}" style="color:#3f4854;text-decoration:none;">${email}</a>
+                      <a>${email}</a>
                     </p>
                   </td>
                 </tr>
