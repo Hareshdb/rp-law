@@ -3,7 +3,7 @@ import type { Blog } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function BlogCard({ blog }: { blog: Blog }) {
+export default function BlogCard({ blog, isTitleH2 = true }: { blog: Blog, isTitleH2?: boolean }) {
     return (
         <Link href={`/blog/${blog.slug}`} className="block">
         <article className="group cursor-pointer rounded-3xl border border-border bg-surface p-4 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
@@ -27,9 +27,15 @@ export default function BlogCard({ blog }: { blog: Blog }) {
             </div> */}
       
             {/* Title */}
-            <h2 className="mb-3 line-clamp-2 text-xl font-bold text-primary transition-colors duration-300 group-hover:text-accent">
-              {blog.title}
-            </h2>
+            {isTitleH2 ? (
+              <h2 className="mb-3 line-clamp-2 text-xl font-bold text-primary transition-colors duration-300 group-hover:text-accent">
+                {blog.title}
+              </h2>
+            ) : (
+              <div className="mb-3 line-clamp-2 text-xl font-bold text-primary transition-colors duration-300 group-hover:text-accent">
+                {blog.title}
+              </div>
+            )}
       
             {/* Description */}
             <div className="mb-5 min-h-[72px]">

@@ -34,7 +34,7 @@ export default function RelatedBlogs({ blogs }: RelatedBlogsProps) {
 
                 <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
                     {blogs.map((blog) => (
-                        <BlogCard key={blog.id} blog={blog} />
+                        <BlogCard key={blog.id} blog={blog} isTitleH2={false} />
                     ))}
                 </div>
             </div>
