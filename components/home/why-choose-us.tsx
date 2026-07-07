@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { HomePageData, WhyChooseUsItem } from "@/lib/types";
 import SectionHeading from "../ui/section-heading";
-import Reveal from "../ui/reveal";
+import RevealCss from "../ui/reveal-css";
 import { Check } from "lucide-react";
 
 const defaultReasons: WhyChooseUsItem[] = [
@@ -48,7 +48,7 @@ export default function WhyChooseUs({
     <section className="bg-surface py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal direction="right" className="relative">
+          <RevealCss direction="right" className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl lg:aspect-[3/4]">
               <Image
                 src={whyChooseUsImageUrl}
@@ -62,10 +62,10 @@ export default function WhyChooseUs({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </div>
-          </Reveal>
+          </RevealCss>
 
           <div>
-            <Reveal direction="left">
+            <RevealCss direction="left">
               <SectionHeading
                 eyebrow={
                   homePageData.whyChooseUsTag || "Why Choose RP Law Firm?"
@@ -80,11 +80,11 @@ export default function WhyChooseUs({
                 }
                 align="left"
               />
-            </Reveal>
+            </RevealCss>
 
             <ul className="mt-10 space-y-8">
               {reasons.map((reason, index) => (
-                <Reveal
+                <RevealCss
                   as="li"
                   key={reason.title}
                   direction="left"
@@ -104,7 +104,7 @@ export default function WhyChooseUs({
                     </div>
                     <p className="mt-1 text-muted">{reason.subtitle}</p>
                   </div>
-                </Reveal>
+                </RevealCss>
               ))}
             </ul>
           </div>

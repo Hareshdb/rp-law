@@ -3,7 +3,7 @@
 import type { HomeTestimonial } from "@/lib/types";
 import { useCallback, useEffect, useState } from "react";
 import SectionHeading from "../ui/section-heading";
-import Reveal from "../ui/reveal";
+import RevealCss from "../ui/reveal-css";
 
 const MAX_QUOTE_LENGTH = 125;
 
@@ -139,13 +139,13 @@ export default function Testimonials({
   return (
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal className="flex flex-col items-center">
+        <RevealCss className="flex flex-col items-center">
           <SectionHeading
             eyebrow={testimonialTag}
             title={testimonialTitle}
             description={testimonialDescription}
           />
-        </Reveal>
+        </RevealCss>
 
         <div className="relative mt-14">
           <div
