@@ -109,8 +109,8 @@ export default function BlogDetail({
                                 {blogDetail.author?.name ?? ""}
                             </div>
 
-                            <p className="mt-2 text-muted">
-                                {blogDetail.author?.bio?.map((block) => block.children?.map((child) => child.text).join("")).join("") ?? ""}
+                            <p className="mt-2 whitespace-pre-line text-muted">
+                                {blogDetail.author?.bio ?? ""}
                             </p>
                         </div>
                     </div>

@@ -10,12 +10,7 @@ import {
   PRACTICE_AREAS_HREF,
   handlePracticeAreasNavigationClick,
 } from "@/lib/practice-areas-navigation";
-
-const heroStats = [
-  { value: "15+", label: "Years of Experience" },
-  { value: "2000+", label: "Cases Won" },
-  { value: "500+", label: "Corporate Clients" },
-];
+import Eyebrow from "../about/EyeBrow";
 
 export default function HeroSection({
   homePageData,

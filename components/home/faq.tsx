@@ -6,6 +6,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Reveal from "../ui/reveal";
+import Eyebrow from "../about/EyeBrow";
 
 const defaultFaqs: HomeFaqItem[] = [
   {
@@ -58,7 +59,7 @@ export default function Faq({
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
         <Reveal direction="right">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
-            {faqTag}
+            <Eyebrow>{faqTag}</Eyebrow>
           </p>
           <div className="text-xl font-bold tracking-tight text-primary">
             {faqTitle}

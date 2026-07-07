@@ -4,12 +4,23 @@ import { urlFor } from "./sanity-image-builder";
 import type {
   AboutPageData,
   Blog,
+  ContactCtaData,
   FooterData,
   HomePageData,
   PageSeoData,
   PostAuthor,
   SanityPost,
+  SiteMetadata,
 } from "./types";
+
+const authorFields = `
+  _id,
+  name,
+  "slug": slug.current,
+  image,
+  bio,
+  additionalInfo
+`;
 
 const postsQuery = `
   *[_type == "post"]
@@ -24,11 +35,7 @@ const postsQuery = `
     mainImage,
 
     author->{
-      _id,
-      name,
-      "slug": slug.current,
-      image,
-      bio
+      ${authorFields}
     },
 
     categories[]->{
@@ -52,11 +59,7 @@ const postBySlugQuery = `
     mainImage,
 
     author->{
-      _id,
-      name,
-      "slug": slug.current,
-      image,
-      bio
+      ${authorFields}
     },
 
     categories[]->{
@@ -83,11 +86,7 @@ const postsByCategoryQuery = `
     mainImage,
 
     author->{
-      _id,
-      name,
-      "slug": slug.current,
-      image,
-      bio
+      ${authorFields}
     },
 
     categories[]->{
@@ -113,11 +112,7 @@ const relatedPostsByCategoryQuery = `
     mainImage,
 
     author->{
-      _id,
-      name,
-      "slug": slug.current,
-      image,
-      bio
+      ${authorFields}
     },
 
     categories[]->{
@@ -209,11 +204,7 @@ const relatedPostsQuery = `
     mainImage,
 
     author->{
-      _id,
-      name,
-      "slug": slug.current,
-      image,
-      bio
+      ${authorFields}
     },
 
     categories[]->{
@@ -285,12 +276,27 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
       titleHighlight,
       subtitle,
       featuredImage,
-      featuredImageAlt,
       aboutUsImage,
-      aboutUsImageAlt,
+      aboutFirmTag,
+      aboutFirmQuote,
+      aboutFirmParagraphs,
       missionText,
+      missionIcon,
       visionText,
-      ctaButtonText
+      visionIcon,
+      ctaButtonText,
+      founderTag,
+      founderAuthor->{
+        ${authorFields}
+      },
+      coreValuesTag,
+      coreValuesTitle,
+      coreValuesDescription,
+      coreValuesItems[]{
+        title,
+        description,
+        icon
+      }
     }
   `);
 }
@@ -355,12 +361,41 @@ export async function getHomePageData(): Promise<HomePageData | null> {
 }
 
 export async function getFooterData(): Promise<FooterData> {
+  const [homeData, metadata] = await Promise.all([
+    sanityClient.fetch(`
+      *[_type == "homePage"][0]{
+        address,
+        mobileNumber,
+        email
+      }
+    `),
+    getMetadata(),
+  ]);
+
+  return {
+    ...homeData,
+    footerSummary: metadata?.footerSummary,
+  };
+}
+
+export async function getMetadata(): Promise<SiteMetadata | null> {
   return sanityClient.fetch(`
-    *[_type == "homePage"][0]{
-      footerSummary,
-      address,
-      mobileNumber,
-      email
+    *[_type == "metadata"][0]{
+      _id,
+      blogHeroTitle,
+      blogHeroDescription,
+      footerSummary
+    }
+  `);
+}
+
+export async function getContactCtaData(): Promise<ContactCtaData | null> {
+  return sanityClient.fetch(`
+    *[_type == "contactCta"][0]{
+      _id,
+      tag,
+      title,
+      description
     }
   `);
 }
@@ -376,11 +411,7 @@ export async function getSettings() {
 
 const firstAuthorQuery = `
   *[_type == "author"] | order(_createdAt asc)[0] {
-    _id,
-    name,
-    "slug": slug.current,
-    image,
-    bio
+    ${authorFields}
   }
 `;
 

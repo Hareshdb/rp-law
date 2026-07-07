@@ -1,5 +1,5 @@
 import AboutSection from "@/components/home/about-section";
-import ContactCta from "@/components/home/contact-cta";
+import ContactCtaSection from "@/components/home/contact-cta-section";
 import { getFirstAuthor, getHomePageData } from "@/lib/apis";
 import { getImageUrl } from "@/lib/helpers";
 import { PLACEHOLDER_IMAGE } from "@/lib/constants";
@@ -45,8 +45,6 @@ export default async function Home() {
 
   const data = homePageData ?? emptyHomePageData;
 
-
-  console.log(data,"data-11111");  
 
   const heroImageUrl = data.heroImage
     ? urlFor(data.heroImage).width(1200).quality(85).auto("format").url()
@@ -103,7 +101,7 @@ export default async function Home() {
         faqCtaButtonText={data.faqCtaButtonText}
         faqs={data.faqs}
       />
-      <ContactCta />
+      <ContactCtaSection />
     </>
   );
 }
