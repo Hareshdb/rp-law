@@ -9,6 +9,10 @@ type AboutSectionProps = {
   imageAlt?: string;
   authorAvatarUrl: string;
   authorName: string;
+  aboutTag?: string;
+  aboutTitle?: string;
+  aboutDescription?: string;
+  aboutCtaButtonText?: string;
 };
 
 export default function AboutSection({
@@ -16,6 +20,10 @@ export default function AboutSection({
   imageAlt = "Professional Legal Experts in Ahmedabad, Gujarat",
   authorAvatarUrl,
   authorName,
+  aboutTag = "About RP Law Firm",
+  aboutTitle = "Professional Legal Experts in Ahmedabad, Gujarat",
+  aboutDescription = "RP Law Firm is a trusted law firm based in Ahmedabad, Gujarat, providing practical, ethical, and result-oriented legal services to individuals, families, startups, and businesses. Led by Adv. Rinal Patel, we offer strategic legal advice, professional representation, and effective solutions across civil, commercial, corporate, family, property, GST, RERA, IBC, and High Court matters. Our commitment is to protect your rights through clear guidance, responsive communication, and dedicated legal support.",
+  aboutCtaButtonText = "Learn More About Us",
 }: AboutSectionProps) {
   return (
     <section id="about" className="relative overflow-hidden bg-background py-20 lg:py-28">
@@ -33,8 +41,8 @@ export default function AboutSection({
           <div>
             <Reveal direction="left">
               <SectionHeading
-                eyebrow="About RP Law Firm"
-                title="Professional Legal Experts in Ahmedabad, Gujarat"
+                eyebrow={aboutTag}
+                title={aboutTitle}
                 align="left"
                 markAs="h2"
               />
@@ -42,14 +50,7 @@ export default function AboutSection({
 
             <Reveal direction="left" delay={0.1}>
               <p className="mt-6 text-lg leading-relaxed text-muted">
-                RP Law Firm is a trusted law firm based in Ahmedabad, Gujarat, providing
-                practical, ethical, and result-oriented legal services to individuals,
-                families, startups, and businesses. Led by Adv. Rinal Patel, we offer
-                strategic legal advice, professional representation, and effective
-                solutions across civil, commercial, corporate, family, property, GST,
-                RERA, IBC, and High Court matters. Our commitment is to protect your
-                rights through clear guidance, responsive communication, and dedicated
-                legal support.
+                {aboutDescription}
               </p>
             </Reveal>
 
@@ -58,7 +59,7 @@ export default function AboutSection({
                 href="/about"
                 className="group mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
               >
-                Learn More About Us
+                {aboutCtaButtonText}
                 <ArrowRight
                   className="h-4 w-4 transition-transform group-hover:translate-x-1"
                   aria-hidden="true"

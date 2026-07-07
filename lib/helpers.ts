@@ -34,3 +34,11 @@ export const buildWhatsAppUrl = (phone: string) => {
     const digits = phone.replace(/\D/g, "");
     return `https://api.whatsapp.com/send/?phone=${digits}&text&type=phone_number&app_absent=0`;
 }
+
+export const parseTrackRecordValue = (
+    value: string,
+): { end: number; suffix: string } | null => {
+    const match = value.trim().match(/^(\d+)(.*)$/);
+    if (!match) return null;
+    return { end: parseInt(match[1], 10), suffix: match[2] || "" };
+};

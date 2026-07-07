@@ -6,13 +6,23 @@ import Pagination from "@components/common/pagination";
 import type { Blog } from "@/lib/types";
 import Image from "next/image";
 
-interface Props {
-    blogs: Blog[];
-}
-
 const BLOGS_PER_PAGE = 6;
 
-export default function BlogListing({ blogs }: Props) {
+interface Props {
+    blogs: Blog[];
+    blogHeroTitle?: string;
+    blogHeroDescription?: string;
+}
+
+const DEFAULT_BLOG_HERO_TITLE = "Legal Insights & Resources";
+const DEFAULT_BLOG_HERO_DESCRIPTION =
+    "Explore expert-written blogs, practical legal guidance, and updates designed to simplify complex legal issues and keep you informed.";
+
+export default function BlogListing({
+    blogs,
+    blogHeroTitle,
+    blogHeroDescription,
+}: Props) {
     const [page, setPage] = useState(1);
 
     const totalPages = Math.ceil(
@@ -27,6 +37,10 @@ export default function BlogListing({ blogs }: Props) {
             start + BLOGS_PER_PAGE
         );
     }, [page, blogs]);
+
+    const heroTitle = blogHeroTitle ?? DEFAULT_BLOG_HERO_TITLE;
+    const heroDescription =
+        blogHeroDescription ?? DEFAULT_BLOG_HERO_DESCRIPTION;
 
     return (
         <>
@@ -49,12 +63,12 @@ export default function BlogListing({ blogs }: Props) {
 
                         {/* Title */}
                         <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-                            Legal Insights & Resources
+                            {heroTitle}
                         </h1>
 
                         {/* Subtitle */}
                         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white sm:text-lg">
-                        Explore expert-written blogs, practical legal guidance, and updates designed to simplify complex legal issues and keep you informed.
+                            {heroDescription}
                         </p>
 
                     </div>

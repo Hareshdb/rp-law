@@ -1,6 +1,6 @@
 import BlogListing from "@/components/blog/BlogList";
-import ContactCta from "@/components/home/contact-cta";
-import { getPosts } from "@/lib/apis";
+import ContactCtaSection from "@/components/home/contact-cta-section";
+import { getMetadata, getPosts } from "@/lib/apis";
 import { getPageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 
@@ -9,13 +9,16 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const BlogPage = async () => {
-  const blogs = await getPosts();
-
+  const [blogs, metadata] = await Promise.all([getPosts(), getMetadata()]);
 
   return (
     <div className="bg-background">
-      <BlogListing blogs={blogs} />
-      <ContactCta />
+      <BlogListing
+        blogs={blogs}
+        blogHeroTitle={metadata?.blogHeroTitle}
+        blogHeroDescription={metadata?.blogHeroDescription}
+      />
+      <ContactCtaSection />
     </div>
   );
 };

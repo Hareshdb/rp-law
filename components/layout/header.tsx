@@ -13,7 +13,7 @@ import {
 const navLinks = [
   { href: "/", label: "Home" },
   { href: PRACTICE_AREAS_HREF, label: "Practice Areas" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About Us" },
   { href: "/blog", label: "Insights" },
   { href: "/contact-us", label: "Contact Us" },
 ];
