@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState, type FormEvent } from "react";
-import type { FooterData } from "@/lib/types";
+import type { ContactCtaData, FooterData } from "@/lib/types";
 import { useFooterData } from "@/context/footer-data-context";
 import Reveal from "../ui/reveal";
 import { Mail, PhoneCall } from "lucide-react";
@@ -21,7 +21,16 @@ const defaultFooterData: Pick<Required<FooterData>, "mobileNumber" | "email"> = 
 const fieldClass =
   "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none transition-colors focus:border-accent focus:bg-white/10";
 
-export default function ContactCta() {
+const DEFAULT_TAG = "Get In Touch";
+const DEFAULT_TITLE = "Let's Discuss Your Legal Needs";
+const DEFAULT_DESCRIPTION =
+  "Share your legal requirements with us, and our team will respond within one business day. Every inquiry is handled with complete confidentiality, professionalism, and care.";
+
+type ContactCtaProps = {
+  contactCtaData?: ContactCtaData | null;
+};
+
+export default function ContactCta({ contactCtaData }: ContactCtaProps) {
   const footerData = useFooterData();
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [recaptchaResetKey, setRecaptchaResetKey] = useState(0);
@@ -33,6 +42,9 @@ export default function ContactCta() {
     footerData?.mobileNumber || defaultFooterData.mobileNumber;
   const email = footerData?.email || defaultFooterData.email;
   const phoneHref = `tel:${mobileNumber.replace(/\s/g, "")}`;
+  const tag = contactCtaData?.tag ?? DEFAULT_TAG;
+  const title = contactCtaData?.title ?? DEFAULT_TITLE;
+  const description = contactCtaData?.description ?? DEFAULT_DESCRIPTION;
 
   const resetRecaptcha = () => {
     setRecaptchaToken(null);
@@ -129,13 +141,13 @@ export default function ContactCta() {
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <Reveal direction="right">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
-            Get In Touch
+            {tag}
           </p>
           <div className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Let&rsquo;s Discuss Your Legal Needs
+            {title}
           </div>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-white/75">
-          Share your legal requirements with us, and our team will respond within one business day. Every inquiry is handled with complete confidentiality, professionalism, and care.
+            {description}
           </p>
 
           <ul className="mt-10 space-y-5">

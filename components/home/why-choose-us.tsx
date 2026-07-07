@@ -1,38 +1,33 @@
 import Image from "next/image";
-import { HomePageData } from "@/lib/types";
+import type { HomePageData, WhyChooseUsItem } from "@/lib/types";
 import SectionHeading from "../ui/section-heading";
 import Reveal from "../ui/reveal";
 import { Check } from "lucide-react";
 
-const reasons = [
+const defaultReasons: WhyChooseUsItem[] = [
   {
     title: "Experienced Legal Expertise",
-    description:
-      "Practical solutions backed by strong legal knowledge.",
+    subtitle: "Practical solutions backed by strong legal knowledge.",
   },
   {
     title: "Client-Centric Approach",
-    description:
-      "Every case receives personalized attention and strategic guidance.",
+    subtitle: "Every case receives personalized attention and strategic guidance.",
   },
   {
     title: "Transparent Communication",
-    description:
-      "Clear advice and regular updates throughout your legal journey.",
+    subtitle: "Clear advice and regular updates throughout your legal journey.",
   },
   {
     title: "Ethical & Professional Practice",
-    description:
-      "Integrity, confidentiality, and honesty in every matter.",
+    subtitle: "Integrity, confidentiality, and honesty in every matter.",
   },
   {
     title: "Result-Oriented Representation",
-    description:
-      "Focused advocacy to protect your rights and interests.",
+    subtitle: "Focused advocacy to protect your rights and interests.",
   },
   {
     title: "Comprehensive Legal Services",
-    description:
+    subtitle:
       "Expertise across civil, commercial, corporate, family, property, GST, RERA, IBC, and High Court matters.",
   },
 ];
@@ -44,6 +39,11 @@ export default function WhyChooseUs({
   homePageData: HomePageData;
   whyChooseUsImageUrl: string;
 }) {
+  const reasons =
+    homePageData.whyChooseUsItems && homePageData.whyChooseUsItems.length > 0
+      ? homePageData.whyChooseUsItems
+      : defaultReasons;
+
   return (
     <section className="bg-surface py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -67,9 +67,17 @@ export default function WhyChooseUs({
           <div>
             <Reveal direction="left">
               <SectionHeading
-                eyebrow="Why Choose RP Law Firm?"
-                title="Trusted Legal Partner. Proven Commitment."
-                description="We deliver strategic legal solutions backed by experience, integrity, and personalized attention—providing confident representation and practical guidance for every legal challenge."
+                eyebrow={
+                  homePageData.whyChooseUsTag || "Why Choose RP Law Firm?"
+                }
+                title={
+                  homePageData.whyChooseUsTitle ||
+                  "Trusted Legal Partner. Proven Commitment."
+                }
+                description={
+                  homePageData.whyChooseUsDescription ||
+                  "We deliver strategic legal solutions backed by experience, integrity, and personalized attention—providing confident representation and practical guidance for every legal challenge."
+                }
                 align="left"
               />
             </Reveal>
@@ -94,7 +102,7 @@ export default function WhyChooseUs({
                     <div className="text-lg font-bold text-primary">
                       {reason.title}
                     </div>
-                    <p className="mt-1 text-muted">{reason.description}</p>
+                    <p className="mt-1 text-muted">{reason.subtitle}</p>
                   </div>
                 </Reveal>
               ))}

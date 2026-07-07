@@ -1,13 +1,35 @@
+import type { AboutPageData } from "@/lib/types";
 import Reveal from "@components/ui/reveal";
 import Image from "next/image";
 import Eyebrow from "./EyeBrow";
 
+const DEFAULT_TAG = "Our Origins";
+const DEFAULT_QUOTE =
+    "Trusted Legal Solutions in Ahmedabad, Gujarat";
+const DEFAULT_PARAGRAPHS = [
+    "At RP Law Firm, we are committed to providing practical, ethical, and result-oriented legal services to individuals, families, entrepreneurs, and businesses across Gujarat and India. Founded by Adv. Rinal Patel, our firm combines legal knowledge, strategic thinking, and a client-centric approach to deliver effective solutions for complex legal matters.",
+    "We understand that every legal issue has personal, financial, and commercial implications. Whether you are involved in litigation, require legal advice, or need assistance with documentation and compliance, we work closely with you to protect your rights and achieve the most appropriate legal outcome.",
+    "Based in Ahmedabad, Gujarat, RP Law Firm represents clients before the Gujarat High Court, District & Sessions Courts, Civil Courts, Family Courts, Consumer Commissions, Commercial Courts, and various judicial and quasi-judicial authorities. Our commitment is to provide clear legal guidance, responsive communication, and professional representation at every stage of your matter.",
+];
+
 type AboutFirmProps = {
+    aboutPageData?: AboutPageData | null;
     aboutUsImageUrl: string;
     imageAlt?: string;
 };
 
-const AboutFirm = ({ aboutUsImageUrl, imageAlt }: AboutFirmProps) => {
+const AboutFirm = ({
+    aboutPageData,
+    aboutUsImageUrl,
+    imageAlt,
+}: AboutFirmProps) => {
+    const tag = aboutPageData?.aboutFirmTag ?? DEFAULT_TAG;
+    const quote = aboutPageData?.aboutFirmQuote ?? DEFAULT_QUOTE;
+    const paragraphs =
+        aboutPageData?.aboutFirmParagraphs &&
+        aboutPageData.aboutFirmParagraphs.length > 0
+            ? aboutPageData.aboutFirmParagraphs
+            : DEFAULT_PARAGRAPHS;
 
     return (
         <section className="bg-surface py-28">
@@ -23,27 +45,27 @@ const AboutFirm = ({ aboutUsImageUrl, imageAlt }: AboutFirmProps) => {
                                     className="object-cover"
                                     sizes="(max-width:1024px) 100vw, 50vw"
                                 />
-                            </div>                            
+                            </div>
                             <div className="absolute -left-4 -top-4 h-16 w-16 rounded-xl bg-accent opacity-[0.18]" />
                             <div className="absolute -bottom-4 -right-4 h-16 w-16 rounded-xl bg-accent opacity-[0.18]" />
                         </div>
                     </Reveal>
 
                     <Reveal delay={0.08}>
-                        <Eyebrow>Our Origins</Eyebrow>
-                        <div className="space-y-5 mt-5">
-                        <blockquote className="mb-6 border-l-[3px] border-accent pl-5 text-lg italic leading-relaxed text-muted">
-                        Trusted Legal Solutions in Ahmedabad, Gujarat
-                        </blockquote>
-                        <p className="leading-relaxed text-muted">
-                        At RP Law Firm, we are committed to providing practical, ethical, and result-oriented legal services to individuals, families, entrepreneurs, and businesses across Gujarat and India. Founded by Adv. Rinal Patel, our firm combines legal knowledge, strategic thinking, and a client-centric approach to deliver effective solutions for complex legal matters.
-                        </p>
-                        <p className="leading-relaxed text-muted">
-                        We understand that every legal issue has personal, financial, and commercial implications. Whether you are involved in litigation, require legal advice, or need assistance with documentation and compliance, we work closely with you to protect your rights and achieve the most appropriate legal outcome.
-                        </p>
-                        <p className="leading-relaxed text-muted">
-                        Based in Ahmedabad, Gujarat, RP Law Firm represents clients before the Gujarat High Court, District & Sessions Courts, Civil Courts, Family Courts, Consumer Commissions, Commercial Courts, and various judicial and quasi-judicial authorities. Our commitment is to provide clear legal guidance, responsive communication, and professional representation at every stage of your matter.</p>
-                        </div>                                        
+                        <Eyebrow>{tag}</Eyebrow>
+                        <div className="mt-5 space-y-5">
+                            <blockquote className="mb-6 border-l-[3px] border-accent pl-5 text-lg italic leading-relaxed text-muted">
+                                {quote}
+                            </blockquote>
+                            {paragraphs.map((paragraph) => (
+                                <p
+                                    key={paragraph}
+                                    className="leading-relaxed text-muted"
+                                >
+                                    {paragraph}
+                                </p>
+                            ))}
+                        </div>
                     </Reveal>
                 </div>
             </div>

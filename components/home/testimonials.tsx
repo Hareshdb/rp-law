@@ -1,32 +1,41 @@
 "use client";
 
+import type { HomeTestimonial } from "@/lib/types";
 import { useCallback, useEffect, useState } from "react";
 import SectionHeading from "../ui/section-heading";
 import Reveal from "../ui/reveal";
 
 const MAX_QUOTE_LENGTH = 125;
 
-const testimonials = [
+const defaultTestimonials: HomeTestimonial[] = [
   {
-    quote:
+    _id: "default-1",
+    star: 5,
+    description:
       "RP Law Firm handled our corporate legal matters with exceptional professionalism. Their strategic advice and prompt communication gave us complete confidence throughout the process. I highly recommend their services.",
     name: "Rahul Mehta",
   },
   {
-    quote:
+    _id: "default-2",
+    star: 5,
+    description:
       "I was impressed by their professionalism, transparency, and dedication. They handled my legal matter efficiently and kept me informed at every stage. I truly appreciate their support.",
     name: "Neha Desai",
   },
   {
-    quote:
+    _id: "default-3",
+    star: 5,
+    description:
       "From contract drafting to legal consultation, RP Law Firm has been a dependable legal partner for our business. Their expertise and attention to detail have been invaluable.",
-    name: "Amit Patel",   
+    name: "Amit Patel",
   },
   {
-    quote:
+    _id: "default-4",
+    star: 5,
+    description:
       "The team was knowledgeable, approachable, and genuinely committed to achieving the best outcome for my case. They explained every legal step clearly and made the entire process stress-free.",
-    name: "Priya Shah",    
-  }
+    name: "Priya Shah",
+  },
 ];
 
 function truncateQuote(quote: string, maxLength: number) {
@@ -81,9 +90,25 @@ function useSlidesToShow() {
   return slidesToShow;
 }
 
-export default function Testimonials() {
+type TestimonialsProps = {
+  testimonialTag?: string;
+  testimonialTitle?: string;
+  testimonialDescription?: string;
+  testimonials?: HomeTestimonial[];
+};
+
+export default function Testimonials({
+  testimonialTag = "Client Stories",
+  testimonialTitle = "What Our Clients Say",
+  testimonialDescription = "Trusted by individuals, families, and businesses for reliable legal counsel, transparent communication, and dedicated representation. Here's what our clients have to say about their experience with RP Law Firm.",
+  testimonials = defaultTestimonials,
+}: TestimonialsProps) {
+
+
+  const items =
+    testimonials?.length ? testimonials : defaultTestimonials;
   const slidesToShow = useSlidesToShow();
-  const maxIndex = Math.max(0, testimonials.length - slidesToShow);
+  const maxIndex = Math.max(0, items.length - slidesToShow);
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -105,41 +130,41 @@ export default function Testimonials() {
     goTo(current <= 0 ? maxIndex : current - 1);
   }, [current, maxIndex, goTo]);
 
-  const showSlider = testimonials.length > 3;
+  const showSlider = items.length > 3;
 
   const visible = showSlider
-    ? testimonials.slice(current, current + slidesToShow)
-    : testimonials;
+    ? items.slice(current, current + slidesToShow)
+    : items;
 
   return (
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="flex flex-col items-center">
           <SectionHeading
-            eyebrow="Client Stories"
-            title="What Our Clients Say"
-            description="Trusted by individuals, families, and businesses for reliable legal counsel, transparent communication, and dedicated representation. Here's what our clients have to say about their experience with RP Law Firm."
+            eyebrow={testimonialTag}
+            title={testimonialTitle}
+            description={testimonialDescription}
           />
         </Reveal>
 
         <div className="relative mt-14">
           <div
             className={`grid gap-6 ${
-              slidesToShow === 3 && testimonials.length >= 3
+              slidesToShow === 3 && items.length >= 3
                 ? "lg:grid-cols-3"
                 : "grid-cols-1"
             }`}
           >
             {visible.map((testimonial) => (
               <article
-                key={testimonial.name}
+                key={testimonial._id}
                 className="flex h-full flex-col rounded-2xl border border-border bg-surface p-8 shadow-sm"
               >
                 <div
                   className="mb-4 flex gap-1 text-accent"
-                  aria-label="Rated 5 out of 5 stars"
+                  aria-label={`Rated ${testimonial.star} out of 5 stars`}
                 >
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                  {Array.from({ length: testimonial.star }).map((_, starIndex) => (
                     <svg
                       key={starIndex}
                       viewBox="0 0 24 24"
@@ -151,7 +176,7 @@ export default function Testimonials() {
                     </svg>
                   ))}
                 </div>
-                <TestimonialQuote quote={testimonial.quote} />
+                <TestimonialQuote quote={testimonial.description} />
                 <footer className="mt-6 border-t border-border pt-6">
                   <p className="font-semibold text-primary">{testimonial.name}</p>
                 </footer>

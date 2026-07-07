@@ -2,14 +2,21 @@
 import type { AboutPageData } from '@/lib/types';
 import { motion } from 'framer-motion';
 import { Crosshair, Eye } from 'lucide-react';
+import Image from 'next/image';
 import Reveal from '../ui/reveal';
 import Eyebrow from './EyeBrow';
 
 type MissionVisionProps = {
     aboutPageData?: AboutPageData | null;
+    missionIconUrl?: string;
+    visionIconUrl?: string;
 };
 
-const MissionVision = ({ aboutPageData }: MissionVisionProps) => {
+const MissionVision = ({
+    aboutPageData,
+    missionIconUrl,
+    visionIconUrl,
+}: MissionVisionProps) => {
     const missionText =
         aboutPageData?.missionText ??
         "Our mission is to provide dependable, practical, and ethical legal solutions through sound legal knowledge, strategic advocacy, and unwavering commitment to our client's interests. We strive to make quality legal services accessible while maintaining the highest standards of professionalism.";
@@ -45,7 +52,20 @@ const MissionVision = ({ aboutPageData }: MissionVisionProps) => {
                         >
                             <div className="absolute left-0 top-0 h-1 w-full rounded-t-2xl bg-accent" />
                             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/15 text-accent">
-                                <Crosshair size={26} strokeWidth={1.8} />
+                                {missionIconUrl ? (
+                                    <Image
+                                        src={missionIconUrl}
+                                        alt={
+                                            aboutPageData?.missionIcon?.alt ||
+                                            "Our Mission"
+                                        }
+                                        width={26}
+                                        height={26}
+                                        className="h-[26px] w-[26px] object-contain"
+                                    />
+                                ) : (
+                                    <Crosshair size={26} strokeWidth={1.8} />
+                                )}
                             </div>
                             <h3 className="mb-4 text-2xl font-bold text-white">
                                 Our Mission
@@ -64,7 +84,20 @@ const MissionVision = ({ aboutPageData }: MissionVisionProps) => {
                         >
                             <div className="absolute left-0 top-0 h-1 w-full rounded-t-2xl bg-accent-light" />
                             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/15 text-accent">
-                                <Eye size={26} strokeWidth={1.8} />
+                                {visionIconUrl ? (
+                                    <Image
+                                        src={visionIconUrl}
+                                        alt={
+                                            aboutPageData?.visionIcon?.alt ||
+                                            "Our Vision"
+                                        }
+                                        width={26}
+                                        height={26}
+                                        className="h-[26px] w-[26px] object-contain"
+                                    />
+                                ) : (
+                                    <Eye size={26} strokeWidth={1.8} />
+                                )}
                             </div>
                             <h3 className="mb-4 text-2xl font-bold text-white">
                                 Our Vision

@@ -1,4 +1,4 @@
-import ContactCta from "@/components/home/contact-cta";
+import ContactCtaSection from "@/components/home/contact-cta-section";
 import { getPageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 
@@ -7,5 +7,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function ContactUs() {
-  return <ContactCta />;
+  return <ContactCtaSection />;
 }

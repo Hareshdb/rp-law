@@ -10,12 +10,7 @@ import {
   PRACTICE_AREAS_HREF,
   handlePracticeAreasNavigationClick,
 } from "@/lib/practice-areas-navigation";
-
-const heroStats = [
-  { value: "15+", label: "Years of Experience" },
-  { value: "2000+", label: "Cases Won" },
-  { value: "500+", label: "Corporate Clients" },
-];
+import Eyebrow from "../about/EyeBrow";
 
 export default function HeroSection({
   homePageData,
@@ -56,13 +51,18 @@ export default function HeroSection({
             className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
             {homePageData.heroTitle}{" "}
-            <span className="italic text-accent">{homePageData.heroHighlightText}</span>
+            {homePageData.heroHighlightText && (
+              <span className="italic text-accent">
+                {homePageData.heroHighlightText}
+              </span>
+            )}
           </motion.h1>
           <motion.p
             variants={item}
             className="mt-6 max-w-xl text-lg leading-relaxed text-white"
           >
-            At RP Law Firm, we provide trusted legal counsel and effective representation with professionalism, integrity, and dedication. We are committed to protecting your rights and delivering practical legal solutions tailored to your needs.
+            {homePageData.heroSubtitle ||
+              "At RP Law Firm, we provide trusted legal counsel and effective representation with professionalism, integrity, and dedication. We are committed to protecting your rights and delivering practical legal solutions tailored to your needs."}
           </motion.p>
 
           <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
@@ -70,7 +70,7 @@ export default function HeroSection({
               href="/contact-us"
               className="group inline-flex items-center rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-primary shadow-lg shadow-accent/20 transition-colors hover:bg-accent-light"
             >
-              Schedule a Consultation
+              {homePageData.ctaButtonText || "Schedule a Consultation"}
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
