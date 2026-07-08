@@ -1,5 +1,5 @@
 import type { AboutPageData } from "@/lib/types";
-import Reveal from "@components/ui/reveal";
+import RevealCss from "@components/ui/reveal-css";
 import Image from "next/image";
 import Eyebrow from "./EyeBrow";
 
@@ -35,7 +35,7 @@ const AboutFirm = ({
         <section className="bg-surface py-28">
             <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
                 <div className="grid items-center gap-16 lg:grid-cols-2">
-                    <Reveal>
+                    <RevealCss>
                         <div className="relative">
                             <div className="aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl">
                                 <Image
@@ -49,9 +49,9 @@ const AboutFirm = ({
                             <div className="absolute -left-4 -top-4 h-16 w-16 rounded-xl bg-accent opacity-[0.18]" />
                             <div className="absolute -bottom-4 -right-4 h-16 w-16 rounded-xl bg-accent opacity-[0.18]" />
                         </div>
-                    </Reveal>
+                    </RevealCss>
 
-                    <Reveal delay={0.08}>
+                    <RevealCss delay={0.08}>
                         <Eyebrow>{tag}</Eyebrow>
                         <div className="mt-5 space-y-5">
                             <blockquote className="mb-6 border-l-[3px] border-accent pl-5 text-lg italic leading-relaxed text-muted">
@@ -66,7 +66,7 @@ const AboutFirm = ({
                                 </p>
                             ))}
                         </div>
-                    </Reveal>
+                    </RevealCss>
                 </div>
             </div>
         </section>
