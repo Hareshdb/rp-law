@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import type { ContactCtaData, FooterData } from "@/lib/types";
 import { useFooterData } from "@/context/footer-data-context";
 import Reveal from "../ui/reveal";
@@ -56,6 +56,29 @@ export default function ContactCta({
   const resetRecaptcha = () => {
     setRecaptchaToken(null);
     setRecaptchaResetKey((key) => key + 1);
+  };
+
+  const handlePhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const sanitizedValue = event.currentTarget.value.replace(
+      /(?!^\+)[^\d\s()-]|^\++/g,
+      "",
+    );
+    let digitCount = 0;
+
+    event.currentTarget.value = Array.from(sanitizedValue)
+      .filter((character) => {
+        if (!/\d/.test(character)) {
+          return true;
+        }
+
+        if (digitCount >= 10) {
+          return false;
+        }
+
+        digitCount += 1;
+        return true;
+      })
+      .join("");
   };
 
   const contactDetails = [
@@ -254,8 +277,13 @@ export default function ContactCta({
                   id="phone"
                   name="phone"
                   type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  pattern="^\+?[0-9\s()-]*$"
+                  maxLength={10}
                   placeholder="Phone number"
                   className={fieldClass}
+                  onChange={handlePhoneChange}
                 />
               </div>
               <div>

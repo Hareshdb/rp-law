@@ -5,6 +5,22 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY:
       process.env.GOOGLE_RECAPTCHA_SITE_KEY,
   },
+  redirects: async () => {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "header",
+            key: "host",
+            value: "www.rplawfirm.in",
+          },
+        ],
+        destination: "https://rplawfirm.in/:path*",
+        permanent: true, // 308 Permanent Redirect
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

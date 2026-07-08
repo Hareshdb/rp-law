@@ -62,7 +62,7 @@ export function buildContactInquiryEmail(data: ContactInquiryData): string {
                       Email Address
                     </p>
                     <p style="margin:0;font-size:16px;color:#111827;">
-                      <a href="mailto:${email}" style="color:#3f4854;text-decoration:none;">${email}</a>
+                      <a>${email}</a>
                     </p>
                   </td>
                 </tr>
@@ -110,5 +110,5 @@ export function buildContactInquiryEmail(data: ContactInquiryData): string {
 
 export function buildContactInquirySubject(data: ContactInquiryData): string {
   const fullName = `${data.firstName.trim()} ${data.lastName.trim()}`.trim();
-  return `New Contact Inquiry from ${fullName} - RP Law Firm`;
+  return `New Contact Inquiry from ${fullName}`;
 }
