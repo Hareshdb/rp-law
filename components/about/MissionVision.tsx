@@ -1,9 +1,7 @@
-'use client';
 import type { AboutPageData } from '@/lib/types';
-import { motion } from 'framer-motion';
 import { Crosshair, Eye } from 'lucide-react';
 import Image from 'next/image';
-import Reveal from '../ui/reveal';
+import RevealCss from '../ui/reveal-css';
 import Eyebrow from './EyeBrow';
 
 type MissionVisionProps = {
@@ -36,20 +34,16 @@ const MissionVision = ({
             />
 
             <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
-                <Reveal className="mb-16 text-center">
+                <RevealCss className="mb-16 text-center">
                     <Eyebrow>Our Purpose</Eyebrow>
                     <h2 className="mt-3 text-4xl font-bold text-white">
                         Mission &amp; Vision
                     </h2>
-                </Reveal>
+                </RevealCss>
 
                 <div className="grid gap-8 md:grid-cols-2">
-                    <Reveal delay={0}>
-                        <motion.div
-                            whileHover={{ y: -4 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                            className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-10"
-                        >
+                    <RevealCss delay={0}>
+                        <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-10 transition-transform duration-300 hover:-translate-y-1">
                             <div className="absolute left-0 top-0 h-1 w-full rounded-t-2xl bg-accent" />
                             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/15 text-accent">
                                 {missionIconUrl ? (
@@ -73,15 +67,11 @@ const MissionVision = ({
                             <p className="text-lg leading-relaxed text-white/68">
                             {missionText}
                             </p>
-                        </motion.div>
-                    </Reveal>
+                        </div>
+                    </RevealCss>
 
-                    <Reveal delay={0.12}>
-                        <motion.div
-                            whileHover={{ y: -4 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                            className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-10"
-                        >
+                    <RevealCss delay={0.12}>
+                        <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-10 transition-transform duration-300 hover:-translate-y-1">
                             <div className="absolute left-0 top-0 h-1 w-full rounded-t-2xl bg-accent-light" />
                             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/15 text-accent">
                                 {visionIconUrl ? (
@@ -105,8 +95,8 @@ const MissionVision = ({
                             <p className="text-lg leading-relaxed text-white/68">
                             {visionText}
                             </p>
-                        </motion.div>
-                    </Reveal>
+                        </div>
+                    </RevealCss>
                 </div>
             </div>
         </section>

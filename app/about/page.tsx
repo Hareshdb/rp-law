@@ -1,4 +1,3 @@
-import ContactCtaSection from '@/components/home/contact-cta-section'
 import { getAboutPageData } from '@/lib/apis'
 import { PLACEHOLDER_IMAGE } from '@/lib/constants'
 import { getPageMetadata } from '@/lib/metadata'
@@ -8,8 +7,11 @@ import Banner from '@components/about/Banner'
 import CoreValues from '@components/about/CoreValues'
 import FounderProfile from '@components/about/FounderProfile'
 import MissionVision from '@components/about/MissionVision'
-import Testimonials from '@components/home/testimonials'
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
+
+const Testimonials = dynamic(() => import('@components/home/testimonials'))
+const ContactCtaSection = dynamic(() => import('@/components/home/contact-cta-section'))
 
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata('about')
@@ -19,12 +21,12 @@ export default async function AboutUsPage() {
   const aboutPageData = await getAboutPageData()
 
   const featuredImageUrl = aboutPageData?.featuredImage
-    ? urlFor(aboutPageData.featuredImage).width(1920).quality(85).auto('format').url()
+    ? urlFor(aboutPageData.featuredImage).width(1440).quality(80).auto('format').url()
     : PLACEHOLDER_IMAGE
 
   const aboutUsImageUrl = aboutPageData?.aboutUsImage
-    ? urlFor(aboutPageData.aboutUsImage).width(900).quality(85).auto('format').url()
-    : 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=80'
+    ? urlFor(aboutPageData.aboutUsImage).width(800).quality(80).auto('format').url()
+    : 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80'
 
   const missionIconUrl = aboutPageData?.missionIcon
     ? urlFor(aboutPageData.missionIcon).width(52).height(52).auto('format').url()
