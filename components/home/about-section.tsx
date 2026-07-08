@@ -49,7 +49,7 @@ export default function AboutSection({
             </RevealCss>
 
             <RevealCss direction="left" delay={0.1}>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
+              <p className="mt-6 whitespace-pre-line text-lg leading-relaxed text-muted">
                 {aboutDescription}
               </p>
             </RevealCss>

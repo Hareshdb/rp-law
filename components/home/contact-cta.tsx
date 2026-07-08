@@ -187,7 +187,7 @@ export default function ContactCta({
             </div>
           )}
 
-          <p className="mt-4 max-w-md text-lg leading-relaxed text-white/75">
+          <p className="mt-4 max-w-md whitespace-pre-line text-lg leading-relaxed text-white/75">
             {description}
           </p>
 
