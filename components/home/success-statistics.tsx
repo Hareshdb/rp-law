@@ -1,6 +1,6 @@
 import AnimatedCounter from "@components/ui/animated-counter";
 import SectionHeading from "@components/ui/section-heading";
-import Reveal from "@components/ui/reveal";
+import RevealCss from "@components/ui/reveal-css";
 import { parseTrackRecordValue } from "@/lib/helpers";
 import type { TrackRecordItem } from "@/lib/types";
 
@@ -33,7 +33,7 @@ export default function SuccessStatistics({
         className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full"
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal className="flex flex-col items-center">
+        <RevealCss className="flex flex-col items-center">
           <SectionHeading
             eyebrow={trackRecordTag}
             title={trackRecordTitle}
@@ -41,14 +41,14 @@ export default function SuccessStatistics({
             light
             markAs="h4"
           />
-        </Reveal>
+        </RevealCss>
 
         <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 lg:grid-cols-4">
           {stats.map((stat, index) => {
             const parsed = parseTrackRecordValue(stat.value);
 
             return (
-              <Reveal
+              <RevealCss
                 key={stat.label}
                 delay={index * 0.1}
                 className="bg-primary/40 p-8 text-center backdrop-blur-sm"
@@ -66,7 +66,7 @@ export default function SuccessStatistics({
                 <p className="mt-3 text-sm font-medium text-white/70 sm:text-base">
                   {stat.label}
                 </p>
-              </Reveal>
+              </RevealCss>
             );
           })}
         </div>
