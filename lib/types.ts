@@ -136,6 +136,11 @@ export type ContactCtaData = {
   description?: string;
 };
 
+export type SettingsData = {
+  logo?: SanityImageSource & { alt?: string };
+  logoInverted?: SanityImageSource & { alt?: string };
+};
+
 export type PostAuthor = {
   _id: string;
   name: string;
