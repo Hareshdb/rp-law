@@ -1,7 +1,7 @@
 import type { ResolvedCoreValueItem } from "@/lib/types";
 import { ShieldCheck } from "lucide-react";
 import Image from "next/image";
-import Reveal from "../ui/reveal";
+import RevealCss from "../ui/reveal-css";
 import SectionHeading from "../ui/section-heading";
 
 const DEFAULT_CORE_VALUES: ResolvedCoreValueItem[] = [
@@ -53,7 +53,7 @@ function CoreValues({
     return (
         <section className="bg-background pt-28 pb-10">
             <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
-                <Reveal>
+                <RevealCss>
                     <SectionHeading
                         eyebrow={
                             coreValuesTag ?? "Principles That Drive Us"
@@ -66,11 +66,11 @@ function CoreValues({
                         align="left"
                         markAs="h3"
                     />
-                </Reveal>
+                </RevealCss>
 
                 <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
                     {values.map((value, index) => (
-                        <Reveal
+                        <RevealCss
                             key={`${value.title}-${index}`}
                             as="article"
                             delay={index * 0.1}
@@ -102,7 +102,7 @@ function CoreValues({
                             <p className="mt-3 text-sm leading-relaxed text-muted">
                                 {value.description}
                             </p>
-                        </Reveal>
+                        </RevealCss>
                     ))}
                 </div>
             </div>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import SectionHeading from "../ui/section-heading";
-import Reveal from "../ui/reveal";
+import RevealCss from "../ui/reveal-css";
 
 type AboutSectionProps = {
   aboutImageUrl: string;
@@ -39,22 +39,22 @@ export default function AboutSection({
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
-            <Reveal direction="left">
+            <RevealCss direction="left">
               <SectionHeading
                 eyebrow={aboutTag}
                 title={aboutTitle}
                 align="left"
                 markAs="h2"
               />
-            </Reveal>
+            </RevealCss>
 
-            <Reveal direction="left" delay={0.1}>
-              <p className="mt-6 whitespace-pre-line text-lg leading-relaxed text-muted">
+            <RevealCss direction="left" delay={0.1}>
+              <p className="mt-6 text-lg leading-relaxed text-muted">
                 {aboutDescription}
               </p>
-            </Reveal>
+            </RevealCss>
 
-            <Reveal direction="left" delay={0.2}>
+            <RevealCss direction="left" delay={0.2}>
               <Link
                 href="/about"
                 className="group mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
@@ -65,10 +65,10 @@ export default function AboutSection({
                   aria-hidden="true"
                 />
               </Link>
-            </Reveal>
+            </RevealCss>
           </div>
 
-          <Reveal direction="right" className="relative">
+          <RevealCss direction="right" className="relative">
             <div className="relative">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl shadow-primary/10 sm:aspect-[5/6] lg:aspect-[4/5]">
                 <Image
@@ -113,7 +113,7 @@ export default function AboutSection({
                 </div>
               </div>
             </div>
-          </Reveal>
+          </RevealCss>
         </div>
       </div>
     </section>

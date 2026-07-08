@@ -3,9 +3,8 @@
 import type { HomeFaqItem } from "@/lib/types";
 import Link from "next/link";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Reveal from "../ui/reveal";
+import RevealCss from "../ui/reveal-css";
 import Eyebrow from "../about/EyeBrow";
 
 const defaultFaqs: HomeFaqItem[] = [
@@ -57,7 +56,7 @@ export default function Faq({
   return (
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
-        <Reveal direction="right">
+        <RevealCss direction="right">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
             <Eyebrow>{faqTag}</Eyebrow>
           </p>
@@ -74,26 +73,31 @@ export default function Faq({
             {faqCtaButtonText}
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Link>
-        </Reveal>
+        </RevealCss>
 
-        <Reveal direction="left" className="divide-y divide-border">
+        <RevealCss direction="left" className="divide-y divide-border">
           {items.map((faq, index) => {
             const isOpen = openIndex === index;
+            const answerId = `faq-answer-${index}`;
             return (
               <div key={faq.question}>
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
+                  aria-controls={answerId}
                   className="flex w-full items-center justify-between gap-4 py-5 text-left"
                 >
-                  <span className="text-base font-semibold text-primary sm:text-lg">
+                  <span
+                    id={`faq-question-${index}`}
+                    className="text-base font-semibold text-primary sm:text-lg"
+                  >
                     {index + 1}. {faq.question}
                   </span>
-                  <motion.span
-                    animate={{ rotate: isOpen ? 45 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/5 text-primary"
+                  <span
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/5 text-primary transition-transform duration-200 ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -107,27 +111,26 @@ export default function Faq({
                       <line x1="12" y1="5" x2="12" y2="19" />
                       <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
-                  </motion.span>
+                  </span>
                 </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="pb-5 pr-12 leading-relaxed text-muted">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div
+                  id={answerId}
+                  role="region"
+                  aria-labelledby={`faq-question-${index}`}
+                  className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="pb-5 pr-12 leading-relaxed text-muted">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}
-        </Reveal>
+        </RevealCss>
       </div>
     </section>
   );

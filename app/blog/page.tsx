@@ -1,8 +1,12 @@
 import BlogListing from "@/components/blog/BlogList";
-import ContactCtaSection from "@/components/home/contact-cta-section";
 import { getMetadata, getPosts } from "@/lib/apis";
 import { getPageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+const ContactCtaSection = dynamic(
+  () => import("@/components/home/contact-cta-section"),
+);
 
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("blog");

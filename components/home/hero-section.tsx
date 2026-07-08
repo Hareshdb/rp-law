@@ -1,16 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
 import { HomePageData } from "@/lib/types";
 import { ArrowRight } from "lucide-react";
-import { usePathname } from "next/navigation";
-import {
-  PRACTICE_AREAS_HREF,
-  handlePracticeAreasNavigationClick,
-} from "@/lib/practice-areas-navigation";
-import Eyebrow from "../about/EyeBrow";
+import HeroPracticeAreasLink from "./hero-practice-areas-link";
 
 export default function HeroSection({
   homePageData,
@@ -19,53 +11,27 @@ export default function HeroSection({
   homePageData: HomePageData;
   heroImageUrl: string;
 }) {
-  const reduceMotion = useReducedMotion();
-  const pathname = usePathname();
-
-  const container = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-  };
-
-  const item = {
-    hidden: reduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
-    },
-  };
-
   return (
     <section className="relative overflow-hidden bg-primary">
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:py-28">
-        <motion.div variants={container} initial="hidden" animate="visible">
-          <motion.p
-            variants={item}
-            className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent"
-          >
+        <div className="hero-stagger">
+          <p className="hero-animate-item mb-4 text-sm font-semibold uppercase tracking-widest text-accent">
             RP Law Firm
-          </motion.p>
-          <motion.h1
-            variants={item}
-            className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
-          >
+          </p>
+          <h1 className="hero-animate-item text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
             {homePageData.heroTitle}{" "}
             {homePageData.heroHighlightText && (
               <span className="italic text-accent">
                 {homePageData.heroHighlightText}
               </span>
             )}
-          </motion.h1>
-          <motion.p
-            variants={item}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-white"
-          >
+          </h1>
+          <p className="hero-animate-item mt-6 max-w-xl text-lg leading-relaxed text-white">
             {homePageData.heroSubtitle ||
               "At RP Law Firm, we provide trusted legal counsel and effective representation with professionalism, integrity, and dedication. We are committed to protecting your rights and delivering practical legal solutions tailored to your needs."}
-          </motion.p>
+          </p>
 
-          <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
+          <div className="hero-animate-item mt-10 flex flex-wrap gap-4">
             <Link
               href="/contact-us"
               className="group inline-flex items-center rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-primary shadow-lg shadow-accent/20 transition-colors hover:bg-accent-light"
@@ -73,38 +39,13 @@ export default function HeroSection({
               {homePageData.ctaButtonText || "Schedule a Consultation"}
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link
-              href={PRACTICE_AREAS_HREF}
-              onClick={(event) =>
-                handlePracticeAreasNavigationClick(event, pathname)
-              }
-              className="inline-flex items-center rounded-full border border-white/30 px-8 py-3.5 text-base font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
-            >
+            <HeroPracticeAreasLink className="inline-flex items-center rounded-full border border-white/30 px-8 py-3.5 text-base font-semibold text-white transition-colors hover:border-white hover:bg-white/10">
               Explore Practice Areas
-            </Link>
-          </motion.div>
+            </HeroPracticeAreasLink>
+          </div>
+        </div>
 
-          {/* <motion.dl
-            variants={item}
-            className="mt-12 flex flex-wrap gap-x-10 gap-y-6 pt-8"
-          >
-            {heroStats.map((stat) => (
-              <div key={stat.label}>
-                <dt className="text-3xl font-bold text-white">{stat.value}</dt>
-                <dd className="mt-1 text-sm font-medium text-white/60">
-                  {stat.label}
-                </dd>
-              </div>
-            ))}
-          </motion.dl> */}
-        </motion.div>
-
-        <motion.div
-          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative"
-        >
+        <div className="hero-image-animate relative">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
             <Image
               src={heroImageUrl}
@@ -116,6 +57,7 @@ export default function HeroSection({
               }
               fill
               priority
+              fetchPriority="high"
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
@@ -144,7 +86,7 @@ export default function HeroSection({
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

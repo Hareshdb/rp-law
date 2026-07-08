@@ -1,14 +1,8 @@
-'use client';
 import type { AboutPageData } from '@/lib/types';
-import { Variants, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  PRACTICE_AREAS_HREF,
-  markPracticeAreasScrollIntent,
-} from '@/lib/practice-areas-navigation';
-import { useRouter } from 'next/navigation';
+import PracticeAreasLink from './PracticeAreasLink';
 
 type BannerProps = {
     aboutPageData?: AboutPageData | null;
@@ -17,28 +11,12 @@ type BannerProps = {
 };
 
 const Banner = ({ aboutPageData, featuredImageUrl, featuredImageAlt }: BannerProps) => {
-    const router = useRouter();
-
     const title = aboutPageData?.title ?? 'About';
     const titleHighlight = aboutPageData?.titleHighlight ?? 'RP Law Firm';
     const subtitle =
         aboutPageData?.subtitle ??
         'Although headquartered in Ahmedabad, Gujarat, RP Law Firm proudly serves clients across India. Through technology-enabled consultations and strategic legal coordination, we assist individuals, businesses, NRIs, and corporate clients in handling legal matters before courts, tribunals, and regulatory authorities nationwide.';
     const ctaButtonText = aboutPageData?.ctaButtonText ?? 'Schedule a Consultation';
-
-    const fadeUp: Variants = {
-        hidden: { opacity: 0, y: 28 },
-        visible: (delay: number = 0) => ({
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: delay / 1000 },
-        }),
-    };
-
-    const stagger: Variants = {
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.08 } },
-    };
 
     return (
         <section className="relative flex min-h-[88vh] items-center overflow-hidden sm:items-start">
@@ -51,6 +29,7 @@ const Banner = ({ aboutPageData, featuredImageUrl, featuredImageAlt }: BannerPro
                 }
                 fill
                 priority
+                fetchPriority="high"
                 className="object-cover object-center"
                 sizes="100vw"
             />
@@ -64,53 +43,26 @@ const Banner = ({ aboutPageData, featuredImageUrl, featuredImageAlt }: BannerPro
             {/* <div className="absolute left-0 top-0 h-full w-1 bg-accent" /> */}
 
             <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-10 sm:pt-16 lg:px-16 lg:pt-20">
-                <motion.div
-                    className="max-w-3xl text-left"
-                    variants={stagger}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <motion.h1
-                        variants={fadeUp}
-                        custom={80}
-                        className="text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl"
-                    >
+                <div className="about-hero-stagger max-w-3xl text-left">
+                    <h1 className="about-hero-animate-item text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
                         {title} <br/>
                         <span className="text-accent">{titleHighlight}</span>
-                    </motion.h1>
+                    </h1>
 
-                    <motion.p
-                        variants={fadeUp}
-                        custom={160}
-                        className="mt-6 max-w-3xl text-lg leading-relaxed text-white/72"
-                    >
+                    <p className="about-hero-animate-item mt-6 max-w-3xl text-lg leading-relaxed text-white/72">
                         {subtitle}
-                    </motion.p>
+                    </p>
 
-                    <motion.div
-                        variants={fadeUp}
-                        custom={240}
-                        className="mt-10 flex flex-wrap gap-4"
-                    >
+                    <div className="about-hero-animate-item mt-10 flex flex-wrap gap-4">
                         <Link
                             href="/contact-us"
                             className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 text-sm font-bold tracking-wide text-primary transition-[filter] hover:brightness-110"
                         >
                             {ctaButtonText} <ArrowRight size={16} />
                         </Link>
-                        <Link
-                            href={PRACTICE_AREAS_HREF}
-                            onClick={(event) => {
-                                event.preventDefault();
-                                markPracticeAreasScrollIntent();
-                                router.push(PRACTICE_AREAS_HREF);
-                            }}
-                            className="inline-flex items-center rounded-full border-[1.5px] border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-                        >
-                         Our Practice Areas
-                        </Link>
-                    </motion.div>
-                </motion.div>
+                        <PracticeAreasLink />
+                    </div>
+                </div>
             </div>
         </section>
     );
