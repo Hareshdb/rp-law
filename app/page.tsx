@@ -1,20 +1,22 @@
 import AboutSection from "@/components/home/about-section";
-import ContactCtaSection from "@/components/home/contact-cta-section";
-import { getFirstAuthor, getHomePageData } from "@/lib/apis";
+import { getContactCtaData, getFirstAuthor, getHomePageData } from "@/lib/apis";
 import { getImageUrl } from "@/lib/helpers";
 import { PLACEHOLDER_IMAGE } from "@/lib/constants";
 import { getPageMetadata } from "@/lib/metadata";
 import { urlFor } from "@/lib/sanity-image-builder";
-import type { HomePageData } from "@/lib/types";
-import Faq from "@components/home/faq";
+import type { HomeFaqItem, HomePageData } from "@/lib/types";
 import HeroSection from "@components/home/hero-section";
 import PracticeAreas, {
   type ResolvedPracticeArea,
 } from "@components/home/practice-areas";
 import SuccessStatistics from "@components/home/success-statistics";
-import Testimonials from "@components/home/testimonials";
 import WhyChooseUs from "@components/home/why-choose-us";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+const Faq = dynamic(() => import("@components/home/faq"));
+const Testimonials = dynamic(() => import("@components/home/testimonials"));
+const ContactCta = dynamic(() => import("@/components/home/contact-cta"));
 
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata("home");
@@ -37,30 +39,55 @@ function resolvePracticeAreas(
   }));
 }
 
+function buildFaqJsonLd(faqs: HomeFaqItem[] | undefined) {
+  if (!faqs?.length) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
 export default async function Home() {
-  const [homePageData, author] = await Promise.all([
+  const [homePageData, author, contactCtaData] = await Promise.all([
     getHomePageData(),
     getFirstAuthor(),
+    getContactCtaData(),
   ]);
 
   const data = homePageData ?? emptyHomePageData;
 
-
   const heroImageUrl = data.heroImage
-    ? urlFor(data.heroImage).width(1200).quality(85).auto("format").url()
+    ? urlFor(data.heroImage).width(960).quality(80).auto("format").url()
     : PLACEHOLDER_IMAGE;
   const aboutImageUrl = data.aboutImage
-    ? urlFor(data.aboutImage).width(900).quality(85).auto("format").url()
+    ? urlFor(data.aboutImage).width(800).quality(80).auto("format").url()
     : PLACEHOLDER_IMAGE;
   const authorAvatarUrl = author?.image
     ? getImageUrl(author.image)
     : "/avatar-one.jpg";
   const whyChooseUsImageUrl = data.whyChooseUsImage
-    ? urlFor(data.whyChooseUsImage).width(800).quality(85).auto("format").url()
+    ? urlFor(data.whyChooseUsImage).width(720).quality(80).auto("format").url()
     : PLACEHOLDER_IMAGE;
+
+  const faqJsonLd = buildFaqJsonLd(data.faqs);
 
   return (
     <>
+      {faqJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      ) : null}
       <HeroSection homePageData={data} heroImageUrl={heroImageUrl} />
       <AboutSection
         aboutImageUrl={aboutImageUrl}
@@ -101,7 +128,7 @@ export default async function Home() {
         faqCtaButtonText={data.faqCtaButtonText}
         faqs={data.faqs}
       />
-      <ContactCtaSection />
+      <ContactCta contactCtaData={contactCtaData} />
     </>
   );
 }

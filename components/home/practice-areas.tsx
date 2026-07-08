@@ -1,16 +1,8 @@
-"use client";
-
-import {
-  clearPracticeAreasHash,
-  markPracticeAreasHomeMounted,
-  scrollToPracticeAreasElement,
-  shouldScrollToPracticeAreas,
-} from "@/lib/practice-areas-navigation";
 import { Scale } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-import Reveal from "../ui/reveal";
+import RevealCss from "../ui/reveal-css";
 import SectionHeading from "../ui/section-heading";
+import PracticeAreasShell from "./practice-areas-shell";
 
 export type ResolvedPracticeArea = {
   label: string;
@@ -95,48 +87,23 @@ export default function PracticeAreas({
   practiceAreaDescription = "At RP Law Firm, we provide comprehensive legal services to individuals, businesses, startups, and corporate clients across Ahmedabad, Gujarat, and throughout India. Our firm is committed to delivering strategic legal advice, effective representation, and practical solutions across a wide range of legal matters.",
   practiceAreas = defaultPracticeAreas,
 }: PracticeAreasProps) {
-  const sectionRef = useRef<HTMLElement | null>(null);
   const areas = practiceAreas.length > 0 ? practiceAreas : defaultPracticeAreas;
 
-  useEffect(() => {
-    const scrollIfNeeded = () => {
-      if (shouldScrollToPracticeAreas()) {
-        scrollToPracticeAreasElement(sectionRef.current);
-        return;
-      }
-
-      clearPracticeAreasHash();
-    };
-
-    scrollIfNeeded();
-    markPracticeAreasHomeMounted();
-
-    window.addEventListener("hashchange", scrollIfNeeded);
-
-    return () => {
-      window.removeEventListener("hashchange", scrollIfNeeded);
-    };
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      id="practice-areas"
-      className="scroll-mt-20 bg-background py-20 lg:scroll-mt-24 lg:py-28"
-    >
+    <PracticeAreasShell>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal className="flex flex-col items-center">
+        <RevealCss className="flex flex-col items-center">
           <SectionHeading
             eyebrow={practiceAreaTag}
             title={practiceAreaTitle}
             description={practiceAreaDescription}
             markAs="h3"
           />
-        </Reveal>
+        </RevealCss>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {areas.map((area, index) => (
-            <Reveal
+            <RevealCss
               key={area.label}
               as="article"
               delay={(index % 3) * 0.1}
@@ -165,10 +132,10 @@ export default function PracticeAreas({
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 {area.description}
               </p>
-            </Reveal>
+            </RevealCss>
           ))}
         </div>
       </div>
-    </section>
+    </PracticeAreasShell>
   );
 }

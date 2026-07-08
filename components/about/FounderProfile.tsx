@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getFirstAuthor } from "@/lib/apis";
 import { getImageUrl } from "@/lib/helpers";
 import type { AboutPageData, PostAuthor } from "@/lib/types";
-import Reveal from "@components/ui/reveal";
+import RevealCss from "@components/ui/reveal-css";
 import Eyebrow from "./EyeBrow";
 
 const FALLBACK_NAME = "Adv. Rinal Patel";
@@ -34,7 +34,7 @@ const FounderProfile = async ({ aboutPageData }: FounderProfileProps) => {
     <section className="bg-surface py-28">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
         <div className="grid items-center justify-items-center gap-16 lg:grid-cols-[auto_1fr] lg:justify-items-start">
-          <Reveal>
+          <RevealCss>
             <div>
               <div className="relative h-48 w-48 overflow-hidden rounded-full outline outline-4 outline-offset-[6px] outline-accent shadow-2xl sm:h-56 sm:w-56">
                 <Image
@@ -46,9 +46,9 @@ const FounderProfile = async ({ aboutPageData }: FounderProfileProps) => {
                 />
               </div>
             </div>
-          </Reveal>
+          </RevealCss>
 
-          <Reveal delay={0.08} className="text-center lg:text-left">
+          <RevealCss delay={0.08} className="text-center lg:text-left">
             <Eyebrow>{tag}</Eyebrow>
             <div className="mt-3 text-3xl font-bold text-primary sm:text-4xl">
               {name}
@@ -69,7 +69,7 @@ const FounderProfile = async ({ aboutPageData }: FounderProfileProps) => {
                 <p className="leading-relaxed text-muted">{additionalInfo}</p>
               ) : null}
             </div>
-          </Reveal>
+          </RevealCss>
         </div>
       </div>
     </section>
