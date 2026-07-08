@@ -11,6 +11,7 @@ import type {
   PageSeoData,
   PostAuthor,
   SanityPost,
+  SettingsData,
   SiteMetadata,
 } from "./types";
 
@@ -433,7 +434,7 @@ export async function getContactCtaData(): Promise<ContactCtaData | null> {
   `);
 }
 
-export async function getSettings() {
+export async function getSettings(): Promise<SettingsData | null> {
   return fetchFromSanity(`
     *[_type == "settings"][0]{
       logo,
