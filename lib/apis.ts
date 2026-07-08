@@ -1,4 +1,5 @@
 import { DEFAULT_LIMIT, DEFAULT_OFFSET, PLACEHOLDER_IMAGE } from "./constants";
+import type { FilteredResponseQueryOptions, QueryParams } from "@sanity/client";
 import { sanityClient } from "./sanity-client";
 import { urlFor } from "./sanity-image-builder";
 import type {
@@ -12,6 +13,24 @@ import type {
   SanityPost,
   SiteMetadata,
 } from "./types";
+
+const SANITY_REVALIDATE_SECONDS = 180;
+
+type SanityFetchOptions = FilteredResponseQueryOptions;
+
+function fetchFromSanity<T>(
+  query: string,
+  params: QueryParams = {},
+  options?: SanityFetchOptions
+): Promise<T> {
+  return sanityClient.fetch<T>(query, params, {
+    ...options,
+    next: {
+      ...options?.next,
+      revalidate: SANITY_REVALIDATE_SECONDS,
+    },
+  });
+}
 
 const authorFields = `
   _id,
@@ -155,7 +174,7 @@ export async function getPosts({
   limit = DEFAULT_LIMIT,
   offset = DEFAULT_OFFSET,
 }: PostsQueryOptions = {}): Promise<Blog[]> {
-  const posts: SanityPost[] = await sanityClient.fetch(postsQuery, {
+  const posts: SanityPost[] = await fetchFromSanity(postsQuery, {
     limit,
     offset,
   });
@@ -166,13 +185,13 @@ export async function getPosts({
 export async function getAllPostSlugs(): Promise<
   Array<{ slug: string; publishedAt?: string; _updatedAt?: string }>
 > {
-  return sanityClient.fetch(allPostSlugsQuery);
+  return fetchFromSanity(allPostSlugsQuery);
 }
 
 export async function getPostBySlug(
   slug: string
 ): Promise<SanityPost | null> {
-  const post: SanityPost | null = await sanityClient.fetch(
+  const post: SanityPost | null = await fetchFromSanity(
     postBySlugQuery,
     { slug }
   );
@@ -189,7 +208,7 @@ export async function getPostsByCategory({
   limit = DEFAULT_LIMIT,
   offset = DEFAULT_OFFSET,
 }: PostsQueryOptions & { categoryId: string }): Promise<Blog[]> {
-  const posts: SanityPost[] = await sanityClient.fetch(
+  const posts: SanityPost[] = await fetchFromSanity(
     postsByCategoryQuery,
     {
       categoryId,
@@ -234,7 +253,7 @@ export async function getRelatedPosts(
   categoryId: string,
   limit: number = 2
 ): Promise<Blog[]> {
-  const posts: SanityPost[] = await sanityClient.fetch(
+  const posts: SanityPost[] = await fetchFromSanity(
     relatedPostsQuery,
     {
       postId,
@@ -250,7 +269,7 @@ export async function getRelatedPostsByCategory(
   categoryId: string,
   postId: string
 ): Promise<Blog[]> {
-  const posts: SanityPost[] = await sanityClient.fetch(
+  const posts: SanityPost[] = await fetchFromSanity(
     relatedPostsByCategoryQuery,
     { categoryId, postId }
   );
@@ -259,7 +278,7 @@ export async function getRelatedPostsByCategory(
 }
 
 export async function getPageSeoData(): Promise<PageSeoData | null> {
-  return sanityClient.fetch(`
+  return fetchFromSanity(`
     *[_type == "pageSeo"][0]{
       _id,
       homePageSeo {
@@ -283,7 +302,7 @@ export async function getPageSeoData(): Promise<PageSeoData | null> {
 }
 
 export async function getAboutPageData(): Promise<AboutPageData | null> {
-  return sanityClient.fetch(`
+  return fetchFromSanity(`
     *[_type == "aboutPage"][0]{
       _id,
       title,
@@ -316,7 +335,7 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
 }
 
 export async function getHomePageData(): Promise<HomePageData | null> {
-  return sanityClient.fetch(`
+  return fetchFromSanity(`
     *[_type == "homePage"][0]{
       _id,
       heroTitle,
@@ -376,7 +395,7 @@ export async function getHomePageData(): Promise<HomePageData | null> {
 
 export async function getFooterData(): Promise<FooterData> {
   const [homeData, metadata] = await Promise.all([
-    sanityClient.fetch(`
+    fetchFromSanity<Pick<FooterData, "address" | "mobileNumber" | "email">>(`
       *[_type == "homePage"][0]{
         address,
         mobileNumber,
@@ -393,7 +412,7 @@ export async function getFooterData(): Promise<FooterData> {
 }
 
 export async function getMetadata(): Promise<SiteMetadata | null> {
-  return sanityClient.fetch(`
+  return fetchFromSanity(`
     *[_type == "metadata"][0]{
       _id,
       blogHeroTitle,
@@ -404,7 +423,7 @@ export async function getMetadata(): Promise<SiteMetadata | null> {
 }
 
 export async function getContactCtaData(): Promise<ContactCtaData | null> {
-  return sanityClient.fetch(`
+  return fetchFromSanity(`
     *[_type == "contactCta"][0]{
       _id,
       tag,
@@ -415,7 +434,7 @@ export async function getContactCtaData(): Promise<ContactCtaData | null> {
 }
 
 export async function getSettings() {
-  return sanityClient.fetch(`
+  return fetchFromSanity(`
     *[_type == "settings"][0]{
       logo,
       logoInverted
@@ -430,5 +449,5 @@ const firstAuthorQuery = `
 `;
 
 export async function getFirstAuthor(): Promise<PostAuthor | null> {
-  return sanityClient.fetch(firstAuthorQuery);
+  return fetchFromSanity(firstAuthorQuery);
 }
