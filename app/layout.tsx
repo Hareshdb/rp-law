@@ -48,7 +48,8 @@ export default async function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>        
+      <head>
+      <meta name="google-site-verification" content="LjN0bMBdK17wU_T6Yr3YoXRKmVn4nZrKKLwC551_3hg" />        
         <script
           dangerouslySetInnerHTML={{
             __html: `
