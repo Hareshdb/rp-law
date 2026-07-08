@@ -110,5 +110,5 @@ export function buildContactInquiryEmail(data: ContactInquiryData): string {
 
 export function buildContactInquirySubject(data: ContactInquiryData): string {
   const fullName = `${data.firstName.trim()} ${data.lastName.trim()}`.trim();
-  return `New Contact Inquiry from ${fullName} - RP Law Firm`;
+  return `New Contact Inquiry from ${fullName}`;
 }
