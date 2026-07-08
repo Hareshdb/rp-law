@@ -123,6 +123,14 @@ const relatedPostsByCategoryQuery = `
   }
 `;
 
+const allPostSlugsQuery = `
+  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+    "slug": slug.current,
+    publishedAt,
+    _updatedAt
+  }
+`;
+
 export function mapSanityPostToBlog(post: SanityPost): Blog {
   return {
     id: post._id,
@@ -153,6 +161,12 @@ export async function getPosts({
   });
 
   return posts.map(mapSanityPostToBlog);
+}
+
+export async function getAllPostSlugs(): Promise<
+  Array<{ slug: string; publishedAt?: string; _updatedAt?: string }>
+> {
+  return sanityClient.fetch(allPostSlugsQuery);
 }
 
 export async function getPostBySlug(
