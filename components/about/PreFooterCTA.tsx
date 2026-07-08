@@ -1,8 +1,6 @@
-'use client';
-import { motion } from 'framer-motion'
 import { ArrowRight, Lock, Phone, Scale, Trophy } from 'lucide-react'
 import Link from 'next/link'
-import Reveal from '../ui/reveal'
+import RevealCss from '../ui/reveal-css'
 
 const TRUST = [
     { icon: Scale, text: "Free Initial Consultation" },
@@ -23,7 +21,7 @@ function PreFooterCTA() {
             />
 
             <div className="relative z-10 mx-auto max-w-4xl px-6 text-center sm:px-10">
-                <Reveal>
+                <RevealCss>
                     <div className="mb-4 flex justify-center">
                         <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-accent">
                             <span className="inline-block h-px w-6 bg-accent" />
@@ -42,23 +40,23 @@ function PreFooterCTA() {
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4">
-                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+                        <div className="transition-transform duration-200 hover:scale-105 active:scale-[0.97]">
                             <Link
                                 href="/contact-us"
                                 className="inline-flex items-center gap-2 rounded-full bg-accent px-9 py-4 text-sm font-bold tracking-wide text-primary-dark transition-[filter] hover:brightness-110"
                             >
                                 Schedule a Consultation <ArrowRight size={16} />
                             </Link>
-                        </motion.div>
+                        </div>
 
-                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+                        <div className="transition-transform duration-200 hover:scale-105 active:scale-[0.97]">
                             <Link
                                 href="tel:+919512123013"
                                 className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-white/25 px-9 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                             >
                                 <Phone size={16} /> Call Us Now
                             </Link>
-                        </motion.div>
+                        </div>
                     </div>
 
                     <div className="mt-14 flex flex-wrap justify-center gap-8">
@@ -75,7 +73,7 @@ function PreFooterCTA() {
                             );
                         })}
                     </div>
-                </Reveal>
+                </RevealCss>
             </div>
         </section>
     )
