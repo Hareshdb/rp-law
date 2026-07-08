@@ -1,10 +1,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useMemo, useState, type ChangeEvent, type FormEvent } from "react";
 import type { ContactCtaData, FooterData } from "@/lib/types";
 import { useFooterData } from "@/context/footer-data-context";
-import Reveal from "../ui/reveal";
+import RevealCss from "../ui/reveal-css";
 import { Mail, PhoneCall } from "lucide-react";
 
 const ReCAPTCHAWidget = dynamic(() => import("react-google-recaptcha"), {
@@ -39,6 +39,7 @@ export default function ContactCta({
   isContactPage = false,
 }: ContactCtaProps) {
   const footerData = useFooterData();
+  const [shouldLoadRecaptcha, setShouldLoadRecaptcha] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [recaptchaResetKey, setRecaptchaResetKey] = useState(0);
   const [submitted, setSubmitted] = useState(false);
@@ -53,9 +54,18 @@ export default function ContactCta({
   const title = contactCtaData?.title ?? DEFAULT_TITLE;
   const description = contactCtaData?.description ?? DEFAULT_DESCRIPTION;
 
+  const activeRecaptchaSiteKey =
+    shouldLoadRecaptcha && recaptchaSiteKey ? recaptchaSiteKey : null;
+
   const resetRecaptcha = () => {
     setRecaptchaToken(null);
     setRecaptchaResetKey((key) => key + 1);
+  };
+
+  const activateRecaptcha = () => {
+    if (recaptchaSiteKey) {
+      setShouldLoadRecaptcha(true);
+    }
   };
 
   const handlePhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -81,26 +91,30 @@ export default function ContactCta({
       .join("");
   };
 
-  const contactDetails = [
-    {
-      label: "Call us",
-      value: mobileNumber,
-      href: phoneHref,
-      icon: (
-        <PhoneCall className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
-      ),
-    },
-    {
-      label: "Email us",
-      value: email,
-      href: `mailto:${email}`,
-      icon: <Mail className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />,
-    },
-  ];
+  const contactDetails = useMemo(
+    () => [
+      {
+        label: "Call us",
+        value: mobileNumber,
+        href: phoneHref,
+        icon: (
+          <PhoneCall className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
+        ),
+      },
+      {
+        label: "Email us",
+        value: email,
+        href: `mailto:${email}`,
+        icon: <Mail className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />,
+      },
+    ],
+    [email, mobileNumber, phoneHref],
+  );
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+    activateRecaptcha();
     setIsSubmitting(true);
 
     const formData = new FormData(event.currentTarget);
@@ -159,7 +173,7 @@ export default function ContactCta({
         className="absolute -right-20 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full"
       />
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <Reveal direction="right">
+        <RevealCss direction="right">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
             {tag}
           </p>
@@ -196,9 +210,9 @@ export default function ContactCta({
               </li>
             ))}
           </ul>
-        </Reveal>
+        </RevealCss>
 
-        <Reveal
+        <RevealCss
           direction="left"
           className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:p-8"
         >
@@ -240,6 +254,7 @@ export default function ContactCta({
                     required
                     placeholder="First name"
                     className={fieldClass}
+                    onFocus={activateRecaptcha}
                   />
                 </div>
                 <div>
@@ -253,6 +268,7 @@ export default function ContactCta({
                     required
                     placeholder="Last name"
                     className={fieldClass}
+                    onFocus={activateRecaptcha}
                   />
                 </div>
               </div>
@@ -267,6 +283,7 @@ export default function ContactCta({
                   required
                   placeholder="Email address"
                   className={fieldClass}
+                  onFocus={activateRecaptcha}
                 />
               </div>
               <div>
@@ -284,6 +301,7 @@ export default function ContactCta({
                   placeholder="Phone number"
                   className={fieldClass}
                   onChange={handlePhoneChange}
+                  onFocus={activateRecaptcha}
                 />
               </div>
               <div>
@@ -297,13 +315,14 @@ export default function ContactCta({
                   rows={4}
                   placeholder="Tell us briefly about your legal matter"
                   className={`${fieldClass} resize-none`}
+                  onFocus={activateRecaptcha}
                 />
               </div>
-              {recaptchaSiteKey ? (
+              {activeRecaptchaSiteKey ? (
                 <div className="flex justify-center sm:justify-start">
                   <ReCAPTCHAWidget
                     key={recaptchaResetKey}
-                    sitekey={recaptchaSiteKey}
+                    sitekey={activeRecaptchaSiteKey}
                     theme="dark"
                     onChange={(token) => {
                       setRecaptchaToken(token);
@@ -330,7 +349,7 @@ export default function ContactCta({
               </button>
             </form>
           )}
-        </Reveal>
+        </RevealCss>
       </div>
     </section>
   );

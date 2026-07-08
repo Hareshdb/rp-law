@@ -50,6 +50,8 @@ export default async function RootLayout({
     >
       <head>        
         <script
+        type="text/javascript"
+        defer
           dangerouslySetInnerHTML={{
             __html: `
         (function(w,d,s,l,i){w[l]=w[l]||[];
