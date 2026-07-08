@@ -129,7 +129,7 @@ export default function PracticeAreas({
 
               <div className="text-xl font-bold text-primary">{area.label}</div>
 
-              <p className="mt-3 text-sm leading-relaxed text-muted">
+              <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted">
                 {area.description}
               </p>
             </RevealCss>
