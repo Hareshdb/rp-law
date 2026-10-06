@@ -19,18 +19,27 @@ const SANITY_REVALIDATE_SECONDS = 180;
 
 type SanityFetchOptions = FilteredResponseQueryOptions;
 
-function fetchFromSanity<T>(
+async function fetchFromSanity<T>(
   query: string,
   params: QueryParams = {},
-  options?: SanityFetchOptions
+  options?: SanityFetchOptions,
+  retries = 3
 ): Promise<T> {
-  return sanityClient.fetch<T>(query, params, {
-    ...options,
-    next: {
-      ...options?.next,
-      revalidate: SANITY_REVALIDATE_SECONDS,
-    },
-  });
+  try {
+    return await sanityClient.fetch<T>(query, params, {
+      ...options,
+      next: {
+        ...options?.next,
+        revalidate: SANITY_REVALIDATE_SECONDS,
+      },
+    });
+  } catch (error) {
+    if (retries > 0) {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      return fetchFromSanity<T>(query, params, options, retries - 1);
+    }
+    throw error;
+  }
 }
 
 const authorFields = `
