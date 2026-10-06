@@ -3,11 +3,13 @@ import { getPostBySlug, getRelatedPostsByCategory } from "@/lib/apis";
 import { Blog, SanityPost } from "@/lib/types";
 import type { Metadata } from "next";
 
+type PageProps = {
+    params: Promise<{ slug: string }>;
+};
+
 export async function generateMetadata({
     params,
-}: {
-    params: { slug: string };
-}): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
     const { slug } = await params;
     const post = await getPostBySlug(slug);
 
@@ -26,7 +28,7 @@ export async function generateMetadata({
     };
 }
 
-const BlogDetailPage = async ({ params }: { params: { slug: string } }) => {
+const BlogDetailPage = async ({ params }: PageProps) => {
     const { slug } = await params;
     const blogDetail = await getPostBySlug(slug);
     const primaryCategoryId = blogDetail?.categories?.[0]?._id;
