@@ -183,6 +183,16 @@ export async function getPosts({
   return posts.map(mapSanityPostToBlog);
 }
 
+export async function getTotalPostsCount(categoryId?: string): Promise<number> {
+  if (categoryId) {
+    return fetchFromSanity<number>(
+      `count(*[_type == "post" && $categoryId in categories[]._ref])`,
+      { categoryId }
+    );
+  }
+  return fetchFromSanity<number>(`count(*[_type == "post"])`);
+}
+
 export async function getAllPostSlugs(): Promise<
   Array<{ slug: string; publishedAt?: string; _updatedAt?: string }>
 > {

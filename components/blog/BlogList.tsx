@@ -1,15 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import BlogCard from "@components/blog/BlogCard";
 import Pagination from "@components/common/pagination";
 import type { Blog } from "@/lib/types";
 import Image from "next/image";
 
-const BLOGS_PER_PAGE = 6;
-
 interface Props {
     blogs: Blog[];
+    currentPage: number;
+    totalPages: number;
+    totalBlogs?: number;
     blogHeroTitle?: string;
     blogHeroDescription?: string;
 }
@@ -20,27 +22,43 @@ const DEFAULT_BLOG_HERO_DESCRIPTION =
 
 export default function BlogListing({
     blogs,
+    currentPage,
+    totalPages,
+    totalBlogs,
     blogHeroTitle,
     blogHeroDescription,
 }: Props) {
-    const [page, setPage] = useState(1);
-
-    const totalPages = Math.ceil(
-        blogs.length / BLOGS_PER_PAGE
-    );
-
-    const currentBlogs = useMemo(() => {
-        const start = (page - 1) * BLOGS_PER_PAGE;
-
-        return blogs.slice(
-            start,
-            start + BLOGS_PER_PAGE
-        );
-    }, [page, blogs]);
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const [isPending, startTransition] = useTransition();
 
     const heroTitle = blogHeroTitle ?? DEFAULT_BLOG_HERO_TITLE;
     const heroDescription =
         blogHeroDescription ?? DEFAULT_BLOG_HERO_DESCRIPTION;
+
+    const handlePageChange = (newPage: number) => {
+        if (newPage === currentPage || newPage < 1 || (totalPages > 0 && newPage > totalPages)) {
+            return;
+        }
+
+        const params = new URLSearchParams(searchParams.toString());
+        if (newPage <= 1) {
+            params.delete("page");
+        } else {
+            params.set("page", String(newPage));
+        }
+
+        const queryString = params.toString();
+        const targetUrl = queryString ? `/blog?${queryString}` : "/blog";
+
+        startTransition(() => {
+            router.push(targetUrl);
+            const section = document.getElementById("blog-listing-section");
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    };
 
     return (
         <>
@@ -74,25 +92,37 @@ export default function BlogListing({
                     </div>
                 </div>
             </section>
-            <section className="py-20 container">
-                <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                    {currentBlogs.map((blog) => (
-                        <BlogCard
-                            key={blog.id}
-                            blog={blog}
+            <section id="blog-listing-section" className="py-20 container scroll-mt-20">
+                {blogs.length === 0 ? (
+                    <div className="text-center py-16">
+                        <p className="text-xl font-medium text-foreground">No blog posts found.</p>
+                        <p className="text-muted-foreground mt-2">Please check back later for new insights.</p>
+                    </div>
+                ) : (
+                    <div
+                        className={`grid gap-8 md:grid-cols-2 xl:grid-cols-3 transition-opacity duration-200 ${
+                            isPending ? "opacity-50 pointer-events-none" : "opacity-100"
+                        }`}
+                    >
+                        {blogs.map((blog) => (
+                            <BlogCard
+                                key={blog.id}
+                                blog={blog}
+                            />
+                        ))}
+                    </div>
+                )}
+
+                {totalPages > 1 && (
+                    <div className={isPending ? "opacity-50 pointer-events-none" : ""}>
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={handlePageChange}
                         />
-                    ))}
-                </div>
-
-                <Pagination
-                    currentPage={page}
-                    totalPages={totalPages}
-                    onPageChange={setPage}
-                />
-
+                    </div>
+                )}
             </section>
         </>
-
-
     );
 }
